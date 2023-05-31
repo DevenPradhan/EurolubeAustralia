@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\User\CategoryController;
 use App\Http\Controllers\User\ProductController;
 use App\Http\Controllers\Visitors\VisitorController;
 use Illuminate\Support\Facades\Route;
@@ -30,7 +31,12 @@ Route::get('/dashboard', function () {
 Route::middleware('auth')->group(function () {
 
     Route::get('user/products', [ProductController::class, 'index'])->name('products');
+    Route::post('user/products', [ProductController::class, 'add_product'])->name('products.add');
 
+
+    Route::get('user/products/categories', [CategoryController::class, 'index'])->name('categories');
+    Route::post('user/products/categories', [CategoryController::class, 'add_category'])->name('category.add');
+    Route::delete('user/products/categories.destroy/{id}', [CategoryController::class, 'destroy_category'])->name('category.destroy');
 
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

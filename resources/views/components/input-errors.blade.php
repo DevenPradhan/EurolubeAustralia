@@ -1,0 +1,1 @@
+<p class="mt-2 text-red-800">{{ $slot }}</p>
