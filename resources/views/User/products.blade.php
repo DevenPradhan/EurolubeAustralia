@@ -25,7 +25,7 @@
                         <tr>
                             <td class="user_td">{{ $id++ }}</td>
                             <td class="user_td">{{ $product->name }}</td>
-                            <td class="user_td">{{ $product->product_category_id }}</td>
+                            <td class="user_td">{{ $product->category }}</td>
                             <td class="user_td">{{ $product->quantity }}</td>
                             <td class="user_td"></td>
                         </tr>

@@ -4,7 +4,7 @@
 
 
 .sidebar_list{
-    @apply uppercase font-semibold p-4 rounded-sm hover:shadow-md transition-all text-lg text-black w-44 ;
+    @apply uppercase font-semibold p-4 rounded-sm hover:shadow-md border-none transition-all text-lg text-black w-44 outline-none;
 }
 
 .user_th{

@@ -10,8 +10,7 @@ class CategoryController extends Controller
 {
     public function index()
     {
-
-        $categories = ProductCategory::all();
+        $categories = ProductCategory::with('products')->get();
         return view('User.category', compact('categories'));
     }
 
@@ -32,8 +31,9 @@ class CategoryController extends Controller
 
     public function destroy_category($id)
     {
+        $category = ProductCategory::where('id', $id)->value('name');
         ProductCategory::where('id', $id)->delete();
 
-        return back()->with('warning', '"' . $id . '" has been deleted.');
+        return back()->with('warning', '"' . $category . '" has been deleted.');
     }
 }

@@ -20,9 +20,8 @@ class Product extends Model
         'validity'
     ];
 
-    public function category()
+    public function category(): BelongsTo
     {
-
         return $this->belongsTo(ProductCategory::class);
     }
 }

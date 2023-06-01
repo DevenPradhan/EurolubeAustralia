@@ -13,7 +13,8 @@
                     <tr>
                         <th class="user_th">#</th>
                         <th class="user_th">Name</th>
-                        <th class="user_th"></th>
+                        <th class="user_th">Products</th>
+                        <th class="user_th">Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -22,11 +23,14 @@
                         <tr>
                             <td class="user_td">{{ $id++ }}</td>
                             <td class="user_td font-semibold uppercase font-mono">{{ $category->name }}</td>
+                            <td class="user_td">{{ $category->products->count() }}</td>
                             <td class="user_td">
                                 <form action="{{ route('category.destroy', $category->id) }}" method="POST">
                                     @csrf
                                     @method('DELETE')
-                                    <x-danger-button onclick="return confirm('Are you sure you want to remove this category?')">Remove</x-danger-button>
+                                    <x-danger-button
+                                        onclick="return confirm('Are you sure you want to remove this category?')">
+                                        Remove</x-danger-button>
                                 </form>
                             </td>
                         </tr>
