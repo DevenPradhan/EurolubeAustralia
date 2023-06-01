@@ -34,6 +34,6 @@ class CategoryController extends Controller
     {
         ProductCategory::where('id', $id)->delete();
 
-        return back()->with('warning', '"' . $request->name . '" has been deleted.');
+        return back()->with('warning', '"' . $id . '" has been deleted.');
     }
 }
