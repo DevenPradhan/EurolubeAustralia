@@ -30,6 +30,13 @@ class ProductController extends Controller
         $product->validity = 0;
         $product->save();
 
-        return back()->with('success', '"'.$request->name. '" has been added successfully');
+        return back()->with('success', '"' . $request->name . '" has been added successfully');
+    }
+
+    public function details($id)
+    {
+        $product = Product::findOrFail($id);
+
+        return view('User.product_details', compact('product'));
     }
 }

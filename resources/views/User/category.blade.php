@@ -4,7 +4,7 @@
 
     @include('alert')
 
-    <div class="w-full container flex flex-col items-center space-y-4">
+    <div class="w-full container flex flex-col items-center space-y-10">
         <x-primary-button class="focus:ring-0 active:bg-neutral-700 rounded-sm" x-data=""
             x-on:click.prevent="$dispatch('open-modal', 'add-category')">Add</x-primary-button>
         <div class="">
@@ -29,7 +29,7 @@
                                     @csrf
                                     @method('DELETE')
                                     <x-danger-button
-                                        onclick="return confirm('Are you sure you want to remove this category?')">
+                                        onclick="return confirm('Are you sure you want to remove this category?\nYou will lose all the underlying tables after you delete it')">
                                         Remove</x-danger-button>
                                 </form>
                             </td>
@@ -39,6 +39,17 @@
             </table>
         </div>
 
+        <div class="flex flex-row space-x-4 justify-center text-red-400 self-start">
+            @foreach ($categories as $category)
+                <ul class="flex flex-col">
+                    <h4 class="font-bold text-red-800">{{ $category->name }}</h4>
+
+                    @foreach ($category->products as $product)
+                        <li>{{ $product->name }}</li>
+                    @endforeach
+                </ul>
+            @endforeach
+        </div>
     </div>
 
     <x-modal name="add-category">

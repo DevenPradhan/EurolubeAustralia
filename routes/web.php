@@ -32,6 +32,7 @@ Route::middleware('auth')->group(function () {
 
     Route::get('user/products', [ProductController::class, 'index'])->name('products');
     Route::post('user/products', [ProductController::class, 'add_product'])->name('products.add');
+    Route::get('user/products/details/{id}', [ProductController::class, 'details'])->name('product.details');
 
 
     Route::get('user/products/categories', [CategoryController::class, 'index'])->name('categories');

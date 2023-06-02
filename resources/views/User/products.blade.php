@@ -22,10 +22,11 @@
                 <tbody>
                     <?php $id = 1; ?>
                     @foreach ($products as $product)
-                        <tr>
+                        <tr onclick="window.location='{{ route('product.details', $id) }}'"
+                            class="cursor-pointer hover:shadow-sm" title="click to view product details">
                             <td class="user_td">{{ $id++ }}</td>
                             <td class="user_td">{{ $product->name }}</td>
-                            <td class="user_td">{{ $product->category }}</td>
+                            <td class="user_td">{{ $product->product_category_id }}</td>
                             <td class="user_td">{{ $product->quantity }}</td>
                             <td class="user_td"></td>
                         </tr>
@@ -49,7 +50,7 @@
 
                 <x-text-input id="password" name="name" type="text" class="mt-1 block w-3/4"
                     placeholder="{{ __('Name') }}" required />
-                    @error('name')
+                @error('name')
                     <div class="text-red-800 mt-2 text-sm">{{ $message }}</div>
                 @enderror
             </div>

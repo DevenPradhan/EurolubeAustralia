@@ -24,4 +24,19 @@ class Product extends Model
     {
         return $this->belongsTo(ProductCategory::class);
     }
+
+    public function detail()
+    {
+        return $this->hasOne(ProductDetail::class);
+    }
+
+    public function features()
+    {
+        return $this->hasOne(ProductFeature::class);
+    }
+
+    public function images()
+    {
+        return $this->hasMany(ProductImage::class);
+    }
 }
