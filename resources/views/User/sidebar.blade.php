@@ -1,8 +1,11 @@
-<div class="p-8 rounded-sm drop-shadow-md">
-    <ul class="space-y-2">
+<div class="p-1 rounded-sm mx-auto">
+    <ul class="flex flex-inline space-x-1">
         <li>
             <x-nav-link href="{{ route('products') }}"
-                class="sidebar_list {{ Request::routeIs('products') ? 'shadow-md ' : '' }}">Products</x-nav-link>
+                class="sidebar_list {{ Request::routeIs('products') ? 'shadow-md' : '' }}">Products</x-nav-link>
+        </li>
+        <li>
+            <x-nav-link href="{{route('types')}}" class="sidebar_list {{Request::routeIs('types') ? 'shadow-md' : '' }}">Types</x-nav-link>
         </li>
 
         <li>

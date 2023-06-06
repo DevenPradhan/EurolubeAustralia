@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\User\CategoryController;
 use App\Http\Controllers\User\ProductController;
+use App\Http\Controllers\User\TypeController;
 use App\Http\Controllers\Visitors\VisitorController;
 use Illuminate\Support\Facades\Route;
 
@@ -34,6 +35,7 @@ Route::middleware('auth')->group(function () {
     Route::post('user/products', [ProductController::class, 'add_product'])->name('products.add');
     Route::get('user/products/details/{id}', [ProductController::class, 'details'])->name('product.details');
 
+    Route::get('user/product/types', [TypeController::class, 'index'])->name('types');
 
     Route::get('user/products/categories', [CategoryController::class, 'index'])->name('categories');
     Route::post('user/products/categories', [CategoryController::class, 'add_category'])->name('category.add');

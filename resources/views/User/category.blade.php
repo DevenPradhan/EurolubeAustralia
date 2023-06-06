@@ -5,6 +5,10 @@
     @include('alert')
 
     <div class="w-full container flex flex-col items-center space-y-10">
+        @include('User.sidebar')
+        <div class="max-w-5xl mx-auto">
+
+        </div>
         <x-primary-button class="focus:ring-0 active:bg-neutral-700 rounded-sm" x-data=""
             x-on:click.prevent="$dispatch('open-modal', 'add-category')">Add</x-primary-button>
         <div class="">
@@ -19,11 +23,11 @@
                 </thead>
                 <tbody>
                     <?php $id = 1; ?>
-                    @foreach ($categories as $category)
+                    @foreach ($product_categories as $category)
                         <tr>
                             <td class="user_td">{{ $id++ }}</td>
                             <td class="user_td font-semibold uppercase font-mono">{{ $category->name }}</td>
-                            <td class="user_td">{{ $category->products->count() }}</td>
+                            <td class="user_td">{{ $category->products }}</td>
                             <td class="user_td">
                                 <form action="{{ route('category.destroy', $category->id) }}" method="POST">
                                     @csrf
@@ -39,17 +43,6 @@
             </table>
         </div>
 
-        <div class="flex flex-row space-x-4 justify-center text-red-400 self-start">
-            @foreach ($categories as $category)
-                <ul class="flex flex-col">
-                    <h4 class="font-bold text-red-800">{{ $category->name }}</h4>
-
-                    @foreach ($category->products as $product)
-                        <li>{{ $product->name }}</li>
-                    @endforeach
-                </ul>
-            @endforeach
-        </div>
     </div>
 
     <x-modal name="add-category">

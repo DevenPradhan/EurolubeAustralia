@@ -13,8 +13,8 @@ class ProductCategory extends Model
     protected $table = 'product_categories';
     protected $fillable = ['id', 'name', 'validity'];
 
-   public function products()
+   public function product_types()
    {
-     return $this->hasMany(Product::class);
+     return $this->hasMany(ProductType::class);
    }
 }

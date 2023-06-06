@@ -10,8 +10,8 @@ class CategoryController extends Controller
 {
     public function index()
     {
-        $categories = ProductCategory::with('products')->get();
-        return view('User.category', compact('categories'));
+        $product_categories = ProductCategory::all();
+        return view('User.category', compact('product_categories'));
     }
 
     public function add_category(Request $request)

@@ -8,7 +8,10 @@
         <div class="">
             <h4>{{$product->name}}</h4>
 
+           @isset($product->detail->part_no)
             {{$product->detail->part_no}}
+            @endisset
+
             {{-- {{$product->product_details->part_no}} --}}
            
         </div>

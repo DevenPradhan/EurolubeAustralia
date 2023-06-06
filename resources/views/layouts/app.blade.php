@@ -31,7 +31,7 @@
 
             <!-- Page Content -->
             <main class=" flex space-x-10 mt-20">
-                @include('User.sidebar')
+                {{-- @include('User.sidebar') --}}
                     {{ $slot }}
 
             </main>

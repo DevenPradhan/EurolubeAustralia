@@ -2,17 +2,35 @@
 @tailwind components;
 @tailwind utilities;
 
-
+/* classlist for subnavbar */
 .sidebar_list{
-    @apply uppercase font-semibold p-4 rounded-sm hover:shadow-md border-none transition-all text-lg text-black w-44 outline-none;
+    @apply uppercase flex justify-center items-end font-semibold px-2 py-2 rounded-sm hover:shadow-md border-none transition-all text-black w-44 outline-none;
+}
+
+.disabled{
+    @apply bg-gray-200 hover:shadow-none text-neutral-600 hover:text-neutral-600;
 }
 
 .user_th{
-    @apply px-10 py-4 border-b-2 border-neutral-800;
+    @apply border-b-2 border-neutral-800 min-w-[150px];
 }
 
 .user_td{
-    @apply px-10 py-4 border-b;
+    @apply pr-2 pl-10 py-4 min-w-[150px] border-b;
+}
 
+.form_input{
+    @apply text-black rounded-sm min-h-[40px] px-4;
+}
 
+.form_label{
+    @apply text-neutral-400 font-light;
+}
+
+.form_tr{
+    @apply bg-gray-800 text-white h-max;  
+}
+
+.select_new{
+    @apply text-gray-600 font-semibold;
 }

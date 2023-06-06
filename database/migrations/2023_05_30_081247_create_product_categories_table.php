@@ -17,6 +17,26 @@ return new class extends Migration
             $table->string('name');
             $table->timestamps();
         });
+
+        Schema::create('product_types', function (Blueprint $table) {
+            $table->id();
+            $table->unsignedBigInteger('product_category_id');
+            $table->string('name');
+            $table->foreign('product_category_id')->references('id')->on('product_categories')->onDelete('cascade');
+            $table->timestamps();
+        });
+
+        Schema::create('products', function (Blueprint $table) {
+            $table->id();
+            // $table->unsignedBigInteger('product_category_id');
+            $table->unsignedBigInteger('product_type_id');
+            $table->string('name');
+            $table->integer('validity');
+            $table->integer('quantity')->nullable();
+            // $table->foreign('product_category_id')->references('id')->on('product_categories')->onDelete('cascade');
+            $table->foreign('product_type_id')->references('id')->on('product_types')->onDelete('cascade');
+            $table->timestamps();
+        });
     }
 
     /**
@@ -25,5 +45,7 @@ return new class extends Migration
     public function down(): void
     {
         Schema::dropIfExists('product_categories');
+        Schema::dropIfExists('product_types');
+        Schema::dropIfExists('products');
     }
 };
