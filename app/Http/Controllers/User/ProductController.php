@@ -12,17 +12,19 @@ class ProductController extends Controller
 {
     public function index()
     {
+        $products = Product::query()->with(['type' => ['category:id,name']
+        ])->get();
+
         $types = ProductType::pluck('name', 'id');
-        $categories = ProductCategory::pluck('name', 'id');
-        echo $products = Product::with('category')->get();
-        return view('User.products', compact('products', 'categories', 'types'));
+        // $categories = ProductCategory::pluck('name', 'id');
+        return view('User.products', compact('products', 'types'));
     }
 
     public function add_product(Request $request)
     {
 
         // dd($request->all());
-        $validated = $request->validate([
+        $validated = $request->validateWithBag('productAddition', [
             'name' => 'required|max:40',
             'product_type' => 'required',
             // 'category' => 'required',
@@ -36,13 +38,6 @@ class ProductController extends Controller
         $product->validity = 0;
         $product->quantity = $request->quantity;
         $product->save();
-
-
-        // if(ProductCategory::where('id', $request->product_category)->doesntExist()){
-
-        // }
-
-       
 
         return back()->with('success', '"' . $request->name . '" has been added successfully');
     }

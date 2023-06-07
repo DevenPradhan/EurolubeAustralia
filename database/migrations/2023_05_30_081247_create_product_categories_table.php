@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->integer('validity');
             $table->string('name');
+            $table->string('description')->nullable();
             $table->timestamps();
         });
 
@@ -22,13 +23,13 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('product_category_id');
             $table->string('name');
+            $table->string('description')->nullable();
             $table->foreign('product_category_id')->references('id')->on('product_categories')->onDelete('cascade');
             $table->timestamps();
         });
 
         Schema::create('products', function (Blueprint $table) {
             $table->id();
-            // $table->unsignedBigInteger('product_category_id');
             $table->unsignedBigInteger('product_type_id');
             $table->string('name');
             $table->integer('validity');

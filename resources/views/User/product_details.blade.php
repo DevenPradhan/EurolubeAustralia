@@ -3,8 +3,11 @@
 
     @include('alert')
 
-    <div class="mt-10 container mx-auto flex flex-col space-y-20">
-        <a href="{{URL::previous()}}" class="fill-gray-400 hover:fill-black hover:drop-shadow-sm transition-all"><x-icons.arrow-left/></a>
+    <div class="container ml-10 flex flex-col space-y-20">
+        <div class="flex">
+            {{-- <a href="{{URL::previous()}}" class="fill-gray-400 hover:fill-black hover:drop-shadow-sm transition-all"><x-icons.arrow-left/></a> --}}
+            @include('User.sidebar')
+        </div>
         <div class="">
             <h4>{{$product->name}}</h4>
 

@@ -16,7 +16,7 @@
 }
 
 .user_td{
-    @apply pr-2 pl-10 py-4 min-w-[150px] border-b;
+    @apply  py-4 px-2 min-w-[150px] border-b;
 }
 
 .form_input{

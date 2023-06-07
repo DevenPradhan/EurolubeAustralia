@@ -14,15 +14,15 @@ class Product extends Model
     protected $table = 'products';
     protected $fillable = [
         'id',
-        'category',
+        'product_type_id',
         'name',
         'quantity',
         'validity'
     ];
 
-    public function category(): BelongsTo
+    public function type(): BelongsTo
     {
-        return $this->belongsTo(ProductCategory::class);
+        return $this->belongsTo(ProductType::class, 'product_type_id');
     }
 
     public function detail()
