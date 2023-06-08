@@ -28,8 +28,8 @@
         @else
             <div class="mt-4 inline-flex space-x-4">
                 <x-input-label value="Category" />
-                <x-input-label class="font-semibold uppercase" value="{{$category->name}}"/>
-                <x-text-input type="hidden" value="{{ $category->id }}" name="category" />
+                <x-input-label class="font-semibold uppercase" value="{{$primary->name}}"/>
+                <x-text-input type="hidden" value="{{ $primary->id }}" name="category" />
             </div>
 
         @endif

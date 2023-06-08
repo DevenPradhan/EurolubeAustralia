@@ -34,3 +34,7 @@
 .select_new{
     @apply text-gray-600 font-semibold;
 }
+
+.anchor_tag{
+    @apply flex justify-center font-semibold uppercase font-mono  hover:text-black hover:underline text-neutral-600;
+}

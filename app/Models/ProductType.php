@@ -22,4 +22,9 @@ class ProductType extends Model
     {
         return $this->belongsTo(ProductCategory::class, 'product_category_id');
     }
+
+    public function images()
+   {
+    return $this->morphMany(Image::class, 'imageable');
+   }
 }

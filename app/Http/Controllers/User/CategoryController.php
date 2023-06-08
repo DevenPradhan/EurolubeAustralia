@@ -11,11 +11,6 @@ class CategoryController extends Controller
 {
     public function index()
     {
-        // $product_categories = ProductCategory::query()->with([
-        //     'product_types' => [
-        //         'products']
-        //     ])->get();
-
         $product_categories = ProductCategory::all();
 
         return view('User.category', compact('product_categories'));
@@ -49,8 +44,9 @@ class CategoryController extends Controller
     {
         $types = ProductType::pluck('name', 'id');
         $categories = ProductCategory::pluck('name', 'id');
-        $category = ProductCategory::find($id);
+        $primary = ProductCategory::find($id);
 
-        return view('User.category_details', compact('category', 'types', 'categories'));
+        return view('User.category_details', compact('primary', 'types', 'categories'));
     }
+
 }

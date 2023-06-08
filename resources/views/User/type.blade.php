@@ -9,6 +9,7 @@
         <div class="max-w-5xl mx-auto">
             <x-primary-button class="focus:ring-0 active:bg-neutral-700 rounded-sm" x-data=""
                 x-on:click.prevent="$dispatch('open-modal', 'add-type')">Add</x-primary-button>
+            
             <table class="table-auto">
                 <thead>
                     <tr>
@@ -23,10 +24,14 @@
                     @foreach ($product_types as $type)
                         <tr>
                             <td class="user_td">
-                                <p class="text-center">{{ $id++ }}</p></td>
-                            <td class="user_td w-64"><p class="text-center">{{ $type->name }}</p></td>
-                            <td class="user_td w-64"><p class="text-center">{{ $type->category->name }}</p></td>
-                            <td class="user_td"><p class="text-center">{{$type->category->created_at}}</p></td>
+                                <p class="text-center">{{ $id++ }}</p>
+                            </td>
+                            <td class="user_td w-64">
+                                <a class="anchor_tag" href="{{route('type.details', $type->id)}}">{{$type->name}}</a>
+                            </td>
+                            <td class="user_td w-64"><a href="{{ route('category.details', $type->category->id) }}"
+                                    class="anchor_tag">{{ $type->category->name }}</a></td>
+                            <td class="user_td"></td>
                         </tr>
                     @endforeach
                 </tbody>
@@ -72,5 +77,5 @@
         </form>
     </x-modal>
 
-    
+
 </x-app-layout>

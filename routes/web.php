@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ImagesController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\User\CategoryController;
 use App\Http\Controllers\User\ProductController;
@@ -31,12 +32,17 @@ Route::get('/dashboard', function () {
 
 Route::middleware('auth')->group(function () {
 
+    Route::post('user/products/categories/upload.images/{id}', [ImagesController::class, 'uploadCategory'])->name('category.image.upload');
+    Route::post('user/products/types/upload.images/{id}', [ImagesController::class, 'uploadType'])->name('type.image.upload');
+
+
     Route::get('user/products', [ProductController::class, 'index'])->name('products');
     Route::post('user/products', [ProductController::class, 'add_product'])->name('products.add');
     Route::get('user/products/details/{id}', [ProductController::class, 'details'])->name('product.details');
 
     Route::get('user/products/types', [TypeController::class, 'index'])->name('types');
     Route::post('user/products/types', [TypeController::class, 'add_type'])->name('type.add');
+    Route::get('user/products/types/{id}', [TypeController::class, 'detail'])->name('type.details');
 
     Route::get('user/products/categories', [CategoryController::class, 'index'])->name('categories');
     Route::post('user/products/categories', [CategoryController::class, 'add_category'])->name('category.add');

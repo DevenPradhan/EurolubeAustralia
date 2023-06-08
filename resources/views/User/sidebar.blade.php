@@ -10,7 +10,7 @@
 
         <li>
             <x-nav-link href="{{route('categories')}}"
-                class="sidebar_list {{ Request::routeIs('categories') ? 'shadow-md ' : '' }}">Categories</x-nav-link>
+                class="sidebar_list {{ Request::routeIs(['categories']) ? 'shadow-md ' : '' }}">Categories</x-nav-link>
         </li>
 
 

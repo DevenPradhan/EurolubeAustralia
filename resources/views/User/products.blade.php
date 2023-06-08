@@ -40,12 +40,12 @@
                             <p class="text-center">{{ $id++ }}</p>
                         </td>
                         <td class="user_td"><a href="{{ route('product.details', $product->id) }}"
-                                class="hover:underline flex items-center">{{ $product->name }}</a></td>
-                        <td class="user_td"><a class="hover:underline" href="#">{{ $product->type->name }}</a>
+                                class="anchor_tag">{{ $product->name }}</a></td>
+                        <td class="user_td"><a class="anchor_tag" href="#">{{ $product->type->name }}</a>
                         </td>
                         <td class="user_td">
                             <a
-                            href="{{ route('category.details', $product->type->category->id) }}" class="hover:underline">{{ $product->type->category->name }}</a>
+                            href="{{ route('category.details', $product->type->category->id) }}" class="anchor_tag">{{ $product->type->category->name }}</a>
                         </td>
                         <td class="user_td"><p class="text-center">{{$product->quantity}}</p>
                         </td>

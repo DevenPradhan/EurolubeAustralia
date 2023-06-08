@@ -11,7 +11,6 @@ class TypeController extends Controller
 {
     public function index()
     {
-        // $product_types = ProductType::with('category')->get();
         $product_types = ProductType::query()->with('category:id,name')->get();
         $categories = ProductCategory::pluck('name', 'id');
 
@@ -32,4 +31,13 @@ class TypeController extends Controller
 
         return back()->with('success', '"' . $request->type . '" added successfully."');
     }
+
+    public function detail($id)
+    {
+        $types = ProductType::all();
+        $type = ProductType::find($id);
+
+        return view('User.type_details', compact('type', 'types'));
+    }
+
 }

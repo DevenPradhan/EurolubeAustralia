@@ -30,7 +30,7 @@
                 </header>
             @endif --}}
 
-            @livewireScripts
+            <livewire:scripts />
 
             <!-- Page Content -->
             <main class=" flex space-x-10 mt-10">

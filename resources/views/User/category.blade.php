@@ -27,7 +27,7 @@
                                     <p class="text-center">{{ $id++ }}</p>
                                 </td>
                                 <td class="user_td font-semibold uppercase font-mono w-72">
-                                    <a href="{{route('category.details', $category->id)}}" class="flex justify-center hover:underline">{{ $category->name }}</a>
+                                    <a href="{{route('category.details', $category->id)}}" class="anchor_tag">{{ $category->name }}</a>
                                 </td>
                                 
                                 <td class="user_td">
