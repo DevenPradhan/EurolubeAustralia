@@ -25,13 +25,15 @@ class ProductController extends Controller
 
         // dd($request->all());
         $validated = $request->validateWithBag('productAddition', [
-            'name' => 'required|max:40',
+            'name' => 'required|unique:products|max:40',
             'product_type' => 'required',
             // 'category' => 'required',
             'quantity' => 'required'
+        ], [
+            'name.unique' => 'The item has already been added'
         ]);
         
-        
+
         $product = new Product;
         $product->name = $request->name;
         $product->product_type_id = $request->product_type;

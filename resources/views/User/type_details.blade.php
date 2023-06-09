@@ -30,6 +30,40 @@
                     x-on:click.prevent="$dispatch('open-modal', 'add-images')">Add
                     {{ $type->images != '[]' ? 'More' : '' }}</x-primary-button>
             </div>
+            @if ($type->products->count() == null)
+                <div class="mt-4 flex max-w-xl flex-col space-y-3 p-8 rounded-sm bg-red-50">
+                    <p class="font-bold">You dont have any List in this category</p>
+                    <div>
+                        <x-primary-button class="focus:ring-0 active:bg-neutral-700 rounded-sm" x-data=""
+                            x-on:click.prevent="$dispatch('open-modal', 'add-product')">Add</x-primary-button>
+                    </div>
+                </div>
+            @else
+                <div class="p-2 border border-gray-200 max-w-lg">
+                    <table class="table-auto w-full">
+                        <thead>
+                            <tr>
+                                <th class="user_th w-4">#</th>
+                                <th class="user_th"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php $id = 1; ?>
+                            @foreach ($type->products as $product)
+                                <tr>
+                                    <td class="user_td">
+                                        <p class="text-center">{{ $id++ }}</p>
+                                    </td>
+                                    <td class="user_td"><a href="{{route('product.details', $product->id)}}"
+                                            class="flex justify-center hover:underline">{{ $product->name }}</a></td>
+                                </tr>
+                            @endforeach
+
+
+                        </tbody>
+                    </table>
+                </div>
+            @endif
         </div>
     </div>
 

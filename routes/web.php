@@ -42,10 +42,12 @@ Route::middleware('auth')->group(function () {
 
     Route::get('user/products/types', [TypeController::class, 'index'])->name('types');
     Route::post('user/products/types', [TypeController::class, 'add_type'])->name('type.add');
+    Route::patch('user/products/types', [TypeController::class, 'edit'])->name('type.edit');
     Route::get('user/products/types/{id}', [TypeController::class, 'detail'])->name('type.details');
 
     Route::get('user/products/categories', [CategoryController::class, 'index'])->name('categories');
     Route::post('user/products/categories', [CategoryController::class, 'add_category'])->name('category.add');
+    Route::patch('user/products/categories/{id}', [CategoryController::class, 'edit'])->name('category.edit');
     Route::delete('user/products/categories.destroy/{id}', [CategoryController::class, 'destroy_category'])->name('category.destroy');
     Route::get('user/products/categories/{id}', [CategoryController::class, 'detail'])->name('category.details');
 

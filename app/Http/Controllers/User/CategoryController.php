@@ -32,6 +32,14 @@ class CategoryController extends Controller
         return back()->with('success', '"' . $request->category . '" added successfully.');
     }
 
+    public function edit(Request $request, $id)
+    {
+
+        ProductCategory::where('id', $id)->update(['name' => $request->category]);
+
+        return back()->with('success', 'The category has been updated successfully');
+    }
+
     public function destroy_category($id)
     {
         $category = ProductCategory::where('id', $id)->value('name');
@@ -44,9 +52,9 @@ class CategoryController extends Controller
     {
         $types = ProductType::pluck('name', 'id');
         $categories = ProductCategory::pluck('name', 'id');
-        $primary = ProductCategory::find($id);
+        $category = ProductCategory::find($id);
 
-        return view('User.category_details', compact('primary', 'types', 'categories'));
+        return view('User.category_details', compact('category', 'types', 'categories'));
     }
 
 }

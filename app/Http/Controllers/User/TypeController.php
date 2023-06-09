@@ -19,9 +19,8 @@ class TypeController extends Controller
 
     public function add_type(Request $request)
     {
-
         $request->validateWithBag('typeAddition', [
-            'type' => 'required',
+            'type' => 'required|unique:product_types,name',
         ]);
 
         ProductType::create([
@@ -32,12 +31,19 @@ class TypeController extends Controller
         return back()->with('success', '"' . $request->type . '" added successfully."');
     }
 
+    public function edit(Request $request)
+    {
+        dd($request->all());
+    }
+
     public function detail($id)
     {
-        $types = ProductType::all();
+        $types = ProductType::pluck('name', 'id');
         $type = ProductType::find($id);
 
         return view('User.type_details', compact('type', 'types'));
     }
+
+
 
 }

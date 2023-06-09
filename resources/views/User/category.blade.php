@@ -27,20 +27,28 @@
                                     <p class="text-center">{{ $id++ }}</p>
                                 </td>
                                 <td class="user_td font-semibold uppercase font-mono w-72">
-                                    <a href="{{route('category.details', $category->id)}}" class="anchor_tag">{{ $category->name }}</a>
+                                    <a href="{{ route('category.details', $category->id) }}"
+                                        class="anchor_tag">{{ $category->name }}</a>
                                 </td>
-                                
+
                                 <td class="user_td">
-                                    <div class="flex justify-center">
-                                        <form action="{{ route('category.destroy', $category->id) }}" method="POST">
-                                            @csrf
-                                            @method('DELETE')
-                                            <x-danger-button
+                                    <form action="{{ route('category.destroy', $category->id) }}" method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                        <div class="flex justify-center space-x-4">
+
+                                            <button type="button" x-data=""
+                                                x-on:click.prevent="$dispatch('open-modal', 'edit-modal')">
+                                                <x-edit />
+                                            </button>
+                                            <button
                                                 onclick="return confirm('Are you sure you want to remove this category?\nYou will lose all the underlying tables after you delete it')">
-                                                Remove</x-danger-button>
-                                        </form>
-                                    </div>
-                                    
+                                                <x-trash-can />
+                                            </button>
+                                        </div>
+
+                                    </form>
+
                                 </td>
                             </tr>
                         @endforeach
@@ -51,6 +59,12 @@
 
 
     </div>
+
+    <form action="{{ route('category.edit', $category->id) }}" method="POST" enctype="multipart/form-data">
+        @method('PATCH')
+        @csrf
+        @include('User.edit-modal')
+    </form>
 
     <x-modal name="add-category" :show="$errors->categoryAddition->isNotEmpty()" focusable>
         <form method="post" action="{{ route('category.add') }}" class="p-6">
@@ -76,5 +90,6 @@
             </div>
         </form>
     </x-modal>
+
 
 </x-app-layout>

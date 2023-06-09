@@ -17,8 +17,8 @@
             <div class="mt-4">
                 <x-input-label for="category" value="{{ __('Category') }}" class="" />
 
-                <x-select class="mt-1 block w-3/4" placeholder="Select a Category" name="category" required>
-                    <option value=""></option>
+                <x-select class="mt-1 block w-3/4" name="category" required>
+                    <option value="" hidden>Select A Category</option>
                     @foreach ($categories as $key => $category)
                         <option value="{{ $key }}">{{ $category }}</option>
                     @endforeach
@@ -28,8 +28,8 @@
         @else
             <div class="mt-4 inline-flex space-x-4">
                 <x-input-label value="Category" />
-                <x-input-label class="font-semibold uppercase" value="{{$primary->name}}"/>
-                <x-text-input type="hidden" value="{{ $primary->id }}" name="category" />
+                <x-input-label class="font-semibold uppercase" value="{{$category->name}}"/>
+                <x-text-input type="hidden" value="{{ $category->id }}" name="category" />
             </div>
 
         @endif

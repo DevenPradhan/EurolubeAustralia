@@ -8,27 +8,27 @@
             @include('User.sidebar')
         </div>
         <div class="flex flex-col space-y-5 mx-10">
-            <h4 class="font-semibold uppercase text-xl">{{ $primary->name }}</h4>
+            <h4 class="font-semibold uppercase text-xl">{{ $category->name }}</h4>
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe consectetur sequi ex praesentium
                 voluptatibus soluta veniam dolore eveniet! Iste aut soluta praesentium consequuntur veritatis! Nam,
                 illum nisi? Recusandae, mollitia reprehenderit.</p>
 
             {{-- option to upload images if not uploaded formerly --}}
             <div
-                class="{{ $primary->images == '[]' ? 'bg-yellow-50 max-w-4xl space-y-2' : 'bg-slate-50 max-w-5xl flex flex-row space-x-4' }} p-8 overflow-x-auto">
-                @if ($primary->images == '[]')
+                class="{{ $category->images == '[]' ? 'bg-yellow-50 max-w-4xl space-y-2' : 'bg-slate-50 max-w-5xl flex flex-row space-x-4' }} p-8 overflow-x-auto">
+                @if ($category->images == '[]')
                     <p class="font-bold">You dont have any image for this product. Upload some pictures to provide better
                         description of the item</p>
                 @else
-                    @foreach ($primary->images as $image)
+                    @foreach ($category->images as $image)
                         <img src="{{ asset('storage/images/' . $image->url) }}" alt="" class="w-56 object-cover">
                     @endforeach
                 @endif
                 <x-primary-button class="focus:ring-0 active:bg-neutral-700 rounded-sm max-w-max" x-data=""
                     x-on:click.prevent="$dispatch('open-modal', 'add-images')">Add
-                    {{ $primary->images != '[]' ? 'More' : '' }}</x-primary-button>
+                    {{ $category->images != '[]' ? 'More' : '' }}</x-primary-button>
             </div>
-            @if ($primary->product_types->count() == null)
+            @if ($category->product_types->count() == null)
                 <div class="mt-4 flex max-w-xl flex-col space-y-3 p-8 rounded-sm bg-red-50">
                     <p class="font-bold">You dont have any List in this category</p>
                     <div>
@@ -47,12 +47,12 @@
                         </thead>
                         <tbody>
                             <?php $id = 1; ?>
-                            @foreach ($primary->product_types as $type)
+                            @foreach ($category->product_types as $type)
                                 <tr>
                                     <td class="user_td">
                                         <p class="text-center">{{ $id++ }}</p>
                                     </td>
-                                    <td class="user_td"><a href="#"
+                                    <td class="user_td"><a href="{{route('type.details', $type->id)}}"
                                             class="flex justify-center hover:underline">{{ $type->name }}</a></td>
                                 </tr>
                             @endforeach
@@ -72,7 +72,7 @@
 
     @include('User.add-product-type-modal')
 
-    <form action="{{ route('category.image.upload', $primary->id) }}" method="POST" enctype="multipart/form-data">
+    <form action="{{ route('category.image.upload', $category->id) }}" method="POST" enctype="multipart/form-data">
         @csrf
         @include('User.image-upload-modal')
     </form>
