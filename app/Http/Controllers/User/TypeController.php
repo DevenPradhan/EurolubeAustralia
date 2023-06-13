@@ -33,7 +33,15 @@ class TypeController extends Controller
 
     public function edit(Request $request)
     {
-        dd($request->all());
+
+
+        $request->validateWithBag('editModal', [
+            'type' => 'required|unique:product_types,name',
+        ]);
+
+        ProductType::where('id', $request->type_id)->update(['name' => $request->type, 'product_category_id' => $request->category]);
+
+        return back()->with('success', 'Product Type edited successfully!');
     }
 
     public function detail($id)

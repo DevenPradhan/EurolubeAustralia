@@ -36,11 +36,12 @@
                                 <form action="">
                                     <div class="flex justify-center space-x-4">
 
-                                        <button type="button" x-data="" onclick="edit_modal({{$type}})"
-                                            x-on:click.prevent="$dispatch('open-modal', 'edit-modal')" >
+                                        <button type="button" x-data=""
+                                            onclick="edit_modal({{ $type }})"
+                                            x-on:click.prevent="$dispatch('open-modal', 'edit-modal')">
                                             <x-edit />
                                         </button>
-                                        <button 
+                                        <button
                                             onclick="return confirm('Are you sure you want to remove this category?\nYou will lose all the underlying tables after you delete it')">
                                             <x-trash-can />
                                         </button>
@@ -49,7 +50,7 @@
 
                             </td>
                             <td>
-                                
+
                             </td>
                         </tr>
                     @endforeach
@@ -58,24 +59,25 @@
         </div>
     </div>
 
-    @include('User.add-product-type-modal')
+    @include('modals.add-product-type-modal')
 
     <form action="{{ route('type.edit') }}" method="POST" enctype="multipart/form-data">
         @method('PATCH')
         @csrf
-        @include('User.edit-modal')
+        @include('modals.edit-modal')
 
     </form>
 
     <script>
-        function edit_modal(value)
-        {
+       
+        function edit_modal(value) {
+            $('.errors').empty();
             $('#type_id').val(value.id);
             $('#type_name').val(value.name);
-            $('#type_category').val(value.product_category_id);
-            // $('#type_category').val(value.name);
-            
-        console.log(value);
+            $('#type_category').val(value.category.id);
+            $('#type_category').text(value.category.name);
+
+            // console.log(value);
         }
     </script>
 </x-app-layout>

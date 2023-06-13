@@ -7,7 +7,7 @@
             <x-input-label for="type" value="{{ __('Type') }}" class="" />
 
             <x-text-input name="type" type="text" class="mt-1 block w-3/4" placeholder="{{ __('Enter Type here') }}"
-                required />
+                required value="{{old('type')}}"/>
             <x-input-error :messages="$errors->typeAddition->get('type')" class="mt-2" />
         </div>
 

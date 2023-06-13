@@ -9,9 +9,17 @@
         </div>
         <div class="flex flex-col space-y-5 mx-10">
             <h4 class="font-semibold uppercase text-xl">{{ $category->name }}</h4>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe consectetur sequi ex praesentium
-                voluptatibus soluta veniam dolore eveniet! Iste aut soluta praesentium consequuntur veritatis! Nam,
-                illum nisi? Recusandae, mollitia reprehenderit.</p>
+            <div class="space-x-10 flex items-center">
+                @if ($category->description == '')
+                    <p>There are no descriptions for this category.</p>
+                @else
+                    <p>{{ $category->description }}</p>
+                @endif
+                <x-secondary-button type="button" x-data="" onclick="edit_desc({{$category}})"
+                    x-on:click.prevent="$dispatch('open-modal', 'description-modal')">
+                    {{ $category->description == '' ? 'Add' : 'Edit' }}</x-secondary-button>
+            </div>
+
 
             {{-- option to upload images if not uploaded formerly --}}
             <div
@@ -21,18 +29,19 @@
                         description of the item</p>
                 @else
                     @foreach ($category->images as $image)
-                        <img src="{{ asset('storage/images/' . $image->url) }}" alt="" class="w-56 object-cover">
+                        <img src="{{ asset('storage/images/' . $image->url) }}" alt=""
+                            class="w-56 object-cover">
                     @endforeach
                 @endif
-                <x-primary-button class="focus:ring-0 active:bg-neutral-700 rounded-sm max-w-max" x-data=""
-                    x-on:click.prevent="$dispatch('open-modal', 'add-images')">Add
+                <x-primary-button class="focus:ring-0 active:bg-neutral-700 rounded-sm max-w-max"
+                    x-data="" x-on:click.prevent="$dispatch('open-modal', 'add-images')">Add
                     {{ $category->images != '[]' ? 'More' : '' }}</x-primary-button>
             </div>
             @if ($category->product_types->count() == null)
                 <div class="mt-4 flex max-w-xl flex-col space-y-3 p-8 rounded-sm bg-red-50">
                     <p class="font-bold">You dont have any List in this category</p>
                     <div>
-                        <x-primary-button class="focus:ring-0 active:bg-neutral-700 rounded-sm" x-data=""
+                        <x-primary-button class="" x-data=""
                             x-on:click.prevent="$dispatch('open-modal', 'add-type')">Add</x-primary-button>
                     </div>
                 </div>
@@ -52,7 +61,7 @@
                                     <td class="user_td">
                                         <p class="text-center">{{ $id++ }}</p>
                                     </td>
-                                    <td class="user_td"><a href="{{route('type.details', $type->id)}}"
+                                    <td class="user_td"><a href="{{ route('type.details', $type->id) }}"
                                             class="flex justify-center hover:underline">{{ $type->name }}</a></td>
                                 </tr>
                             @endforeach
@@ -70,10 +79,25 @@
 
     {{-- @include('User.add-product-modal') --}}
 
-    @include('User.add-product-type-modal')
+    @include('modals.add-product-type-modal')
 
     <form action="{{ route('category.image.upload', $category->id) }}" method="POST" enctype="multipart/form-data">
         @csrf
-        @include('User.image-upload-modal')
+        @include('modals.image-upload-modal')
     </form>
+
+    <form action="{{ route('description-edit', $category->id) }}" method="POST" enctype="multipart/form-data">
+        @csrf
+        @method('PATCH')
+        @include('modals.description-modal')
+    </form>
+
+    <script>
+        function edit_desc(id)
+        {
+            $('#description').val(id.description);
+            console.log(id);
+        }
+    </script>
+
 </x-app-layout>

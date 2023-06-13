@@ -21,8 +21,8 @@
             @else
                 <x-select class="mt-1 block w-3/4" name="product_type" placeholder="{{ __('Product Type') }}" required>
                     <option value=""></option>
-                    @foreach ($types as $key => $type)
-                        <option value="{{ $key }}">{{ $type }}</option>
+                    @foreach ($types as $type)
+                        <option value="{{ $type->id }}">{{ $type->name }}</option>
                     @endforeach
                 </x-select>
                 <x-input-error :messages="$errors->productAddition->get('product_type')" class="mt-2" />
@@ -47,3 +47,4 @@
         </div>
     </form>
 </x-modal>
+

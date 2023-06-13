@@ -21,21 +21,27 @@ class CategoryController extends Controller
 
         $validated = $request->validateWithBag('categoryAddition', [
             //if validation fails, it takes you back to the modal
-            'category' => 'required|max:20'
+            'category' => 'required|max:20|unique:product_categories,name,',
+            'description' => 'max:255'
+
         ]);
 
         $category = new ProductCategory;
         $category->name = $request->category;
+        $category->description = $request->description;
         $category->validity = 0;
         $category->save();
 
         return back()->with('success', '"' . $request->category . '" added successfully.');
     }
 
-    public function edit(Request $request, $id)
+    public function edit(Request $request)
     {
-
-        ProductCategory::where('id', $id)->update(['name' => $request->category]);
+        $request->validateWithBag('editModal', [
+            'category' => 'required|unique:product_categories,name'
+        ]);
+        
+        ProductCategory::where('id', $request->category_id)->update(['name' => $request->category]);
 
         return back()->with('success', 'The category has been updated successfully');
     }
@@ -55,6 +61,15 @@ class CategoryController extends Controller
         $category = ProductCategory::find($id);
 
         return view('User.category_details', compact('category', 'types', 'categories'));
+    }
+
+    public function putDescription(Request $request, $id)
+    {
+        // dd($request->all(), $id);
+
+        ProductCategory::where('id', $id)->update(['description' => $request->description]);
+
+        return back()->with('success', 'description added/edited successfully');
     }
 
 }

@@ -50,7 +50,7 @@ Route::middleware('auth')->group(function () {
     Route::patch('user/products/categories/{id}', [CategoryController::class, 'edit'])->name('category.edit');
     Route::delete('user/products/categories.destroy/{id}', [CategoryController::class, 'destroy_category'])->name('category.destroy');
     Route::get('user/products/categories/{id}', [CategoryController::class, 'detail'])->name('category.details');
-
+    Route::patch('user/products/categories/{id}/description', [CategoryController::class, 'putDescription'])->name('description-edit');
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

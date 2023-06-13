@@ -41,13 +41,15 @@
                         </td>
                         <td class="user_td"><a href="{{ route('product.details', $product->id) }}"
                                 class="anchor_tag">{{ $product->name }}</a></td>
-                        <td class="user_td"><a class="anchor_tag" href="#">{{ $product->type->name }}</a>
+                        <td class="user_td"><a class="anchor_tag"
+                                href="{{ route('type.details', $product->type->id) }}">{{ $product->type->name }}</a>
                         </td>
                         <td class="user_td">
-                            <a
-                            href="{{ route('category.details', $product->type->category->id) }}" class="anchor_tag">{{ $product->type->category->name }}</a>
+                            <a href="{{ route('category.details', $product->type->category->id) }}"
+                                class="anchor_tag">{{ $product->type->category->name }}</a>
                         </td>
-                        <td class="user_td"><p class="text-center">{{$product->quantity}}</p>
+                        <td class="user_td">
+                            <p class="text-center">{{ $product->quantity }}</p>
                         </td>
                         <td class="user_td"></td>
                     </tr>
@@ -59,6 +61,6 @@
 </div>
 
 
-@include('User.add-product-modal')
+@include('modals.add-product-modal')
 
 </x-app-layout>

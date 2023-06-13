@@ -15,7 +15,7 @@ class ProductController extends Controller
         $products = Product::query()->with(['type' => ['category:id,name']
         ])->get();
 
-        $types = ProductType::pluck('name', 'id');
+        $types = ProductType::all();
         // $categories = ProductCategory::pluck('name', 'id');
         return view('User.products', compact('products', 'types'));
     }

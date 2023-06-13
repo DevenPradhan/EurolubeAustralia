@@ -41,9 +41,14 @@ class ImagesController extends Controller
 
     public function uploadType(Request $request, $id)
     {
+        
 
         $request->validateWithBag('imageUpload', [
-            'images.*' => 'image|mimes:jpg,png|max:800'
+            // 'images.*' => 'image|mimes:jpg,png|max:800',
+            'images' => 'max:4|image|mimes:jpg,png'
+        ],[
+            'images.*.image' => 'Only PNG and JPG file format supported',
+            'images.max' => 'Max of 4 images are allowed. Please delete others if you want to add others'
         ]);
         // ,[
         //         'images.*.mimes' => 'Only files of JPG and PNG are accepted',

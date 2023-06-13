@@ -37,7 +37,7 @@
                                         @method('DELETE')
                                         <div class="flex justify-center space-x-4">
 
-                                            <button type="button" x-data=""
+                                            <button type="button" x-data="" onclick="edit_modal({{$category}})"
                                                 x-on:click.prevent="$dispatch('open-modal', 'edit-modal')">
                                                 <x-edit />
                                             </button>
@@ -63,33 +63,18 @@
     <form action="{{ route('category.edit', $category->id) }}" method="POST" enctype="multipart/form-data">
         @method('PATCH')
         @csrf
-        @include('User.edit-modal')
+        @include('modals.edit-modal')
     </form>
 
-    <x-modal name="add-category" :show="$errors->categoryAddition->isNotEmpty()" focusable>
-        <form method="post" action="{{ route('category.add') }}" class="p-6">
-            @csrf
+    
+    @include('modals.add-category-modal')
 
-            <h3>Add a product Category</h3>
-            <div class="mt-6">
-                <x-input-label for="category" value="{{ __('Category') }}" class="sr-only" />
-
-                <x-text-input name="category" type="text" class="mt-1 block w-3/4" placeholder="{{ __('Category') }}"
-                    required />
-                <x-input-error :messages="$errors->categoryAddition->get('category')" class="mt-2" />
-            </div>
-
-            <div class="mt-6 flex justify-end">
-                <x-secondary-button x-on:click="$dispatch('close')">
-                    {{ __('Cancel') }}
-                </x-secondary-button>
-
-                <x-danger-button class="ml-3 hover:bg-red-700">
-                    {{ __('Save') }}
-                </x-danger-button>
-            </div>
-        </form>
-    </x-modal>
-
-
+    <script>
+        function edit_modal(category){
+            $('.errors').empty();
+            $('#category_id').val(category.id);
+            $('#category').val(category.name);
+            // console.log(category);
+        }
+    </script>
 </x-app-layout>

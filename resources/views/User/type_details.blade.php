@@ -68,10 +68,10 @@
     </div>
 
 
-    @include('User.add-product-modal')
+    @include('modals.add-product-modal')
 
     <form action="{{ route('type.image.upload', $type->id) }}" method="POST" enctype="multipart/form-data">
         @csrf
-        @include('User.image-upload-modal')
+        @include('modals.image-upload-modal')
     </form>
 </x-app-layout>
