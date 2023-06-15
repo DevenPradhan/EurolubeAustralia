@@ -19,11 +19,10 @@ class CategoryController extends Controller
     public function add_category(Request $request)
     {
 
+        //if validation fails, it takes you back to the modal
         $validated = $request->validateWithBag('categoryAddition', [
-            //if validation fails, it takes you back to the modal
             'category' => 'required|max:20|unique:product_categories,name,',
             'description' => 'max:255'
-
         ]);
 
         $category = new ProductCategory;
@@ -40,8 +39,9 @@ class CategoryController extends Controller
         $request->validateWithBag('editModal', [
             'category' => 'required|unique:product_categories,name'
         ]);
-        
-        ProductCategory::where('id', $request->category_id)->update(['name' => $request->category]);
+
+            ProductCategory::where('id', $request->category_id)
+                            ->update(['name' => $request->category]);
 
         return back()->with('success', 'The category has been updated successfully');
     }
@@ -65,7 +65,10 @@ class CategoryController extends Controller
 
     public function putDescription(Request $request, $id)
     {
-        // dd($request->all(), $id);
+
+        $request->validateWithBag('descriptionModal', [
+                                  'description' => 'required|max:999'
+        ]);
 
         ProductCategory::where('id', $id)->update(['description' => $request->description]);
 

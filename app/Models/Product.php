@@ -16,6 +16,7 @@ class Product extends Model
         'id',
         'product_type_id',
         'name',
+        'description',
         'quantity',
         'validity'
     ];

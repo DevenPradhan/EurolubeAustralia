@@ -20,21 +20,21 @@ class TypeController extends Controller
     public function add_type(Request $request)
     {
         $request->validateWithBag('typeAddition', [
-            'type' => 'required|unique:product_types,name',
-        ]);
+            'type' => 'required|unique:product_types,name'        ]);
 
-        ProductType::create([
-            'name' => $request->type,
-            'product_category_id' => $request->category
-        ]);
+            // dd($request->all());
+
+            ProductType::create([
+                'name' => $request->type,
+                'product_category_id' => $request->category,
+                'description' => $request->description
+            ]);
 
         return back()->with('success', '"' . $request->type . '" added successfully."');
     }
 
     public function edit(Request $request)
     {
-
-
         $request->validateWithBag('editModal', [
             'type' => 'required|unique:product_types,name',
         ]);
@@ -50,6 +50,18 @@ class TypeController extends Controller
         $type = ProductType::find($id);
 
         return view('User.type_details', compact('type', 'types'));
+    }
+
+    public function putDescription(Request $request, $id)
+    {
+
+        $request->validateWithBag('descriptionModal', [
+            'description' => 'required|max:999'
+        ]);
+
+        ProductType::where('id', $id)->update(['description' => $request->description]);
+
+        return back()->with('success', 'description added/edited successfully');
     }
 
 

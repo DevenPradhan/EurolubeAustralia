@@ -34,6 +34,12 @@
 
         @endif
 
+        <div class="mt-4">
+            <x-input-label for="description" value="{{__('Description')}}" class="" />
+
+            <x-textbox name="description" value="{{old('description')}}"/>
+        </div>
+
         <div class="mt-6 flex justify-end">
             <x-secondary-button x-on:click="$dispatch('close')">
                 {{ __('Cancel') }}

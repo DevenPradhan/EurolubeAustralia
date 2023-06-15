@@ -32,6 +32,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('product_type_id');
             $table->string('name');
+            $table->string('description')->nullable();
             $table->integer('validity');
             $table->integer('quantity')->nullable();
             // $table->foreign('product_category_id')->references('id')->on('product_categories')->onDelete('cascade');

@@ -33,12 +33,22 @@
             <livewire:scripts />
 
             <!-- Page Content -->
-            <main class=" flex space-x-10 mt-10">
+            <main class=" flex mt-10">
+                @include('flash-message')
                 {{-- @include('User.sidebar') --}}
                     {{ $slot }}
 
             </main>
         </div>
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+        {{-- script for type/category description etc --}}
+        <script>
+            function edit_desc(id)
+            {
+                $('#description').val(id.description);
+                console.log(id);
+            }
+        </script>
     </body>
 </html>

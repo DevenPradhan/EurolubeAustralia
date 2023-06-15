@@ -1,6 +1,6 @@
 <x-app-layout>
 
-    @include('flash-message')
+    
 
     @include('alert')
 
@@ -60,7 +60,7 @@
 
     </div>
 
-    <form action="{{ route('category.edit', $category->id) }}" method="POST" enctype="multipart/form-data">
+    <form action="{{ route('category.edit') }}" method="POST" enctype="multipart/form-data">
         @method('PATCH')
         @csrf
         @include('modals.edit-modal')

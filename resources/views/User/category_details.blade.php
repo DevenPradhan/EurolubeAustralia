@@ -3,7 +3,7 @@
 
     @include('alert')
 
-    <div class=" container mx-auto flex flex-col space-y-20">
+    <div class=" container mx-auto flex flex-col space-y-20 items-center">
         <div class="flex">
             @include('User.sidebar')
         </div>
@@ -13,7 +13,7 @@
                 @if ($category->description == '')
                     <p>There are no descriptions for this category.</p>
                 @else
-                    <p>{{ $category->description }}</p>
+                    <p>{!! $category->description !!}</p>
                 @endif
                 <x-secondary-button type="button" x-data="" onclick="edit_desc({{$category}})"
                     x-on:click.prevent="$dispatch('open-modal', 'description-modal')">
@@ -86,18 +86,12 @@
         @include('modals.image-upload-modal')
     </form>
 
-    <form action="{{ route('description-edit', $category->id) }}" method="POST" enctype="multipart/form-data">
+    <form action="{{ route('category-description-edit', $category->id) }}" method="POST" enctype="multipart/form-data">
         @csrf
         @method('PATCH')
         @include('modals.description-modal')
     </form>
 
-    <script>
-        function edit_desc(id)
-        {
-            $('#description').val(id.description);
-            console.log(id);
-        }
-    </script>
 
+    {{-- script for edit/add description is in layouts/app blade --}}
 </x-app-layout>
