@@ -12,42 +12,60 @@ class ProductController extends Controller
 {
     public function index()
     {
-        $products = Product::query()->with(['type' => ['category:id,name']
+        $products = Product::query()->with([
+            'type' => ['category:id,name']
         ])->get();
 
         $types = ProductType::all();
-        // $categories = ProductCategory::pluck('name', 'id');
+
         return view('User.products', compact('products', 'types'));
     }
 
     public function add_product(Request $request)
     {
 
-        // dd($request->all());
-        $validated = $request->validateWithBag('productAddition', [
-            'name' => 'required|unique:products|max:40',
-            'product_type' => 'required',
-            // 'category' => 'required',
-            'quantity' => 'required'
-        ], [
-            'name.unique' => 'The item has already been added'
-        ]);
-        
+        // $validated = $request->validateWithBag('productAddition', [
+        //     'name' => 'required|unique:products|max:40',
+        //     'product_type' => 'required'
+        //     // 'quantity' => 'required'
+        // ], [
+        //     'name.unique' => 'The item has already been added',
+        // ]);
 
-        $product = new Product;
-        $product->name = $request->name;
-        $product->product_type_id = $request->product_type;
-        $product->validity = 0;
-        $product->quantity = $request->quantity;
-        $product->save();
+        foreach ($request->newProducts as $newProduct) {
+            Product::create([
+                'name' => $newProduct['name'],
+                'product_type_id' => $request->product_type,
+                'validity' => 0,
+                'quantity' => $newProduct['quantity']
+            ]);
+        }
 
-        return back()->with('success', '"' . $request->name . '" has been added successfully');
+        return back()->with('success', 'Products has been added successfully');
+    }
+
+    public function destroy($id)
+    {
+        Product::where('id', $id)->delete();
+
+        return back()->with('warning', 'Product has been deleted.');
     }
 
     public function details($id)
     {
-        $product = Product::findOrFail($id);
+        $product = Product::find($id);
 
         return view('User.product_details', compact('product'));
+    }
+
+    public function putDescription(Request $request, $id)
+    {
+        $request->validateWithBag('descriptionModal', [
+            'description' => 'required|max:999'
+        ]);
+
+        Product::where('id', $id)->update(['description' => $request->description]);
+
+        return back()->with('success', 'description added/edited successfully');
     }
 }

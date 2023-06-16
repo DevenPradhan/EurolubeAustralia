@@ -6,10 +6,10 @@
     <div class="container w-full items-center flex flex-col space-y-10">
 
         @include('User.sidebar')
-        <div class="max-w-5xl mx-auto">
-            <x-primary-button class="focus:ring-0 active:bg-neutral-700 rounded-sm" x-data=""
-                x-on:click.prevent="$dispatch('open-modal', 'add-type')">Add</x-primary-button>
 
+        <x-primary-button class="focus:ring-0 active:bg-neutral-700 rounded-sm" x-data=""
+            x-on:click.prevent="$dispatch('open-modal', 'add-type')">Add</x-primary-button>
+        <div class="max-w-5xl mx-auto">
             <table class="table-auto">
                 <thead>
                     <tr>
@@ -33,7 +33,10 @@
                             <td class="user_td w-64"><a href="{{ route('category.details', $type->category->id) }}"
                                     class="anchor_tag">{{ $type->category->name }}</a></td>
                             <td class="user_td">
-                                <form action="">
+                                <form action="{{ route('type.destroy', $type->id) }}" method="POST"
+                                    enctype="multipart/form-data">
+                                    @csrf
+                                    @method('DELETE')
                                     <div class="flex justify-center space-x-4">
 
                                         <button type="button" x-data=""
@@ -69,7 +72,6 @@
     </form>
 
     <script>
-       
         function edit_modal(value) {
             $('.errors').empty();
             $('#type_id').val(value.id);

@@ -20,9 +20,8 @@ class TypeController extends Controller
     public function add_type(Request $request)
     {
         $request->validateWithBag('typeAddition', [
-            'type' => 'required|unique:product_types,name'        ]);
-
-            // dd($request->all());
+            'type' => 'required|unique:product_types,name'
+        ]);
 
             ProductType::create([
                 'name' => $request->type,
@@ -62,6 +61,13 @@ class TypeController extends Controller
         ProductType::where('id', $id)->update(['description' => $request->description]);
 
         return back()->with('success', 'description added/edited successfully');
+    }
+
+    public function destroy($id)
+    {
+        ProductType::destroy($id);
+
+        return back()->with('info', 'type deleted successfully');
     }
 
 

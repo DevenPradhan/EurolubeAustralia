@@ -25,9 +25,7 @@
                         <td colspan="6">
                             @if ($products == '[]')
                                 <div class="h-20 px-10 text-gray-500 flex flex-inline justify-center text-lg mt-6">
-                                    <p>There are no products added to the database. Click <button
-                                            class="text-black underline italic" id="addProductButton">Here</button> to
-                                        add new product</p>
+                                    <p>There are no products added to the database.</p>
                                 </div>
                             @endisset()
                     </td>
@@ -51,7 +49,23 @@
                         <td class="user_td">
                             <p class="text-center">{{ $product->quantity }}</p>
                         </td>
-                        <td class="user_td"></td>
+                        <td class="user_td">
+                            <form action="{{route('product.destroy', $product->id)}}" method="POST" enctype="multipart/form-data">
+                                @csrf
+                                    @method('DELETE')
+                                    <div class="flex justify-center space-x-4">
+
+                                        <button type="button" x-data=""
+                                           >
+                                            <x-edit />
+                                        </button>
+                                        <button
+                                            onclick="return confirm('Are you sure you want to remove this category?')">
+                                            <x-trash-can />
+                                        </button>
+                                    </div>
+                            </form>
+                        </td>
                     </tr>
                 @endforeach
             </tbody>
@@ -62,5 +76,6 @@
 
 
 @include('modals.add-product-modal')
+
 
 </x-app-layout>

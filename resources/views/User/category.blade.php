@@ -6,10 +6,10 @@
 
     <div class="w-full container flex flex-col items-center space-y-10">
         @include('User.sidebar')
-        <div class="max-w-5xl mx-auto">
+      
             <x-primary-button class="focus:ring-0 active:bg-neutral-700 rounded-sm" x-data=""
                 x-on:click.prevent="$dispatch('open-modal', 'add-category')">Add</x-primary-button>
-            <div class="">
+                <div class="max-w-5xl mx-auto">
                 <table class=" table-auto">
                     <thead>
                         <tr>
