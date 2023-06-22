@@ -35,7 +35,6 @@ return new class extends Migration
             $table->string('description')->nullable();
             $table->integer('validity');
             $table->integer('quantity')->nullable();
-            // $table->foreign('product_category_id')->references('id')->on('product_categories')->onDelete('cascade');
             $table->foreign('product_type_id')->references('id')->on('product_types')->onDelete('cascade');
             $table->timestamps();
         });

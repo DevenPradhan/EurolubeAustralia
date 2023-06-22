@@ -13,6 +13,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('product_id');
             $table->string('part_no');
+            $table->string('weight')->nullable();
             $table->string('manual')->nullable();
             $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
             $table->timestamps();
@@ -21,14 +22,8 @@ return new class extends Migration
         Schema::create('product_features', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('product_id');
-            $table->string('dimensions')->nullable();
-            $table->string('max_air_pressure')->nullable();
-            $table->string('weight')->nullable();
-            $table->string('air_inlet')->nullable();
-            $table->string('outlet')->nullable();
-            $table->string('capacity')->nullable();
-            $table->string('pump_tube')->nullable();
-            $table->string('seals')->nullable();
+            $table->string('features');
+            $table->string('additional')->nullable();
             $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
             $table->timestamps();
         });

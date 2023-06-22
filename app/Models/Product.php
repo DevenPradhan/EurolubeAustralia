@@ -26,7 +26,7 @@ class Product extends Model
         return $this->belongsTo(ProductType::class, 'product_type_id');
     }
 
-    public function detail()
+    public function details()
     {
         return $this->hasOne(ProductDetail::class);
     }

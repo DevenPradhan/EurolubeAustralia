@@ -11,16 +11,16 @@
             <h4 class="font-semibold uppercase text-xl">
                 {{ $product->name }}
             </h4>
-            <div class="space-x-10 flex items-center">
+            <div class="space-y-10 flex flex-col p-8 font-semibold">
                 <p>{{ $product->description == '' ? 'There are no description for this category' : $product->description }}
                 </p>
-                <x-secondary-button type="button" x-data="" onclick="edit_desc({{ $product }})"
+                <x-secondary-button type="button" x-data="" class="max-w-max"
+                    onclick="edit_desc({{ $product }})"
                     x-on:click.prevent="$dispatch('open-modal', 'description-modal')">
                     {{ $product->description == '' ? 'Add' : 'Edit' }}</x-secondary-button>
             </div>
 
             {{-- option to upload images if not uploaded formerly --}}
-
             <div
                 class="{{ $product->images == '[]' ? 'bg-yellow-50 max-w-4xl space-y-2' : 'bg-slate-50 max-w-5xl flex flex-row space-x-4' }} p-8 overflow-x-auto">
                 @if ($product->images == '[]')
@@ -38,26 +38,25 @@
                     {{ $product->images != '[]' ? 'More' : '' }}</x-primary-button>
             </div>
 
-          @livewire('product-details')
-        </div>
-        <div class="">
-            {{ $product->detail }}
-            {{ $product->features }}
-            @isset($product->detail)
-                {{ $product->detail->part_no }}
-                {{ $product->detail->manual }}
-            @endisset
+            <div class="flex flex-col space-y-5 p-8">
+                <div class="inline-flex space-x-10">
+                    <h4 class="font-semibold">Product Details</h4>
+                    <x-secondary-button type="button" x-data="" onclick="edit_details({{ $product }})"
+                        x-on:click.prevent="$dispatch('open-modal', 'details-modal')">
+                        Edit</x-secondary-button>
+                </div>
 
-            @isset($product->features)
-                {{ $product->features->dimensions }}
-                {{ $product->features->max_air_pressure }}
-                {{ $product->features->weight }}
-                {{ $product->features->air_inlet }}
-                {{ $product->features->outlet }}
-                {{ $product->features->capacity }}
-                {{ $product->features->pump_tube }}
-                {{ $product->features->seals }}
-            @endisset
+                <p>Part No: {{ isset($product->details) ? $product->details->part_no : '' }}</p>
+                <p>Manual: {{ isset($product->details) ? $product->details->manual : '' }}</p>
+                <p>Dimensions: {{ isset($product->features) ? $product->features->dimensions : '' }}</p>
+                <p>Max Air Pressure: {{ isset($product->features) ? $product->features->max_air_pressure : '' }}</p>
+                <p>Weight: {{ isset($product->features) ? $product->features->weight : '' }}</p>
+                <p>Air Inlet: {{ isset($product->features) ? $product->features->air_inlet : '' }}</p>
+                <p>Outlet: {{ isset($product->features) ? $product->features->outlet : '' }}</p>
+                <p>Capacity: {{ isset($product->features) ? $product->features->capacity : '' }}</p>
+                <p>Pump Tube: {{ isset($product->features) ? $product->features->pump_tube : '' }}</p>
+                <p>Seals: {{ isset($product->features) ? $product->features->seals : '' }}</p>
+            </div>
 
         </div>
 
@@ -75,6 +74,11 @@
     <form action="{{ route('product.image.upload', $product->id) }}" method="POST" enctype="multipart/form-data">
         @csrf
         @include('modals.image-upload-modal')
+    </form>
+
+    <form action="">
+        @csrf
+        @include('modals.details-modal')
     </form>
 
 </x-app-layout>

@@ -12,6 +12,6 @@
         <p>Seals: </p>
     </div>
     <div class="flex flex-col space-y-4 font-mono">
-        {{$product->details->part_no}}
+        {{-- {{$product->details->part_no}} --}}
     </div>
 </div>

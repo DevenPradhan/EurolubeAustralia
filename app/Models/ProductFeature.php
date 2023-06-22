@@ -14,14 +14,8 @@ class ProductFeature extends Model
     protected $fillable = [
         'id', 
         'product_id', 
-        'dimensions', 
-        'max_air_pressure', 
-        'weight', 
-        'air_inlet', 
-        'outlet', 
-        'capacity', 
-        'pump_tube', 
-        'seals' 
+        'features', 
+        'additional', 
         ];
 
         public function product():BelongsTo

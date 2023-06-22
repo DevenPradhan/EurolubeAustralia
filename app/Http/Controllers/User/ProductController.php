@@ -35,7 +35,7 @@ class ProductController extends Controller
         foreach ($request->newProducts as $newProduct) {
             Product::create([
                 'name' => $newProduct['name'],
-                'product_type_id' => $request->product_type,
+                'product_type_id' => $newProduct['product_type'],
                 'validity' => 0,
                 'quantity' => $newProduct['quantity']
             ]);
@@ -55,7 +55,7 @@ class ProductController extends Controller
     {
         $product = Product::find($id);
 
-        return view('User.product_details', compact('product'));
+        return view('User.product_details', compact('product', 'id'));
     }
 
     public function putDescription(Request $request, $id)

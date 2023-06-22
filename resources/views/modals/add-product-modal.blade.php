@@ -2,29 +2,30 @@
     <form action="{{ route('products.add') }}" method="POST" enctype="multipart/form-data" class="p-6">
         @csrf
 
-        <h3>Add a product Category</h3>
-        <div class="mt-6 max-w-xl">
-            <x-input-label for="product_type" value="{{ __('Type') }}" class="" />
-
+        <h3>Add product(s)</h3>
+        <div class="mt-6 w-full">
             {{-- if the modal is in individual product type page --}}
-
             @isset($type->id)
+                <x-input-label for="product_type" value="{{ __('Type') }}" class="" />
                 <h4 class="font-semibold font-mono ">{{ $type->name }}</h4>
                 <input type="hidden" value="{{ $type->id }}" name="product_type" class="border-0">
 
                 {{-- for pages that does not belong in the product type specific page --}}
             @else
-                <x-select class="mt-1 block w-3/4" name="product_type" placeholder="{{ __('Product Type') }}" required>
-                    <option value="" hidden >Select One</option>
-                    @foreach ($types as $type)
-                        <option value="{{ $type->id }}">{{ $type->name }}</option>
-                    @endforeach
-                </x-select>
-                <x-input-error :messages="$errors->productAddition->get('product_type')" class="mt-2" />
+                {{-- <div class="flex space-x-10">
+                    <p>{{ isset($types) ? 'There are no product Types. Add One' : 'Add Type' }}</p>
+                    <x-text-input value="{{ old('product_type') }}" placeholder="Add Product Type" type="text"
+                        class="w-3/4 block mt-1" />
+
+                    <a href="{{ route('types') }}">All Types</a>
+                </div> --}}
+               
+                    @livewire('products')
+
             @endisset
         </div>
 
-        @livewire('products')
+
 
 
         <div class="mt-6 flex justify-end">
@@ -37,5 +38,5 @@
             </x-danger-button>
         </div>
     </form>
-    
+
 </x-modal>

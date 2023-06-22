@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\ProductType;
 use Livewire\Component;
 
 class Products extends Component
@@ -12,13 +13,13 @@ class Products extends Component
     public function mount()
     {
         $this->newProducts = [
-            ['name' => '', 'quantity' => 1]
+            ['name' => '', 'quantity' => 1, 'product_type' => '']
         ];
     }
 
     public function addProduct()
     {
-        $this->newProducts[] = ['name' => '', 'quantity' => 1];
+        $this->newProducts[] = ['name' => '', 'quantity' => 1, 'product_type' => ''];
     }
 
     public function removeProduct($id)
@@ -27,9 +28,15 @@ class Products extends Component
         array_values($this->newProducts);
     }
 
+
+    public function types()
+    {
+        return ProductType::all();
+    }
+
     public function render()
     {
 
-        return view('livewire.products');
+        return view('livewire.products', ['types' => $this->types()]);
     }
 }

@@ -8,23 +8,22 @@ use Livewire\Component;
 class ProductDetails extends Component
 {
 
-    public Product $product;
+    public $product_id;
 
-    public function mount()
-    {
-
-    }
-
-    // public function read()
+    // public function mount()
     // {
-    //     return Product::all();
+
     // }
 
-    public function render()
+    public function details($id)
     {
-        // $product = Product::find($id);
-        return view('livewire.product-details');
+        return Product::find($id);
     }
 
+    public function render($id)
+    {
+        // $product = Product::find($id);
+        return view('livewire.product-details', ['details' => $this->details($id)]);
+    }
 
 }

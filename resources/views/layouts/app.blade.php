@@ -37,7 +37,7 @@
         <livewire:scripts />
 
         <!-- Page Content -->
-        <main class=" flex mt-10">
+        <main class="mt-10">
             @include('flash-message')
             {{-- @include('User.sidebar') --}}
             {{ $slot }}
