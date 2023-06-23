@@ -15,15 +15,15 @@ class ProductDetails extends Component
 
     // }
 
-    public function details($id)
+    public function mount($id)
     {
         return Product::find($id);
     }
 
-    public function render($id)
+    public function render()
     {
         // $product = Product::find($id);
-        return view('livewire.product-details', ['details' => $this->details($id)]);
+        return view('livewire.product-details');
     }
 
 }

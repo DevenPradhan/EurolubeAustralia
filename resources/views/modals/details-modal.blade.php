@@ -7,7 +7,7 @@
                 <x-input-label value="Part No" for="part_no"/>
                 <x-text-input name="part_no" value="{{old('part_no')}}" type="text"/>
             </div>
-            <div class="mt-6 inline-flex space-x-10 items-center">
+            {{-- <div class="mt-6 inline-flex space-x-10 items-center">
                 <x-input-label value="Manual" for="manual"/>
                 <x-text-input name="manual" value="{{old('manual')}}" type="text"/>
             </div>
@@ -38,7 +38,7 @@
             <div class="mt-6 inline-flex space-x-10 items-center">
                 <x-input-label value="Pump Tube" for="pump_tube"/>
                 <x-text-input name="pump_tube" value="{{old('pump_tube')}}" type="text"/>
-            </div>
+            </div> --}}
         </div>
         
         

@@ -7,7 +7,9 @@
         <div class="flex">
             @include('User.sidebar')
         </div>
-        <div class="flex flex-col space-y-5 mx-10">
+
+        <livewire:product-details id = "{{$id}}"/>
+        {{-- <div class="flex flex-col space-y-5 mx-10">
             <h4 class="font-semibold uppercase text-xl">
                 {{ $product->name }}
             </h4>
@@ -18,10 +20,10 @@
                     onclick="edit_desc({{ $product }})"
                     x-on:click.prevent="$dispatch('open-modal', 'description-modal')">
                     {{ $product->description == '' ? 'Add' : 'Edit' }}</x-secondary-button>
-            </div>
+            </div> --}}
 
             {{-- option to upload images if not uploaded formerly --}}
-            <div
+            {{-- <div
                 class="{{ $product->images == '[]' ? 'bg-yellow-50 max-w-4xl space-y-2' : 'bg-slate-50 max-w-5xl flex flex-row space-x-4' }} p-8 overflow-x-auto">
                 @if ($product->images == '[]')
                     <p class="font-bold">You dont have any image for this product. Upload some pictures to provide
@@ -41,7 +43,8 @@
             <div class="flex flex-col space-y-5 p-8">
                 <div class="inline-flex space-x-10">
                     <h4 class="font-semibold">Product Details</h4>
-                    <x-secondary-button type="button" x-data="" onclick="edit_details({{ $product }})"
+                    <x-secondary-button type="button" x-data=""
+                        onclick="edit_details({{ $product }})"
                         x-on:click.prevent="$dispatch('open-modal', 'details-modal')">
                         Edit</x-secondary-button>
                 </div>
@@ -58,7 +61,7 @@
                 <p>Seals: {{ isset($product->features) ? $product->features->seals : '' }}</p>
             </div>
 
-        </div>
+        </div> --}}
 
     </div>
     </div>
