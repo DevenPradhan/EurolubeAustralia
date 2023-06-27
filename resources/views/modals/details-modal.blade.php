@@ -1,12 +1,29 @@
 <x-modal name="details-modal" :show="$errors->editModal->isNotEmpty()" focusable maxWidth="3xl">
-    <div class="p-10 space-y-6">
+    <div class="p-10 space-y-4">
         <h4 class="font-semibold">Edit</h4>
         <hr>
-        <div class="grid grid-flow-cols md:grid-cols-2 gap-10">
-            <div class="mt-6 inline-flex space-x-10 items-center">
-                <x-input-label value="Part No" for="part_no"/>
-                <x-text-input name="part_no" value="{{old('part_no')}}" type="text"/>
+        <div class="grid grid-flow-cols md:grid-cols-2 gap-4">
+            <div class="mt-6 inline-flex space-x-4 items-center">
+                <x-input-label value="Available Quantity" for="quantity"/>
+                <x-text-input name="quantity" value="{{$product->quantity}}" type="number"/>
             </div>
+            <div class="mt-6 inline-flex space-x-4 items-center">
+                <x-input-label value="Part No" for="part_no"/>
+                <x-text-input name="part_no" value="{{isset($product->details) ? $product->details->part_no ?? old('part_no') : ''}}" type="text"/>
+            </div>
+            <div class="mt-6 inline-flex space-x-4 items-center">
+                <x-input-label value="Dimensions" for="dimensions"/>
+                <x-text-input name="dimensions" value="{{isset($product->details) ? $product->details->dimensions ?? old('dimensions') : ''}}" type="text"/>
+            </div>
+            <div class="mt-6 inline-flex space-x-4 items-center">
+                <x-input-label value="Weight" for="weight"/>
+                <x-text-input name="weight" value="{{isset($product->details) ? $product->details->weight ?? old('weight') : ''}}" type="text"/>
+            </div>
+            <div class="mt-6 inline-flex space-x-4 items-center">
+                <x-input-label value="Manual" for="manual"/>
+                <x-text-input name="manual" value="{{isset($product->details) ? $product->details->manual ?? old('manual') : ''}}" type="text"/>
+            </div>
+           
             {{-- <div class="mt-6 inline-flex space-x-10 items-center">
                 <x-input-label value="Manual" for="manual"/>
                 <x-text-input name="manual" value="{{old('manual')}}" type="text"/>

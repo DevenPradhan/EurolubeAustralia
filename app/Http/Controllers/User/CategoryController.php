@@ -58,7 +58,7 @@ class CategoryController extends Controller
     {
         $types = ProductType::pluck('name', 'id');
         $categories = ProductCategory::pluck('name', 'id');
-        $category = ProductCategory::find($id);
+        $category = ProductCategory::findOrFail($id);
 
         return view('User.category_details', compact('category', 'types', 'categories'));
     }

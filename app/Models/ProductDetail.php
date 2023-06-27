@@ -11,7 +11,7 @@ class ProductDetail extends Model
     use HasFactory;
 
     protected $table = 'product_details';
-    protected $fillable = ['product_id', 'part_no', 'manual', 'id', 'weight'];
+    protected $fillable = ['product_id', 'part_no', 'manual', 'id', 'weight', 'dimensions'];
 
 
     public function product(): BelongsTo

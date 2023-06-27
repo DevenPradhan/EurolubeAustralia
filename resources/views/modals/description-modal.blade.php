@@ -6,7 +6,7 @@
         <div class="mt-6 space-y-3">
             <x-input-label for="type" value="{{ __('Description') }}" class="" />
             
-            <x-textbox name="description" value="{{ old('description') }}" id="description" rows="10"/>
+            <x-textbox name="description" value="{{ old('description') }}" id="description" rows="10" required/>
             <x-input-error :messages="$errors->descriptionModal->get('type')" class="mt-2 errors" />
         </div>
 

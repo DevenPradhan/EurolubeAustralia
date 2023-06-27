@@ -3,26 +3,34 @@
 namespace App\Http\Livewire;
 
 use App\Models\Product;
+use App\Models\ProductImage;
 use Livewire\Component;
 
 class ProductDetails extends Component
 {
 
-    public $product_id;
+    public $product;
 
-    // public function mount()
-    // {
+    public $newFeatures = [];
 
-    // }
+    
 
-    public function mount($id)
+   
+    public function deleteImage($imageId)
     {
-        return Product::find($id);
+
+        ProductImage::destroy($imageId);
+        $this->product = Product::findOrFail($this->product->id);
+    }
+
+    public function mount($product_id)
+    {
+        $this->newFeatures = 
+        $this->product = Product::findOrFail($product_id);
     }
 
     public function render()
     {
-        // $product = Product::find($id);
         return view('livewire.product-details');
     }
 

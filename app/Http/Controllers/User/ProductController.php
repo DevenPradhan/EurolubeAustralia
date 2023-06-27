@@ -12,13 +12,7 @@ class ProductController extends Controller
 {
     public function index()
     {
-        $products = Product::query()->with([
-            'type' => ['category:id,name']
-        ])->get();
-
-        $types = ProductType::all();
-
-        return view('User.products', compact('products', 'types'));
+        return view('User.products');
     }
 
     public function add_product(Request $request)
@@ -51,12 +45,6 @@ class ProductController extends Controller
         return back()->with('warning', 'Product has been deleted.');
     }
 
-    public function details($id)
-    {
-        $product = Product::find($id);
-
-        return view('User.product_details', compact('product', 'id'));
-    }
 
     public function putDescription(Request $request, $id)
     {

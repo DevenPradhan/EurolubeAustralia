@@ -6,6 +6,7 @@ use App\Http\Controllers\User\CategoryController;
 use App\Http\Controllers\User\ProductController;
 use App\Http\Controllers\User\TypeController;
 use App\Http\Controllers\Visitors\VisitorController;
+use App\Http\Livewire\ProductDetails;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -39,7 +40,9 @@ Route::middleware('auth')->group(function () {
     Route::get('user/products', [ProductController::class, 'index'])->name('products');
     Route::post('user/products', [ProductController::class, 'add_product'])->name('products.add');
     Route::delete('user/product/{id}', [ProductController::class, 'destroy'])->name('product.destroy');
-    Route::get('user/products/details/{id}', [ProductController::class, 'details'])->name('product.details');
+
+    Route::get('user/products/details/{product_id}', ProductDetails::class)->name('product.details');
+    // Route::get('user/products/details/{id}', [ProductController::class, 'details'])->name('product.details');
     
     Route::patch('user/products/{id}/description', [ProductController::class, 'putDescription'])->name('product-description-edit');
 

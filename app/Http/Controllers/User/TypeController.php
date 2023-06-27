@@ -46,7 +46,7 @@ class TypeController extends Controller
     public function detail($id)
     {
         $types = ProductType::pluck('name', 'id');
-        $type = ProductType::find($id);
+        $type = ProductType::findOrFail($id);
 
         return view('User.type_details', compact('type', 'types'));
     }

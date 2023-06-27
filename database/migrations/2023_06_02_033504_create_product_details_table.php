@@ -15,6 +15,7 @@ return new class extends Migration
             $table->string('part_no');
             $table->string('weight')->nullable();
             $table->string('manual')->nullable();
+            $table->string('dimensions')->nullable();
             $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
             $table->timestamps();
         });
