@@ -50,7 +50,7 @@
     <script>
         function edit_desc(id) {
             $('#description').val(id.description);
-            console.log(id);
+            // console.log(id);
         }
     </script>
 </body>

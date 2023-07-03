@@ -67,7 +67,7 @@ class CategoryController extends Controller
     {
 
         $request->validateWithBag('descriptionModal', [
-                                  'description' => 'required|max:999'
+                                  'description' => 'max:999'
         ]);
 
         ProductCategory::where('id', $id)->update(['description' => $request->description]);

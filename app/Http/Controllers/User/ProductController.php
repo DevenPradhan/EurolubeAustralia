@@ -27,11 +27,18 @@ class ProductController extends Controller
         // ]);
 
         foreach ($request->newProducts as $newProduct) {
-            Product::create([
+            $product = Product::create([
                 'name' => $newProduct['name'],
                 'product_type_id' => $newProduct['product_type'],
                 'validity' => 0,
                 'quantity' => $newProduct['quantity']
+            ]);
+
+            $product->details()->create([
+                'part_no' => '',
+                'weight' => '',
+                'manual' => '', 
+                'dimensions' => ''
             ]);
         }
 
@@ -49,11 +56,24 @@ class ProductController extends Controller
     public function putDescription(Request $request, $id)
     {
         $request->validateWithBag('descriptionModal', [
-            'description' => 'required|max:999'
+            'description' => 'max:999'
         ]);
 
         Product::where('id', $id)->update(['description' => $request->description]);
 
         return back()->with('success', 'description added/edited successfully');
     }
+
+    // public function putDetails(Request $request, $id)
+    // {
+    //     $request->validateWithBag('detailsModal', [
+    //         'quantity' => 'integer|max:20',
+    //         'part_no' => 'max:255',
+    //         'manual' => 'max:255',
+    //         'dimensions' => 'max:255',
+    //         'weight' => 'max:255'
+    //     ]);
+
+    //     dd($request->all(), $id);
+    // }
 }

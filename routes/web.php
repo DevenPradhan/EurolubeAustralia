@@ -40,6 +40,7 @@ Route::middleware('auth')->group(function () {
     Route::get('user/products', [ProductController::class, 'index'])->name('products');
     Route::post('user/products', [ProductController::class, 'add_product'])->name('products.add');
     Route::delete('user/product/{id}', [ProductController::class, 'destroy'])->name('product.destroy');
+    Route::patch('user/products/{id}/details', [ProductController::class, 'putDetails'])->name('product-details.edit');
 
     Route::get('user/products/details/{product_id}', ProductDetails::class)->name('product.details');
     // Route::get('user/products/details/{id}', [ProductController::class, 'details'])->name('product.details');

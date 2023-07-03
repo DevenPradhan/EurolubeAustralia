@@ -1,15 +1,17 @@
 <div class="max-w-5xl mx-auto space-y-4">
     <div class="flex flex-row space-x-2 justify-between">
         <x-primary-button class="focus:ring-0 active:bg-neutral-700 rounded-sm" x-data=""
-        x-on:click.prevent="$dispatch('open-modal', 'add-product')">Add</x-primary-button>
-        <x-text-input placeholder="Search Products" type="text" class="self-end w-1/3" name="search" wire:model.debounce.500ms="search"/>
+            x-on:click.prevent="$dispatch('open-modal', 'add-product')">Add</x-primary-button>
+        <x-text-input placeholder="Search Products" type="text" class="self-end w-1/3" name="search"
+            wire:model.debounce.500ms="search" />
     </div>
-    
+
     <table class="table-auto overflow-x-auto">
         <thead>
             <tr>
                 <th class="user_th">#</th>
                 <th class="user_th w-60">Name</th>
+                <th class="user_th">Part No</th>
                 <th class="user_th">Type</th>
                 <th class="user_th">Category</th>
                 <th class="user_th">Quantity</th>
@@ -19,13 +21,13 @@
         <tbody>
             <tr>
                 <td colspan="6">
-                    @if ($products == [])
+                    @if (empty($products))
                         <div class="h-20 px-10 text-gray-500 flex flex-inline justify-center text-lg mt-6">
                             <p>There are no products added to the database.</p>
                         </div>
                     @endisset()
             </td>
-            {{$products}}
+            {{ $products }}
         </tr>
         <?php $id = 1; ?>
         @foreach ($products as $product)
@@ -33,8 +35,14 @@
                 <td class="user_td">
                     <p class="text-center">{{ $id++ }}</p>
                 </td>
-                <td class="user_td"><a href="{{ route('product.details', $product->id) }}"
-                        class="anchor_tag">{{ $product->name }}</a></td>
+                <td class="user_td">
+                    <a href="{{ route('product.details', $product->id) }}"
+                        class="anchor_tag">{{ $product->name }}
+                    </a>
+                </td>
+                <td class="user_td">
+                    <a href="{{route('product.details', $product->id)}}">{{$product->details->part_no}}</a>
+                </td>
                 <td class="user_td"><a class="anchor_tag"
                         href="{{ route('type.details', $product->type->id) }}">{{ $product->type->name }}</a>
                 </td>
@@ -64,7 +72,6 @@
             </tr>
         @endforeach
 
-        {{ $products->links() }}
     </tbody>
 </table>
 
@@ -140,9 +147,6 @@
 
             @endisset
         </div>
-
-
-
 
         <div class="mt-6 flex justify-end">
             <x-secondary-button x-on:click="$dispatch('close')">
