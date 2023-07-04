@@ -1,13 +1,18 @@
 <div class="container mx-auto flex flex-col space-y-20 items-center">
     <div class="flex">
         @include('User.sidebar')
+        @include('flash-message')
     </div>
+  
 
     <div class="flex flex-col space-y-5 mx-10">
 
         <h4 class="font-semibold uppercase text-xl tracking-tight ml-8">
             {{ $product->name }}
         </h4>
+        <h5 class="font-semibold ml-8">
+           Part No: {{ $product->details->part_no }}
+        </h5>
         <div class="flex flex-row justify-between p-8 group ">
             <div class="space-y-10 flex flex-col font-semibold relative">
                 <p>
@@ -81,7 +86,6 @@
             </div>
 
             <p>Quantity: &emsp;{{ $product->quantity }}</p>
-            <p>Part No: &emsp;{{ $product->details->part_no }}</p>
             <p>Manual: &emsp;{{ $product->details->manual }}</p>
             <p>Dimensions: &emsp;{{ $product->details->dimensions }}</p>
             <p>Weight: &emsp;{{ $product->details->weight }}</p>
@@ -90,12 +94,11 @@
 
         <div class="flex flex-col space-y-5 p-8">
             <h4 class="font-semibold">Product Features</h4>
-            @if(!empty($product->features))
-            @foreach($product->features as $feature)
-
-            @endforeach
+            @if (!empty($product->features))
+                @foreach ($product->features as $feature)
+                @endforeach
             @else
-            <button>Add</button>
+                <x-secondary-button class="max-w-max">Add</x-secondary-button>
             @endif
         </div>
 
@@ -113,9 +116,9 @@
         @include('modals.image-upload-modal')
     </form>
 
-    {{-- <form action="{{route('product-details.edit', $product->id)}}" method="POST" enctype="multipart/form-data">
+    <form action="{{route('product-details.edit', $product->id)}}" method="POST" enctype="multipart/form-data">
         @csrf
-        @method('PATCH') --}}
+        @method('PATCH')
         @include('modals.details-modal')
-    {{-- </form> --}}
+    </form>
 </div>

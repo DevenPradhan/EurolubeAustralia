@@ -4,6 +4,7 @@ use App\Http\Controllers\ImagesController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\User\CategoryController;
 use App\Http\Controllers\User\ProductController;
+use App\Http\Controllers\User\ProductDetailController;
 use App\Http\Controllers\User\TypeController;
 use App\Http\Controllers\Visitors\VisitorController;
 use App\Http\Livewire\ProductDetails;
@@ -28,8 +29,8 @@ Route::get('/', [VisitorController::class, 'index'])->name('/');
 Route::get('/products', [VisitorController::class, 'products'])->name('view_products');
 
 Route::get('/dashboard', function () {
-        return view('dashboard');
-        })->middleware(['auth', 'verified'])->name('dashboard');
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
 
@@ -40,11 +41,13 @@ Route::middleware('auth')->group(function () {
     Route::get('user/products', [ProductController::class, 'index'])->name('products');
     Route::post('user/products', [ProductController::class, 'add_product'])->name('products.add');
     Route::delete('user/product/{id}', [ProductController::class, 'destroy'])->name('product.destroy');
-    Route::patch('user/products/{id}/details', [ProductController::class, 'putDetails'])->name('product-details.edit');
 
-    Route::get('user/products/details/{product_id}', ProductDetails::class)->name('product.details');
+    // product details
+    Route::get('user/products/{id}/details', [ProductDetailController::class, 'index'])->name('product.details');
+    Route::patch('user/products/{id}/details', [ProductDetailController::class, 'updateDetails'])->name('product-details.edit');
+
     // Route::get('user/products/details/{id}', [ProductController::class, 'details'])->name('product.details');
-    
+
     Route::patch('user/products/{id}/description', [ProductController::class, 'putDescription'])->name('product-description-edit');
 
     Route::get('user/products/types', [TypeController::class, 'index'])->name('types');

@@ -37,7 +37,7 @@ class ProductController extends Controller
             $product->details()->create([
                 'part_no' => '',
                 'weight' => '',
-                'manual' => '', 
+                'manual' => '',
                 'dimensions' => ''
             ]);
         }
@@ -64,16 +64,4 @@ class ProductController extends Controller
         return back()->with('success', 'description added/edited successfully');
     }
 
-    // public function putDetails(Request $request, $id)
-    // {
-    //     $request->validateWithBag('detailsModal', [
-    //         'quantity' => 'integer|max:20',
-    //         'part_no' => 'max:255',
-    //         'manual' => 'max:255',
-    //         'dimensions' => 'max:255',
-    //         'weight' => 'max:255'
-    //     ]);
-
-    //     dd($request->all(), $id);
-    // }
 }

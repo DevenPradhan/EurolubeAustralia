@@ -1,31 +1,68 @@
 <x-modal name="details-modal" :show="$errors->detailsModal->isNotEmpty()" focusable maxWidth="3xl">
     <div class="p-10 space-y-4">
-        <form wire:submit.prevent="editDetails">
         <h4 class="font-semibold">Edit</h4>
         <hr>
         <div class="grid grid-flow-cols md:grid-cols-2 gap-4">
-            <div class="mt-6 inline-flex space-x-4 items-center">
-                <x-input-label value="Available Quantity" for="quantity" />
-                <x-text-input name="quantity" wire:model="quantity" type="number" />
-                    <x-input-error :messages="$errors->detailsModal->get('newProducts[{{ $id }}][name]')" class="mt-2" />
+            <div class="mt-6 inline-flex space-x-4">
+                <x-input-label value="Name" for="name" />
+                <div>
+                    <x-text-input name="name" value="{{ old('name') ?? $product->name }}" type="text" required/>
+                    <x-input-error :messages="$errors->detailsModal->get('name')" class="mt-2" />
+                </div>
+            </div>
 
+            <div class="mt-6 inline-flex space-x-4">
+                <x-input-label value="Available Quantity" for="quantity" />
+                <div>
+                    <x-text-input name="quantity" value="{{ old('quantity') ?? $product->quantity }}" type="number" />
+                    <x-input-error :messages="$errors->detailsModal->get('quantity')" class="mt-2" />
+                </div>
             </div>
-            <div class="mt-6 inline-flex space-x-4 items-center">
+
+            <div class="mt-6 inline-flex space-x-4">
                 <x-input-label value="Part No" for="part_no" />
-                <x-text-input name="part_no" wire:model="part_no" type="text" />
+                <div class="">
+                    <x-text-input name="part_no" value="{{ old('part_no') ?? $product->details->part_no }}"
+                        type="text" required/>
+                    <x-input-error :messages="$errors->detailsModal->get('part_no')" class="mt-2" />
+                </div>
             </div>
-            <div class="mt-6 inline-flex space-x-4 items-center">
+
+            <div class="mt-6 inline-flex space-x-4">
                 <x-input-label value="Dimensions" for="dimensions" />
-                <x-text-input name="dimensions" wire:model="dimensions"
-                    type="text" />
+                <div>
+                    <x-text-input name="dimensions" value="{{ old('dimensions') ?? $product->details->dimensions }}"
+                        type="text" />
+                    <x-input-error :messages="$errors->detailsModal->get('dimensions')" class="mt-2" />
+
+                </div>
             </div>
-            <div class="mt-6 inline-flex space-x-4 items-center">
+
+            <div class="mt-6 inline-flex space-x-4 ">
                 <x-input-label value="Weight" for="weight" />
-                <x-text-input name="weight" wire:model="weight" type="text" />
+                <div>
+                    <x-text-input name="weight" value="{{ old('weight') ?? $product->details->weight }}"
+                        type="text" />
+                    <x-input-error :messages="$errors->detailsModal->get('weight')" class="mt-2" />
+
+                </div>
             </div>
-            <div class="mt-6 inline-flex space-x-4 items-center">
+
+            <div class="mt-6 inline-flex space-x-4 col-span-2">
+                <x-input-label value="Description" for="description"/>
+                <div>
+                    <x-textbox name="description" >{{old('description') ?? $product->description}}</x-textbox>
+                    <x-input-error :messages="$errors->detailsModal->get('description')" class="mt-2"/>
+                </div>
+            </div>
+
+            <div class="mt-6 inline-flex space-x-4 ">
                 <x-input-label value="Manual" for="manual" />
-                <x-text-input name="manual" wire:model="{{ $product->details->manual ?? old('manual') }}" type="text" />
+                <div>
+                    <x-text-input name="manual" value="{{ old('manual') ?? $product->details->manual }}"
+                        type="file" />
+                    <x-input-error :messages="$errors->detailsModal->get('manual')" class="mt-2" />
+                </div>
             </div>
         </div>
 
