@@ -33,7 +33,7 @@ class Product extends Model
 
     public function features()
     {
-        return $this->hasOne(ProductFeature::class);
+        return $this->hasMany(ProductFeature::class);
     }
 
     public function images()

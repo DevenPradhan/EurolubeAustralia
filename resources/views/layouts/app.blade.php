@@ -19,6 +19,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 
     <livewire:styles />
+    @trixassets
 </head>
 
 <body class="font-sans antialiased">
@@ -39,6 +40,8 @@
         <!-- Page Content -->
         <main class="mt-10">
             @include('flash-message')
+            @include('alert')
+
             {{-- @include('User.sidebar') --}}
             {{ $slot }}
         </main>

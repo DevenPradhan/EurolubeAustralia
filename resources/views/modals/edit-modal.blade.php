@@ -7,9 +7,22 @@
             @if (Request::routeIs('categories'))
                 <div class="mt-6 space-y-3">
                     <x-input-label for="category" value="{{ __('Category') }}" class="" />
-                    <input type="hidden" id="category_id" name="category_id">
-                    <x-text-input name="category" type="text" required value="{{ old('category') }}" id="category" />
+                    <input type="hidden" 
+                            id="category_id" 
+                            name="category_id">
+                    <x-text-input name="category" 
+                                    type="text" 
+                                    required 
+                                    value="{{ old('category') }}" 
+                                    id="category" />
+                                    
                     <x-input-error :messages="$errors->editModal->get('category')" class="mt-2 errors" />
+                </div>
+                <div class="mt-2 space-y-3">
+                    <x-input-label for="description" value="{{__('Description')}}"/>
+                    <x-textbox id="category-description" name="description" class="w-full">{{old('description')}}</x-textbox>
+                    <x-input-error :messages="$errors->editModal->get('description')" class="mt-2 errors" />
+
                 </div>
 
                 {{-- for types page type edit each --}}

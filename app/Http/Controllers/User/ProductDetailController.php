@@ -29,26 +29,24 @@ class ProductDetailController extends Controller
                 'description' => 'max:255',
                 'dimensions' => 'max:40',
                 'weight' => 'max:40',
-                'manual' => 'file|max:1024'
+                'manual' => 'file|max:1024|mimes:pdf,jpeg'
             ],
             [
                 'manual.max' => 'A max of 1MB of file size is supported'
             ]
         );
-
       
         
-
-        $product->save();
-
+    //update product details
         $product->details()->update([
 
             'part_no' => $request->part_no,
-            'dimensions' => $request->dimensions,
+            'dimensions' => str_replace('*', 'x', $request->dimensions),
             'weight' => $request->weight,
         
         ]);
 
+    //update product details manual which has file
         if ($request->hasFile('manual')) {
 
             $file = $request->file('manual');
@@ -63,6 +61,7 @@ class ProductDetailController extends Controller
 
     }
 
+    //update product itself
         $product->update([
 
             'name' => $request->name,

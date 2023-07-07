@@ -7,62 +7,10 @@
 
         @include('User.sidebar')
 
-        <x-primary-button class="focus:ring-0 active:bg-neutral-700 rounded-sm" x-data=""
-            x-on:click.prevent="$dispatch('open-modal', 'add-type')">Add</x-primary-button>
-        <div class="max-w-5xl mx-auto">
-            <table class="table-auto">
-                <thead>
-                    <tr>
-                        <th class="user_th">#</th>
-                        <th class="user_th">Product Type</th>
-                        <th class="user_th">Product Category</th>
-                        <th class="user_th"></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php $id = 1; ?>
-                    @foreach ($product_types as $type)
-                        <tr>
-                            <td class="user_td">
-                                <p class="text-center">{{ $id++ }}</p>
-                            </td>
-                            <td class="user_td w-64">
-                                <a class="anchor_tag"
-                                    href="{{ route('type.details', $type->id) }}">{{ $type->name }}</a>
-                            </td>
-                            <td class="user_td w-64"><a href="{{ route('category.details', $type->category->id) }}"
-                                    class="anchor_tag">{{ $type->category->name }}</a></td>
-                            <td class="user_td">
-                                <form action="{{ route('type.destroy', $type->id) }}" method="POST"
-                                    enctype="multipart/form-data">
-                                    @csrf
-                                    @method('DELETE')
-                                    <div class="flex justify-center space-x-4">
-
-                                        <button type="button" x-data=""
-                                            onclick="edit_modal({{ $type }})"
-                                            x-on:click.prevent="$dispatch('open-modal', 'edit-modal')">
-                                            <x-edit />
-                                        </button>
-                                        <button
-                                            onclick="return confirm('Are you sure you want to remove this category?\nYou will lose all the underlying tables after you delete it')">
-                                            <x-trash-can />
-                                        </button>
-                                    </div>
-                                </form>
-
-                            </td>
-                            <td>
-
-                            </td>
-                        </tr>
-                    @endforeach
-                </tbody>
-            </table>
-        </div>
+        @livewire('product-types')
     </div>
 
-    @include('modals.add-product-type-modal')
+    
 
     <form action="{{ route('type.edit') }}" method="POST" enctype="multipart/form-data">
         @method('PATCH')

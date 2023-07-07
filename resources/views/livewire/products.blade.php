@@ -132,7 +132,7 @@
                                 <x-input-error :messages="$errors->productAddition->get('newProducts[{{ $id }}][quantity]')" class="mt-2" />
                             </div>
                             <div class="w-1/6 self-end justify-self-center py-2">
-                                <x-danger-button id="add" type="button"
+                                <x-danger-button id="remove" type="button"
                                     wire:click.prevent="removeProduct({{ $id }})"
                                     class="rounded-sm py-1 px-2">
                                     Delete </x-danger-button>

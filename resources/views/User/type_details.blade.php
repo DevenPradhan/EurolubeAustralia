@@ -9,7 +9,11 @@
         </div>
 
         <div class="flex flex-col space-y-5 mx-10">
-            <h4 class="font-semibold uppercase text-xl">{{ $type->name }}</h4>
+            <div>
+                <a href="{{route('category.details', $type->category->id)}}" class="max-w-max text-sm font-semibold">{{$type->category->name}} <-</a>
+                <h4 class="font-semibold uppercase text-xl">{{ $type->name }}</h4>
+
+            </div>
             <div class="space-x-10 flex items-center">
                 {{-- part of page for type description --}}
                 <p>
@@ -53,6 +57,7 @@
                         <thead>
                             <tr>
                                 <th class="user_th w-4">#</th>
+                                <th class="user_th">Product</th>
                                 <th class="user_th"></th>
                             </tr>
                         </thead>
@@ -63,8 +68,15 @@
                                     <td class="user_td">
                                         <p class="text-center">{{ $id++ }}</p>
                                     </td>
-                                    <td class="user_td"><a href="{{ route('product.details', $product->id) }}"
-                                            class="flex justify-center hover:underline">{{ $product->name }}</a></td>
+                                    <td class="user_td">
+                                        <a href="{{ route('product.details', $product->id) }}"
+                                            class="flex justify-center hover:underline">
+                                            {{ $product->name }}
+                                        </a>
+                                    </td>
+                                            <td class="user_td">
+                                                <button type="button"><x-trash-can/></button>
+                                            </td>
                                 </tr>
                             @endforeach
 
@@ -77,7 +89,7 @@
     </div>
 
 
-    @include('modals.add-product-modal')
+    {{-- @include('modals.add-product-modal') --}}
 
     <form action="{{ route('type.image.upload', $type->id) }}" method="POST" enctype="multipart/form-data">
         @csrf

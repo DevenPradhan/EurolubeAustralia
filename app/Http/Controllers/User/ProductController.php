@@ -53,15 +53,5 @@ class ProductController extends Controller
     }
 
 
-    public function putDescription(Request $request, $id)
-    {
-        $request->validateWithBag('descriptionModal', [
-            'description' => 'max:999'
-        ]);
-
-        Product::where('id', $id)->update(['description' => $request->description]);
-
-        return back()->with('success', 'description added/edited successfully');
-    }
 
 }

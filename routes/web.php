@@ -48,8 +48,6 @@ Route::middleware('auth')->group(function () {
 
     // Route::get('user/products/details/{id}', [ProductController::class, 'details'])->name('product.details');
 
-    Route::patch('user/products/{id}/description', [ProductController::class, 'putDescription'])->name('product-description-edit');
-
     Route::get('user/products/types', [TypeController::class, 'index'])->name('types');
     Route::post('user/products/types', [TypeController::class, 'add_type'])->name('type.add');
     Route::patch('user/products/types', [TypeController::class, 'edit'])->name('type.edit');
