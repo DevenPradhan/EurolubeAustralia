@@ -36,12 +36,11 @@
                     <p class="text-center">{{ $id++ }}</p>
                 </td>
                 <td class="user_td">
-                    <a href="{{ route('product.details', $product->id) }}"
-                        class="anchor_tag">{{ $product->name }}
+                    <a href="{{ route('product.details', $product->id) }}" class="anchor_tag">{{ $product->name }}
                     </a>
                 </td>
                 <td class="user_td">
-                    <a href="{{route('product.details', $product->id)}}">{{$product->details->part_no}}</a>
+                    <a href="{{ route('product.details', $product->id) }}" class="anchor_tag">{{ $product->details->part_no }}</a>
                 </td>
                 <td class="user_td"><a class="anchor_tag"
                         href="{{ route('type.details', $product->type->id) }}">{{ $product->type->name }}</a>
@@ -76,44 +75,50 @@
 </table>
 
 
-<x-modal name="add-product" :show="$errors->productAddition->isNotEmpty()" focusable maxWidth="4xl">
+<x-modal name="add-product" :show="$errors->productAddition->isNotEmpty()" focusable maxWidth="5xl">
     <form action="{{ route('products.add') }}" method="POST" enctype="multipart/form-data" class="p-6">
         @csrf
 
         <h3>Add product(s)</h3>
-        <div class="mt-6 w-full">
-            {{-- if the modal is in individual product type page --}}
-            @isset($type->id)
-                <x-input-label for="product_type" value="{{ __('Type') }}" class="" />
-                <h4 class="font-semibold font-mono ">{{ $type->name }}</h4>
-                <input type="hidden" value="{{ $type->id }}" name="product_type" class="border-0">
-
-                {{-- for pages that does not belong in the product type specific page --}}
-            @else
-                {{-- <div class="flex space-x-10">
-                        <p>{{ isset($types) ? 'There are no product Types. Add One' : 'Add Type' }}</p>
-                        <x-text-input value="{{ old('product_type') }}" placeholder="Add Product Type" type="text"
-                            class="w-3/4 block mt-1" />
-    
-                        <a href="{{ route('types') }}">All Types</a>
-                    </div> --}}
-
-                <div>
-                    <div class="mt-6 inline-flex w-full">
-                        <x-input-label for="name" value="{{ __('Product(s)') }}" class="w-2/3" />
-                        <x-input-label for="product_type" value="{{ __('Product Type') }}" class="w-2/3" />
-                        <x-input-label for="quantity" value="{{ __('Quantity') }}" class="w-1/6" />
-                    </div>
-                    @foreach ($newProducts as $id => $newProduct)
-                        <div class="mt-6 inline-flex w-full">
-                            <div class="w-2/3 space-y-1">
+        <table>
+            <thead>
+                <tr>
+                    <th>
+                        <x-input-label for="name" value="{{ __('Product(s)') }}" class="" />
+                    </th>
+                    <th>
+                        <x-input-label for="part_no" value="{{ __('Part No') }}" />
+                    </th>
+                    <th>
+                        <x-input-label for="product_type" value="{{ __('Product Type') }}" class="" />
+                    </th>
+                    <th>
+                        <x-input-label for="quantity" value="{{ __('Quantity') }}" class="" />
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($newProducts as $id => $newProduct)
+                    <tr class="">
+                        <td>
+                            <div class="mr-2">
                                 <x-text-input name="newProducts[{{ $id }}][name]"
                                     wire:model="newProducts.{{ $id }}.name" type="text"
-                                    class="mt-1 block w-3/4" placeholder="{{ __('Product Name') }}" required />
+                                    class="mt-1" placeholder="{{ __('Product Name') }}" required />
                                 <x-input-error :messages="$errors->productAddition->get('newProducts[{{ $id }}][name]')" class="mt-2" />
                             </div>
-                            <div class="space-y-1 w-2/3">
-                                <x-select class="mt-1 block w-3/4"
+                        </td>
+                        <td class="">
+                            <div class="mr-2">
+                                <x-text-input name="newProducts[{{ $id }}][part_no]"
+                                    wire:model="newProducts.{{ $id }}.part_no" type="text"
+                                    class="mt-1 " placeholder="{{ __('Part No') }}" />
+                                <x-input-error :messages="$errors->productAddition->get('newProducts[{{ $id }}][part_no]')" class="mt-2" />
+                            </div>
+                        </td>
+                        <td>
+                            <div class="mr-2">
+                                <x-select class="mt-1"
                                     name="newProducts[{{ $id }}][product_type]"
                                     placeholder="{{ __('Product Type') }}"
                                     wire:model="newProducts.{{ $id }}.product_type" required>
@@ -122,30 +127,32 @@
                                         <option value="{{ $type->id }}">{{ $type->name }}</option>
                                     @endforeach
                                 </x-select>
+                                <x-input-error :messages="$errors->productAddition->get('product_type')" class="mt-2" />
                             </div>
-
-                            <x-input-error :messages="$errors->productAddition->get('product_type')" class="mt-2" />
-                            <div class="w-1/6">
+                        </td>
+                        <td>
+                            <div class="mr-2">
                                 <x-text-input name="newProducts[{{ $id }}][quantity]" type="number"
-                                    class="mt-1 block w-3/4" wire:model="newProducts.{{ $id }}.quantity"
+                                    class="mt-1 block" wire:model="newProducts.{{ $id }}.quantity"
                                     required />
                                 <x-input-error :messages="$errors->productAddition->get('newProducts[{{ $id }}][quantity]')" class="mt-2" />
                             </div>
-                            <div class="w-1/6 self-end justify-self-center py-2">
+                        </td>
+                        <td>
+                            <div class="ml-4 mt-1">
                                 <x-danger-button id="remove" type="button"
                                     wire:click.prevent="removeProduct({{ $id }})"
                                     class="rounded-sm py-1 px-2">
                                     Delete </x-danger-button>
                             </div>
-                        </div>
-                    @endforeach
-                    <div class="mt-6">
-                        <x-primary-button wire:click.prevent="addProduct" class="" type="button">Add More
-                        </x-primary-button>
-                    </div>
-                </div>
-
-            @endisset
+                        </td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
+        <div class="mt-6">
+            <x-primary-button wire:click.prevent="addProduct" class="" type="button">Add More
+            </x-primary-button>
         </div>
 
         <div class="mt-6 flex justify-end">

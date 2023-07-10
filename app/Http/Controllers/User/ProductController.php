@@ -35,10 +35,8 @@ class ProductController extends Controller
             ]);
 
             $product->details()->create([
-                'part_no' => '',
-                'weight' => '',
-                'manual' => '',
-                'dimensions' => ''
+                'part_no' => $newProduct['part_no']
+                
             ]);
         }
 

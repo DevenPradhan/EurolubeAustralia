@@ -5,9 +5,9 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\User\CategoryController;
 use App\Http\Controllers\User\ProductController;
 use App\Http\Controllers\User\ProductDetailController;
+use App\Http\Controllers\User\ProductImageController;
 use App\Http\Controllers\User\TypeController;
 use App\Http\Controllers\Visitors\VisitorController;
-use App\Http\Livewire\ProductDetails;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -33,6 +33,10 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
+
+
+    Route::get('test', [ProductImageController::class, 'index'])->name('test');
+    Route::post('test', [ProductImageController::class, 'store'])->name('test.store');
 
     Route::post('user/products/categories/{id}/upload.images', [ImagesController::class, 'uploadCategory'])->name('category.image.upload');
     Route::post('user/products/types/{id}/upload.images', [ImagesController::class, 'uploadType'])->name('type.image.upload');

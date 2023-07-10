@@ -12,14 +12,18 @@ class Categories extends Component
     public $category;
     public $categoryDescription;
     public $newCategories = [];
+    // protected $rules = [
+    //     'newCategories.*.name' => 'distinct:ignore_case'
+    // ];
 
     public function updated($fields)
     {
         $this->validateOnly($fields, [
-            'newCategories.{$id}.name' => 'min:4'
+            'newCategories.*.name' => 'min:4|unique:product_categories,name'
         ]);
     }
 
+   
     public function mount()
     {
         // $this->category;

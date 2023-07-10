@@ -18,13 +18,13 @@ class Products extends Component
     {
         $this->types = ProductType::all();
         $this->newProducts = [
-            ['name' => '', 'quantity' => 1, 'product_type' => '']
+            ['name' => '', 'part_no' => '', 'quantity' => 1, 'product_type' => '']
         ];
     }
 
     public function addProduct()
     {
-        $this->newProducts[] = ['name' => '', 'quantity' => 1, 'product_type' => ''];
+        $this->newProducts[] = ['name' => '', 'part_no' => '', 'quantity' => 1, 'product_type' => ''];
     }
 
     public function removeProduct($id)

@@ -17,9 +17,7 @@ class CategoryController extends Controller
 
     public function add_category(Request $request)
     {
-        $request->validateWithBag('categoryAddition', [
-           'newCategories.*.name' => 'min:4' 
-        ]);
+
         // dd($request->all());
         foreach($request->newCategories as $newCategory)
         {
