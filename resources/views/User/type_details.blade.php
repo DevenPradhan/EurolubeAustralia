@@ -1,8 +1,5 @@
 <x-app-layout>
 
-    @include('flash-message')
-    @include('alert')
-
     <div class="container mx-auto flex flex-col space-y-20 items-center">
         <div class="flex">
             @include('User.sidebar')
@@ -10,7 +7,10 @@
 
         <div class="flex flex-col space-y-5 mx-10">
             <div>
-                <a href="{{route('category.details', $type->category->id)}}" class="max-w-max text-sm font-semibold">{{$type->category->name}} <-</a>
+                <a href="{{route('category.details', $type->category->id)}}" 
+                    class="max-w-max text-neutral-400 hover:text-black text-sm font-semibold">
+                    {{$type->category->name}} 
+                </a>
                 <h4 class="font-semibold uppercase text-xl">{{ $type->name }}</h4>
 
             </div>
@@ -20,71 +20,15 @@
                     {{ $type->description == '' ? 
                     'There are no descriptions for this category' : $type->description }}
                 </p>
-                <x-secondary-button type="button" x-data="" onclick="edit_desc({{ $type }})"
-                    x-on:click.prevent="$dispatch('open-modal', 'description-modal')">
+                <x-secondary-button 
+                type="button" 
+                x-data="" 
+                onclick="edit_desc({{ $type }})"
+                x-on:click.prevent="$dispatch('open-modal', 'description-modal')">
                     {{ $type->description == '' ? 'Add' : 'Edit' }}</x-secondary-button>
             </div>
 
-            {{-- option to upload images if not uploaded formerly --}}
-
-            <div
-                class="{{ $type->images == '[]' ? 'bg-yellow-50 max-w-4xl space-y-2' : 'bg-slate-50 max-w-5xl flex flex-row space-x-4' }} p-8 overflow-x-auto">
-                @if ($type->images == '[]')
-                    <p class="font-bold">You dont have any image for this product. Upload some pictures to provide
-                        better
-                        description of the item</p>
-                @else
-                    @foreach ($type->images as $image)
-                        <img src="{{ asset('storage/images/' . $image->url) }}" alt=""
-                            class="w-56 object-cover">
-                    @endforeach
-                @endif
-                <x-primary-button class="focus:ring-0 active:bg-neutral-700 rounded-sm max-w-max"
-                    x-data="" x-on:click.prevent="$dispatch('open-modal', 'add-images')">Add
-                    {{ $type->images != '[]' ? 'More' : '' }}</x-primary-button>
-            </div>
-            @if ($type->products->count() == null)
-                <div class="mt-4 flex max-w-xl flex-col space-y-3 p-8 rounded-sm bg-red-50">
-                    <p class="font-bold">You dont have any List in this category</p>
-                    <div>
-                        <x-primary-button class="focus:ring-0 active:bg-neutral-700 rounded-sm" x-data=""
-                            x-on:click.prevent="$dispatch('open-modal', 'add-product')">Add</x-primary-button>
-                    </div>
-                </div>
-            @else
-                <div class="p-2 border border-gray-200 max-w-lg">
-                    <table class="table-auto w-full">
-                        <thead>
-                            <tr>
-                                <th class="user_th w-4">#</th>
-                                <th class="user_th">Product</th>
-                                <th class="user_th"></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php $id = 1; ?>
-                            @foreach ($type->products as $product)
-                                <tr>
-                                    <td class="user_td">
-                                        <p class="text-center">{{ $id++ }}</p>
-                                    </td>
-                                    <td class="user_td">
-                                        <a href="{{ route('product.details', $product->id) }}"
-                                            class="flex justify-center hover:underline">
-                                            {{ $product->name }}
-                                        </a>
-                                    </td>
-                                            <td class="user_td">
-                                                <button type="button"><x-trash-can/></button>
-                                            </td>
-                                </tr>
-                            @endforeach
-
-
-                        </tbody>
-                    </table>
-                </div>
-            @endif
+            @livewire('type-details', ['type_id' => $type->id])
         </div>
     </div>
 

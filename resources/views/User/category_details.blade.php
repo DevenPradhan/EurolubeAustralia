@@ -61,7 +61,7 @@
                             <tr class="w-full">
                                 <th class="user_th w-4">#</th>
                                 <th class="user_th">Type</th>
-                                <th class="user_th">a</th>
+                                <th class="user_th">Action</th>
                             </tr>
                         </thead>
                         <tbody class="">

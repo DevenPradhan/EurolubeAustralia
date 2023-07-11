@@ -28,7 +28,7 @@
         @else
             <div class="mt-4 inline-flex space-x-4">
                 <x-input-label value="Category" />
-                <x-input-label class="font-semibold uppercase" value="{{ $category->name }}" />
+                <x-input-label class="font-semibold uppercase whitespace-nowrap" value="{{ $category->name }}" />
                 <x-text-input type="hidden" value="{{ $category->id }}" name="category" />
             </div>
 

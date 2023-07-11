@@ -4,30 +4,36 @@ namespace App\Http\Livewire;
 
 use App\Models\ProductCategory;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class Categories extends Component
 {
 
+    use WithPagination;
+    
     public $search;
+    public $category_id;
     public $category;
     public $categoryDescription;
     public $newCategories = [];
-    // protected $rules = [
-    //     'newCategories.*.name' => 'distinct:ignore_case'
-    // ];
+    protected $rules = [
+        'newCategories.*.name' => 'distinct:ignore_case'
+    ];
 
     public function updated($fields)
     {
         $this->validateOnly($fields, [
-            'newCategories.*.name' => 'min:4|unique:product_categories,name'
+            'category' => 'min:4|unique:product_categories,name,'.$this->category.'',
+            'newCategories.*.name' => 'min:4|unique:product_categories,name|distinct'
+        ],[
+            'newCategories.*.name.unique' => 'There is already a data with that name in our records.',
+            'newCategories.*.name.min' => 'Please insert at least 4 characters for ease of identification.'
         ]);
     }
 
    
     public function mount()
     {
-        // $this->category;
-        // $this->categoryDescription;
         
         $this->newCategories = [
             ['name' => '', 'description' => '']
@@ -56,12 +62,16 @@ class Categories extends Component
 
     public function render()
     {
-        $product_categories = ProductCategory::where('name', 'like', '%' . $this->search . '%')->paginate(10);
+        $product_categories = ProductCategory::where('name', 'like', '%' . $this->search . '%')->paginate(8);
         return view('livewire.categories', ['product_categories' => $product_categories]);
     }
 
-    public function editModal($id)
+    public function editModal($category)
     {
-        $category = ProductCategory::find($id);
+        // dd($category);
+       $this->category_id = $category['id'];
+        $this->category = $category['name'];
+        $this->categoryDescription = $category['description'];
+
     }
 }

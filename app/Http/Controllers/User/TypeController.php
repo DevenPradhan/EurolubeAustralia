@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\ProductCategory;
 use App\Models\ProductType;
 use Illuminate\Http\Request;
+use App\Models\Product;
 
 class TypeController extends Controller
 {
@@ -71,5 +72,24 @@ class TypeController extends Controller
     }
 
 
+    public function add_products(Request $request, $type_id)
+    {
+        foreach ($request->newProducts as $newProduct) {
+            $product = Product::create([
+                'name' => $newProduct['name'],
+                'product_type_id' => $type_id,
+                'validity' => 0,
+                'quantity' => $newProduct['quantity']
+            ]);
+
+            $product->details()->create([
+                'part_no' => $newProduct['part_no']
+                
+            ]);
+        }
+
+        return back()->with('success', 'Products has been added successfully');
+    
+    }
 
 }

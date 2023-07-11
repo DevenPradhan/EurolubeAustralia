@@ -1,5 +1,5 @@
 <x-app-layout>
-    <div class="container mx-auto flex flex-col space-y-20 items-center">
+    <div class="w-full container flex flex-col space-y-20 items-center">
         <div class="flex">
             @include('User.sidebar')
         </div>

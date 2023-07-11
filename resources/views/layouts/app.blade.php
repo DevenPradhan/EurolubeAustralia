@@ -40,7 +40,6 @@
         <!-- Page Content -->
         <main class="mt-10">
             @include('flash-message')
-            @include('alert')
 
             {{-- @include('User.sidebar') --}}
             {{ $slot }}

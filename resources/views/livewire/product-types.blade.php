@@ -66,14 +66,16 @@
                 <x-input-label for="type" value={{__('Type')}} class=""/>
             </div>
             @foreach($newTypes as $id => $newType)
-            <div class="inline-flex w-full mt-2 space-x-3">
+            <div class="flex {{count($newTypes) > 1 ? 'flex-row' : 'flex-col'}} w-full mt-2 ">
                 <x-text-input 
                 wire:model="newTypes.{{ $id }}.name" 
                 name="newTypes[{{ $id }}][name]" 
-                type="text"/>
+                type="text" 
+                placeholder="Enter Type"
+                class="w-2/3 block mr-3 mb-2"/>
                 
                 <x-select 
-                class="mt-1 block w-3/4" 
+                class=" block w-2/3 mr-3 mb-2" 
                 name="newTypes[{{$id}}][category]" 
                 wire:model="newTypes.{{$id}}.category" 
                 required>
@@ -83,7 +85,7 @@
                     @endforeach
                 </x-select>
                 
-                <div class="w-1/6 self-end justify-self-center py-2">
+                <div class="w-1/6  justify-self-center ">
                     <x-danger-button 
                     id="add" 
                     type="button"
@@ -92,50 +94,17 @@
                         Delete 
                     </x-danger-button>
                 </div>
+                <div class="mt-4 {{count($newTypes) > 1 ? 'hidden' : 'block'}}">
+                    <x-input-label for="description" value="{{ __('Description') }}" class="" />
+                    <x-textbox name="description" value="{{ old('description') }}" class="text-gray-500 w-2/3"></x-textbox>
+                </div>
             </div>
             @endforeach
-    <div class="mt-6">
-        <x-primary-button wire:click.prevent="addType" class="" type="button">Add More
-        </x-primary-button>
-    </div>
-            {{-- <div class="mt-6">
-                <x-input-label for="type" value="{{ __('Type') }}" class="" />
-    
-                <x-text-input name="type" type="text" class="mt-1 block w-3/4" placeholder="{{ __('Enter Type here') }}"
-                    required value="{{ old('type') }}" />
-                <x-input-error :messages="$errors->typeAddition->get('type')" class="mt-2" />
-            </div> --}}
-    
-            {{-- if the modal is in category details page, hide the below field --}}
-    
-            @if (!Request::routeIs('category.details'))
-                <div class="mt-6">
-                    <x-input-label for="type" value="{{ __('Type') }}" class="" />
-    
-                    <x-text-input name="type" type="text" class="mt-1 block w-3/4"
-                        placeholder="{{ __('Enter Type here') }}" required value="{{ old('type') }}" />
-                    <x-input-error :messages="$errors->typeAddition->get('type')" class="mt-2" />
-                </div>
-                <div class="mt-4">
-                    <x-input-label for="category" value="{{ __('Category') }}" class="" />
-    
-                    <x-select class="mt-1 block w-3/4" name="category" required>
-                        <option value="" hidden>Select A Category</option>
-                        @foreach ($categories as $key => $category)
-                            <option value="{{ $key }}">{{ $category }}</option>
-                        @endforeach
-                    </x-select>
-                    <x-input-error :messages="$errors->typeAddition->get('category')" class="mt-2" />
-                </div>
-            @else
-                <x-text-input type="hidden" value="{{ $category->id }}" name="category" />
-    
-            @endif
-    
-            <div class="mt-4">
-                <x-input-label for="description" value="{{ __('Description') }}" class="" />
-                <x-textbox name="description" value="{{ old('description') }}" class="text-gray-500"></x-textbox>
+            <div class="mt-6">
+                <x-primary-button wire:click.prevent="addType" class="" type="button">Add More
+                </x-primary-button>
             </div>
+            
     
             <div class="mt-6 flex justify-end">
                 <x-secondary-button x-on:click="$dispatch('close')">

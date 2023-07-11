@@ -57,6 +57,9 @@ Route::middleware('auth')->group(function () {
     Route::patch('user/products/types', [TypeController::class, 'edit'])->name('type.edit');
     Route::delete('user/products/types/{id}/destroy', [TypeController::class, 'destroy'])->name('type.destroy');
     Route::get('user/products/types/{id}', [TypeController::class, 'detail'])->name('type.details');
+    
+    Route::put('user/products/{type_id}', [TypeController::class, 'add_products'])->name('type.products.add');
+    
     Route::patch('user/products/types/{id}/description', [TypeController::class, 'putDescription'])->name('type-description-edit');
 
     Route::get('user/products/categories', [CategoryController::class, 'index'])->name('categories');
