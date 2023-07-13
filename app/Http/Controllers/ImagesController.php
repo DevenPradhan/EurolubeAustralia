@@ -75,7 +75,7 @@ class ImagesController extends Controller
 
     public function uploadProduct(Request $request, $id)
     {
-
+        // dd($request->all());
         $request->validateWithBag('imageUpload',
         [ 
             'images.*' => 'image|mimes:jpg,png|max:1024']);

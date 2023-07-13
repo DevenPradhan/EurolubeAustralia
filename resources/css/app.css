@@ -16,7 +16,7 @@
 }
 
 .user_td{
-    @apply  py-4 px-2 min-w-[150px] border-b;
+    @apply  py-4 px-2 min-w-[150px] border-b ;
 }
 
 .form_input{
@@ -37,4 +37,8 @@
 
 .anchor_tag{
     @apply flex justify-center font-semibold uppercase font-mono  hover:text-black hover:underline text-neutral-600;
+}
+
+.table_border{
+    @apply  p-4 border-2 border-red-100 rounded-sm;
 }

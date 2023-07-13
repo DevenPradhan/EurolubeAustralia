@@ -8,15 +8,12 @@ use Livewire\Component;
 
 class Products extends Component
 {
-
-    public $types;
     public $newProducts = [];
     public $search ='';
     protected $queryString = ['search'];
 
     public function mount()
     {
-        $this->types = ProductType::all();
         $this->newProducts = [
             ['name' => '', 'part_no' => '', 'quantity' => 1, 'product_type' => '']
         ];
@@ -33,10 +30,18 @@ class Products extends Component
         array_values($this->newProducts);
     }
 
+    public function cancelModal()
+    {
+        $this->reset();
+        $this->newProducts = [
+            ['name' => '', 'part_no' => '', 'quantity' => 1, 'product_type' => '']
+        ];
+    }
+
     public function render()
     {
-        // $products= Product::all();
+        $types = ProductType::pluck('name', 'id');
         $products = Product::where('name', 'like', '%'.$this->search.'%')->paginate(10);
-        return view('livewire.products', ['products' => $products]);
+        return view('livewire.products', compact('products', 'types'));
     }
 }

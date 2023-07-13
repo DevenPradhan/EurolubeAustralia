@@ -7,8 +7,8 @@
 
             <x-text-input name="images[]" type="file" class="mt-1 block w-3/4"
                 placeholder="{{ __('Upload Multiple Files') }}" required multiple value="{{old('images[]')}}" />
-            <x-input-error :messages="$errors->imageUpload->get('images')" class="mt-2" />
-               
+            <x-input-error :messages="$errors->imageUpload->get('images.[]')" class="mt-2" />
+                
         </div>
 
         <div class="mt-6 flex justify-end">

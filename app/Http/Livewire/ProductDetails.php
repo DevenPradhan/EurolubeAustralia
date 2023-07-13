@@ -13,6 +13,7 @@ class ProductDetails extends Component
 {
     use WithFileUploads;
 
+    public $image_url = '';
     public $product;
 
     public $newFeatures = [];
@@ -38,6 +39,7 @@ class ProductDetails extends Component
 
     public function mount($product_id)
     {
+        // $this->image_url = '';
         $this->product = Product::findOrFail($product_id);
     }
 

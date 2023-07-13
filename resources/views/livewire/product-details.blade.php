@@ -1,4 +1,5 @@
-<div
+<div class="">
+    <div
     class="{{ $product->images == '[]' ? 'bg-yellow-50 max-w-4xl space-y-4' : 'bg-slate-50 max-w-5xl flex flex-row space-x-4' }} p-8 overflow-x-auto">
 
     @if ($product->images == '[]')
@@ -11,12 +12,13 @@
         @foreach ($product->images as $image)
             <div class="relative w-56 overflow-hidden h-40 group">
                 <img src="{{ asset('storage/images/' . $image->image_url) }}" alt=""
-                    class="object-cover absolute inset-0 w-full h-full top-0 z-0  group-hover:blur-md transition-all">
-                <div class="relative items-center justify-center z-10 hidden group-hover:flex my-16 transition-all">
+                    class="object-cover absolute inset-0 w-full h-full top-0 z-0 group-hover:blur-md group-hover:brightness-75 transition-all">
+                <div class="relative items-center justify-center z-10 hidden space-x-4 group-hover:flex my-16 transition-all">
+                   <a href="{{asset('storage/images/'.$image->image_url)}}" target="__blank" class=""><x-eye/></a>
                     <button class=""
                         onclick="return confirm('Are you sure you want to delete the image?\nYou will lose the image once it is deleted.') || event.stopImmediatePropagation()"
                         wire:click.prevent="deleteImage({{ $image->id }})" type="button">
-                        <x-trash-can class=" fill-red-500 group-hover:w-10" />
+                        <x-trash-can class=" fill-red-500 w-8 group-hover:w-8" />
                     </button>
                 </div>
             </div>
@@ -29,19 +31,24 @@
     </x-primary-button>
 
 </div>
+    <x-eye/>
 
-
-
-<div class="flex flex-col space-y-5 p-8">
-    <div class="inline-flex space-x-10">
-        <h4 class="font-semibold">Product Features</h4>
-        <x-secondary-button class="max-w-max">Add</x-secondary-button>
-    </div>
-
-    @foreach ($product->features as $feature)
-        <div class="inline-flex space-x-4">
-            <span class="font-semibold">{{ $feature->feature }}:</span> &emsp;{{ $feature->additional }}
+    <div class="flex flex-col space-y-5 p-8">
+        <div class="inline-flex space-x-10">
+            <h4 class="font-semibold">Product Features</h4>
+            <x-secondary-button class="max-w-max">Add</x-secondary-button>
         </div>
-    @endforeach
     
+        @foreach ($product->features as $feature)
+            <div class="inline-flex space-x-4">
+                <span class="font-semibold">{{ $feature->feature }}:</span> &emsp;{{ $feature->additional }}
+            </div>
+        @endforeach
+        
+    </div>
 </div>
+
+
+
+
+

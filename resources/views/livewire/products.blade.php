@@ -5,7 +5,6 @@
         <x-text-input placeholder="Search Products" type="text" class="self-end w-1/3" name="search"
             wire:model.debounce.500ms="search" />
     </div>
-
     <table class="table-auto overflow-x-auto">
         <thead>
             <tr>
@@ -80,7 +79,11 @@
         @csrf
 
         <h3>Add product(s)</h3>
-        <table>
+        <div class="mt-6">
+            <x-primary-button wire:click.prevent="addProduct" class="" type="button">Add More
+            </x-primary-button>
+        </div>
+        <table class="mt-6">
             <thead>
                 <tr>
                     <th>
@@ -90,7 +93,7 @@
                         <x-input-label for="part_no" value="{{ __('Part No') }}" />
                     </th>
                     <th>
-                        <x-input-label for="product_type" value="{{ __('Product Type') }}" class="" />
+                        <x-input-label for="product_type" value="{{ __('Product Type') }}" class="whitespace-nowrap" />
                     </th>
                     <th>
                         <x-input-label for="quantity" value="{{ __('Quantity') }}" class="" />
@@ -123,8 +126,8 @@
                                     placeholder="{{ __('Product Type') }}"
                                     wire:model="newProducts.{{ $id }}.product_type" required>
                                     <option value="" hidden>Select One</option>
-                                    @foreach ($types as $type)
-                                        <option value="{{ $type->id }}">{{ $type->name }}</option>
+                                    @foreach ($types as $key => $type)
+                                        <option value="{{ $key }}">{{ $type }}</option>
                                     @endforeach
                                 </x-select>
                                 <x-input-error :messages="$errors->productAddition->get('product_type')" class="mt-2" />
@@ -139,10 +142,10 @@
                             </div>
                         </td>
                         <td>
-                            <div class="ml-4 mt-1">
+                            <div class="ml-4 mt-1 {{count($newProducts) > 1 ? 'block' : 'hidden'}}">
                                 <x-danger-button id="remove" type="button"
                                     wire:click.prevent="removeProduct({{ $id }})"
-                                    class="rounded-sm py-1 px-2">
+                                    class="rounded-sm py-1 px-2 block">
                                     Delete </x-danger-button>
                             </div>
                         </td>
@@ -150,13 +153,10 @@
                 @endforeach
             </tbody>
         </table>
-        <div class="mt-6">
-            <x-primary-button wire:click.prevent="addProduct" class="" type="button">Add More
-            </x-primary-button>
-        </div>
+      
 
         <div class="mt-6 flex justify-end">
-            <x-secondary-button x-on:click="$dispatch('close')">
+            <x-secondary-button x-on:click="$dispatch('close')" wire:click.prevent="cancelModal">
                 {{ __('Cancel') }}
             </x-secondary-button>
 

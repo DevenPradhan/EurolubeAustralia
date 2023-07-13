@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Visitors;
 
 use App\Http\Controllers\Controller;
 use App\Models\Product;
+use App\Models\ProductCategory;
 use Illuminate\Http\Request;
 
 class VisitorController extends Controller
@@ -15,7 +16,8 @@ class VisitorController extends Controller
 
     public function products()
     {
-        $products = Product::all();
-        return view('Visitor.products');
+        $products = Product::paginate(12);
+        $categories = ProductCategory::where('validity', 1)->get();
+        return view('Visitor.products', compact('products', 'categories'));
     }
 }
