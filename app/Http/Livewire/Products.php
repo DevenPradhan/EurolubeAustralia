@@ -5,11 +5,16 @@ namespace App\Http\Livewire;
 use App\Models\Product;
 use App\Models\ProductType;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class Products extends Component
 {
+    use WithPagination;
     public $newProducts = [];
     public $search ='';
+
+    public $nothingFound = false;
+    
     protected $queryString = ['search'];
 
     public function mount()
@@ -42,6 +47,9 @@ class Products extends Component
     {
         $types = ProductType::pluck('name', 'id');
         $products = Product::where('name', 'like', '%'.$this->search.'%')->paginate(10);
+        
+        $this->nothingFound = $products->isNotEmpty();
+
         return view('livewire.products', compact('products', 'types'));
     }
 }

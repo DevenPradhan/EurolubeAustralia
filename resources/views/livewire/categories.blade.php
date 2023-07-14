@@ -51,6 +51,14 @@
                         </td>
                     </tr>
                 @endforeach
+                @if (!$nothingFound)
+                <tr>
+                    <td colspan="3">
+                        <p class="text-center text-gray-500 italic text-sm h-10 mt-3">Nothing Found</p>
+                    </td>
+                </tr>
+            @endif
+
             </tbody>
         </table>
         {{ $product_categories->links() }}

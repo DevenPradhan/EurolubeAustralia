@@ -3,30 +3,33 @@
         <x-primary-button class="focus:ring-0 active:bg-neutral-700 rounded-sm" x-data=""
         x-on:click.prevent="$dispatch('open-modal', 'add-type')">Add</x-primary-button>
         <x-text-input placeholder="Search Categories" type="text" class="self-end w-1/3" name="search"
-        wire:model.debounce.500ms="search" />
+        wire:model.debounce.500ms.debounce.500ms="search" />
     </div>
     
     <div class="max-w-5xl mx-auto">
         <table class="table-auto">
             <thead>
                 <tr>
-                    <th class="user_th">#</th>
+                    
                     <th class="user_th">Product Type</th>
+                    <th class="user_th">Total Products</th>
                     <th class="user_th">Product Category</th>
                     <th class="user_th"></th>
                 </tr>
             </thead>
             <tbody>
-                <?php $id = 1; ?>
                 @foreach ($product_types as $type)
                     <tr>
-                        <td class="user_td">
-                            <p class="text-center">{{ $id++ }}</p>
-                        </td>
                         <td class="user_td w-64">
                             <a class="anchor_tag" href="{{ route('type.details', $type->id) }}">{{ $type->name }}</a>
                         </td>
-                        <td class="user_td w-64"><a href="{{ route('category.details', $type->category->id) }}"
+                        <td class="user_td">
+                            <p class="text-center">
+                                {{$type->products->count()}}
+                            </p>
+                        </td>
+                        <td class="user_td w-64">
+                            <a href="{{ route('category.details', $type->category->id) }}"
                                 class="anchor_tag">{{ $type->category->name }}</a></td>
                         <td class="user_td">
                             <form action="{{ route('type.destroy', $type->id) }}" method="POST"
@@ -53,6 +56,14 @@
                         </td>
                     </tr>
                 @endforeach
+                @if (!$nothingFound)
+                <tr>
+                    <td colspan="5">
+                        <p class="text-center text-gray-500 text-sm h-10 mt-3">Nothing Found in the database</p>
+                    </td>
+                </tr>
+            @endif
+
             </tbody>
         </table>
     </div>
@@ -68,7 +79,7 @@
             @foreach($newTypes as $id => $newType)
             <div class="flex {{count($newTypes) > 1 ? 'flex-row' : 'flex-col'}} w-full mt-2 ">
                 <x-text-input 
-                wire:model="newTypes.{{ $id }}.name" 
+                wire:model.debounce.500ms="newTypes.{{ $id }}.name" 
                 name="newTypes[{{ $id }}][name]" 
                 type="text" 
                 placeholder="Enter Type"
@@ -77,7 +88,7 @@
                 <x-select 
                 class=" block w-2/3 mr-3 mb-2" 
                 name="newTypes[{{$id}}][category]" 
-                wire:model="newTypes.{{$id}}.category" 
+                wire:model.debounce.500ms="newTypes.{{$id}}.category" 
                 required>
                     <option value="" hidden>Select A Category</option>
                     @foreach ($categories as $key => $category)
@@ -96,7 +107,7 @@
                 </div>
                 <div class="mt-4 {{count($newTypes) > 1 ? 'hidden' : 'block'}}">
                     <x-input-label for="description" value="{{ __('Description') }}" class="" />
-                    <x-textbox name="description" value="{{ old('description') }}" class="text-gray-500 w-2/3"></x-textbox>
+                    <x-textbox name="newTypes[{{$id}}][description]" value="{{ old('description') }}" class="text-gray-500 w-2/3"></x-textbox>
                 </div>
             </div>
             @endforeach

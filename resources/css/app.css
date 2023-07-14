@@ -12,7 +12,7 @@
 }
 
 .user_th{
-    @apply border-b-2 border-neutral-800 min-w-[150px];
+    @apply border-b-2 border-neutral-800 min-w-[130px] pb-2;
 }
 
 .user_td{
@@ -36,7 +36,7 @@
 }
 
 .anchor_tag{
-    @apply flex justify-center font-semibold uppercase font-mono  hover:text-black hover:underline text-neutral-600;
+    @apply flex font-semibold uppercase font-mono hover:underline;
 }
 
 .table_border{

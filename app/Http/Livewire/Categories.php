@@ -12,6 +12,7 @@ class Categories extends Component
     use WithPagination;
     
     public $search;
+    public $nothingFound = false;
     public $category_id;
     public $category;
     public $categoryDescription;
@@ -60,11 +61,7 @@ class Categories extends Component
         array_values($this->newCategories);
     }
 
-    public function render()
-    {
-        $product_categories = ProductCategory::where('name', 'like', '%' . $this->search . '%')->paginate(8);
-        return view('livewire.categories', ['product_categories' => $product_categories]);
-    }
+    
 
     public function editModal($category)
     {
@@ -73,5 +70,15 @@ class Categories extends Component
         $this->category = $category['name'];
         $this->categoryDescription = $category['description'];
 
+    }
+
+    public function render()
+    {
+        $product_categories = ProductCategory::where('name', 'like', '%' . $this->search . '%')
+                                ->paginate(8);
+
+        $this->nothingFound = $product_categories->isNotEmpty();
+
+        return view('livewire.categories', ['product_categories' => $product_categories]);
     }
 }

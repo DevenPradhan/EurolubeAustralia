@@ -45,9 +45,13 @@ class ProductController extends Controller
 
     public function destroy($id)
     {
-        Product::where('id', $id)->delete();
+        if(Product::where('id', $id)->value('validity') == 1)
+        {
+            return back()->with('error', 'You cannot delete this product unless you change its validity');
+        }
+        $product = Product::where('id', $id)->delete();
 
-        return back()->with('warning', 'Product has been deleted.');
+        return redirect('user/products')->with('warning', 'Product has been deleted.');
     }
 
 

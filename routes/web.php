@@ -44,6 +44,7 @@ Route::middleware('auth')->group(function () {
 
     Route::get('user/products', [ProductController::class, 'index'])->name('products');
     Route::post('user/products', [ProductController::class, 'add_product'])->name('products.add');
+    
     Route::delete('user/product/{id}', [ProductController::class, 'destroy'])->name('product.destroy');
 
     // product details

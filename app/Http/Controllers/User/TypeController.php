@@ -21,16 +21,18 @@ class TypeController extends Controller
     public function add_type(Request $request)
     {
         $request->validateWithBag('typeAddition', [
-            'type' => 'required|unique:product_types,name'
+            'newTypes.*.name' => 'required|unique:product_types,name'
         ]);
 
+        foreach($request->newTypes as $newType){
             ProductType::create([
-                'name' => $request->type,
-                'product_category_id' => $request->category,
-                'description' => $request->description
+                'name' => $newType['name'],
+                'product_category_id' => $newType['category'],
+                'description' => $newType['description']
             ]);
-
-        return back()->with('success', '"' . $request->type . '" added successfully."');
+        }
+            
+        return back()->with('success', 'Types created successfully."');
     }
 
     public function edit(Request $request)

@@ -16,7 +16,7 @@ class VisitorController extends Controller
 
     public function products()
     {
-        $products = Product::paginate(12);
+        $products = Product::where('validity', 1)->paginate(12);
         $categories = ProductCategory::where('validity', 1)->get();
         return view('Visitor.products', compact('products', 'categories'));
     }
