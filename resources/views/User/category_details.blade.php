@@ -32,20 +32,23 @@
                     </p>
                 @else
                     @foreach ($category->images as $image)
-                        <img src="{{ asset('storage/images/' . $image->url) }}" alt=""
-                            class="w-56 object-cover">
+                        <img src="{{ asset('storage/images/' . $image->url) }}" 
+                        alt=""
+                        class="w-56 object-cover">
                     @endforeach
                 @endif
                 <x-primary-button class="focus:ring-0 active:bg-neutral-700 rounded-sm max-w-max"
-                    x-data="" x-on:click.prevent="$dispatch('open-modal', 'add-images')">
-                    Add {{ $category->images != '[]' ? 'More' : '' }}
+                                  x-data="" 
+                                  x-on:click.prevent="$dispatch('open-modal', 'add-images')">
+                                        Add {{ $category->images != '[]' ? 'More' : '' }}
                 </x-primary-button>
             </div>
             <div class="mt-4 flex max-w-4xl flex-col space-y-3 p-8 rounded-sm bg-red-50">
                 <div>
-                    <x-primary-button class="" x-data=""
-                        x-on:click.prevent="$dispatch('open-modal', 'add-type')">
-                        Add
+                    <x-primary-button class="" 
+                                    x-data=""
+                                    x-on:click.prevent="$dispatch('open-modal', 'add-type')">
+                                        Add
                     </x-primary-button>
                 </div>
                 @if ($category->product_types->count() == null)

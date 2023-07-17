@@ -1,4 +1,4 @@
-<div class="">
+<div class="max-w-5xl">
     <div class="p-8 inline-flex space-x-2">
 
         <button type="button" {{ Auth::user()->role == 'admin' ? '' : 'disabled' }}

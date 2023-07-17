@@ -4,7 +4,7 @@
             @include('User.sidebar')
         </div>
 
-        <div class="flex flex-col mx-10">
+        <div class="flex flex-col mx-10 max-w-5xl">
             <a href="{{ route('type.details', $product->type->id) }}"
                 class="ml-8 max-w-max text-neutral-400 hover:text-black text-sm font-semibold">{{ $product->type->name }}</a>
             <h4 class="font-semibold uppercase text-xl tracking-tight ml-8">

@@ -24,11 +24,11 @@ class ImagesController extends Controller
         if ($request->hasFile('images')) {
 
             $images = $request->file('images');
+            $primary = ProductCategory::find($id);
 
             foreach ($images as $image) {
 
                 $image_url = time() . $image->getClientOriginalName();
-                $primary = ProductCategory::find($id);
                 $primary->images()->create(['url' => $image_url]);
 
                 Storage::putFileAs('images', $image, $image_url);

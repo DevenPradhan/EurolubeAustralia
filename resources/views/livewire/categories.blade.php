@@ -67,9 +67,12 @@
     @include('modals.add-category-modal')
 
     <x-modal name="edit-modal" :show="$errors->editModal->isNotEmpty()" focusable>
-        <form action="{{ route('category.edit') }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('category.edit') }}" 
+            method="POST" 
+            enctype="multipart/form-data">
             @csrf
             @method('PATCH')
+            
             <div class="p-6 space-y-6">
                 <h4 class="font-semibold">Edit</h4>
                 <hr>
