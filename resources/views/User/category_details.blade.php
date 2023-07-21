@@ -8,15 +8,19 @@
             @include('User.sidebar')
         </div>
         <div class="flex flex-col space-y-5 mx-10">
-            <h4 class="font-semibold uppercase text-xl">{{ $category->name }}</h4>
+            <h4 class="font-semibold uppercase text-xl">
+                {{ $category->name }}
+            </h4>
             <div class="space-x-10 flex items-center max-w-5xl">
                 @if ($category->description == '')
                     <p>There are no descriptions for this category.</p>
                 @else
                     <p>{{ $category->description }}</p>
                 @endif
-                <x-secondary-button type="button" x-data="" onclick="edit_desc({{ $category }})"
-                    x-on:click.prevent="$dispatch('open-modal', 'description-modal')">
+                <x-secondary-button type="button" 
+                x-data="" 
+                onclick="edit_desc({{ $category }})"
+                x-on:click.prevent="$dispatch('open-modal', 'description-modal')">
                     {{ $category->description == '' ? 'Add' : 'Edit' }}
                 </x-secondary-button>
             </div>
@@ -33,14 +37,14 @@
                 @else
                     @foreach ($category->images as $image)
                         <img src="{{ asset('storage/images/' . $image->url) }}" 
-                        alt=""
-                        class="w-56 object-cover">
+                             alt=""
+                             class="w-56 object-cover">
                     @endforeach
                 @endif
                 <x-primary-button class="focus:ring-0 active:bg-neutral-700 rounded-sm max-w-max"
                                   x-data="" 
                                   x-on:click.prevent="$dispatch('open-modal', 'add-images')">
-                                        Add {{ $category->images != '[]' ? 'More' : '' }}
+                    Add {{ $category->images != '[]' ? 'More' : '' }}
                 </x-primary-button>
             </div>
             <div class="mt-4 flex max-w-4xl flex-col space-y-3 p-8 rounded-sm bg-red-50">
@@ -48,7 +52,7 @@
                     <x-primary-button class="" 
                                     x-data=""
                                     x-on:click.prevent="$dispatch('open-modal', 'add-type')">
-                                        Add
+                        Add
                     </x-primary-button>
                 </div>
                 @if ($category->product_types->count() == null)
@@ -98,9 +102,10 @@
     </div>
 
 
-    {{-- @include('User.add-product-modal') --}}
-
-    @include('modals.add-product-type-modal')
+    <form method="post" action="{{ route('category.type.add', $category->id) }}" enctype="multipart/form-data">
+        @csrf
+        @include('modals.add-product-type-modal')
+    </form>
 
     <form action="{{ route('category.image.upload', $category->id) }}" method="POST" enctype="multipart/form-data">
         @csrf
@@ -114,6 +119,4 @@
         @include('modals.description-modal')
     </form>
 
-
-    {{-- script for edit/add description is in layouts/app blade --}}
 </x-app-layout>

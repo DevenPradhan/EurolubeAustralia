@@ -18,7 +18,7 @@
                     <div class="flex flex-col space-y-2 p-10">
                         <div class="h-56 w-48 overflow-hidden">
                             @if($product->images->count() == 0)
-                           No image found
+                           <p class="flex h-full items-center justify-center uppercase w-full bg-gray-300 font-mono">No image found</p>
                            @else
                            <?php $image = $product->images()->latest()->value('image_url'); ?>
                            {{-- @foreach($product->images as $image) --}}
@@ -27,8 +27,6 @@
                             @endif
                         </div>
                         <h3>{{$product->name}}</h3>
-                        <p>Quantity: {{$product->quantity}}
-                        <br>Part No: {{$product->details->part_no}}</p>
                     </div>
 
                     @endforeach

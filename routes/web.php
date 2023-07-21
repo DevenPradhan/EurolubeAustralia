@@ -65,6 +65,7 @@ Route::middleware('auth')->group(function () {
 
     Route::get('user/products/categories', [CategoryController::class, 'index'])->name('categories');
     Route::post('user/products/categories', [CategoryController::class, 'add_category'])->name('category.add');
+    Route::post('user/products/categories/{id}/type', [CategoryController::class, 'add_type'])->name('category.type.add');
     Route::patch('user/products/categories', [CategoryController::class, 'edit'])->name('category.edit');
     Route::delete('user/products/category/destroy/{id}', [CategoryController::class, 'destroy_category'])->name('category.destroy');
     Route::get('user/products/categories/{id}', [CategoryController::class, 'detail'])->name('category.details');

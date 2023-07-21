@@ -17,20 +17,38 @@ class CategoryController extends Controller
 
     public function add_category(Request $request)
     {
-        $request->validateWithBag('categoryAddition',[
+
+        $request->validateWithBag('categoryAddition', [
             'newCategories.*.name' => "distinct"
         ]);
 
-        // dd($request->all());
-        foreach($request->newCategories as $newCategory)
-        {
+        foreach ($request->newCategories as $newCategory) {
             ProductCategory::create([
-                'name' => $newCategory['name'], 
-                'description' => $newCategory['description'], 
-                'validity' => 0]);
+                'name' => $newCategory['name'],
+                'description' => $newCategory['description'],
+                'validity' => 0
+            ]);
         }
 
         return back()->with('success', 'Category added successfully.');
+    }
+
+    public function add_type(Request $request, $id)
+    {
+        $request->validateWithBag('typeAddition', [
+            'type' => 'required|unique:product_types,name',
+            'description' => 'max:999'
+        ]);
+
+        $category = ProductCategory::find($id);
+
+        $category->product_types()->create([
+            'name' => $request->type,
+            'description' => $request->description
+        ]);
+
+        return back()->with('success', 'type added successfully');
+
     }
 
     public function edit(Request $request)
@@ -38,15 +56,15 @@ class CategoryController extends Controller
         $old_category = ProductCategory::find($request->category_id);
 
         $request->validateWithBag('editModal', [
-            'category' => 'required|unique:product_categories,name,'.$old_category->id.'',
+            'category' => 'required|unique:product_categories,name,' . $old_category->id . '',
             'description' => 'max:999'
         ]);
 
-            ProductCategory::where('id', $request->category_id)
+        ProductCategory::where('id', $request->category_id)
             ->update([
-                'name' => $request->category, 
+                'name' => $request->category,
                 'description' => $request->description
-                                                        ]);
+            ]);
 
         return back()->with('success', 'The category has been updated successfully');
     }
@@ -54,9 +72,10 @@ class CategoryController extends Controller
     public function destroy_category($id)
     {
         $category = ProductCategory::where('id', $id)
-                                    ->value('name');
+            ->value('name');
+
         ProductCategory::where('id', $id)
-                        ->delete();
+            ->delete();
 
         return back()->with('warning', '"' . $category . '" has been deleted.');
     }

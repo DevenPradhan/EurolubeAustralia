@@ -9,7 +9,9 @@
                 better description of the item</p>
         @else
             @foreach ($type->images as $image)
+            <div class="h-40 w-56 overflow-clip">
                 <img src="{{ asset('storage/images/' . $image->url) }}" alt="" class="w-56 object-cover">
+            </div>
             @endforeach
         @endif
         <x-primary-button class="focus:ring-0 active:bg-neutral-700 rounded-sm max-w-max" x-data=""

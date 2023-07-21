@@ -43,18 +43,6 @@ class ImagesController extends Controller
     public function uploadType(Request $request, $id)
     {
 
-        // $request->validateWithBag('imageUpload', [
-        //     // 'images.*' => 'image|mimes:jpg,png|max:800',
-        //     'images' => 'max:4|image|mimes:jpg,png'
-        // ], [
-        //     'images.*.image' => 'Only PNG and JPG file format supported',
-        //     'images.max' => 'Max of 4 images are allowed. Please delete others if you want to add others'
-        // ]);
-        // ,[
-        //         'images.*.mimes' => 'Only files of JPG and PNG are accepted',
-        //         'images.*.max' => 'The images must not exceed a file size of 0.8 MB'
-        //     ]);
-
         if ($request->hasFile('images')) {
 
             $images = $request->file('images');
@@ -76,9 +64,12 @@ class ImagesController extends Controller
     public function uploadProduct(Request $request, $id)
     {
         // dd($request->all());
-        $request->validateWithBag('imageUpload',
-        [ 
-            'images.*' => 'image|mimes:jpg,png|max:1024']);
+        $request->validateWithBag(
+            'imageUpload',
+            [
+                'images.*' => 'image|mimes:jpg,png|max:1024'
+            ]
+        );
 
 
         if ($request->hasFile('images')) {
@@ -87,7 +78,7 @@ class ImagesController extends Controller
 
             foreach ($images as $image) {
 
-                $image_url = time(). $image->getClientOriginalName();
+                $image_url = time() . $image->getClientOriginalName();
                 $primary = Product::find($id);
                 $primary->images()->create(['image_url' => $image_url]);
 
