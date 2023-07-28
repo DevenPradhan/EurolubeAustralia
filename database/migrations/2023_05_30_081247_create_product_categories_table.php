@@ -11,31 +11,22 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('product_categories', function (Blueprint $table) {
-            $table->id();
-            $table->integer('validity');
-            $table->string('name');
-            $table->string('description')->nullable();
-            $table->timestamps();
-        });
 
-        Schema::create('product_types', function (Blueprint $table) {
+        Schema::create('product_source', function(Blueprint $table){
+
             $table->id();
-            $table->unsignedBigInteger('product_category_id');
+            $table->integer('level');
             $table->string('name');
-            $table->string('description')->nullable();
-            $table->foreign('product_category_id')->references('id')->on('product_categories')->onDelete('cascade');
+            $table->integer('referencing')->nullable();
             $table->timestamps();
         });
 
         Schema::create('products', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('product_type_id');
             $table->string('name');
             $table->string('description')->nullable();
-            $table->integer('validity');
+            $table->integer('status');
             $table->integer('quantity')->nullable();
-            $table->foreign('product_type_id')->references('id')->on('product_types')->onDelete('cascade');
             $table->timestamps();
         });
     }

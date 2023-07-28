@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Product extends Model
 {
@@ -14,19 +15,13 @@ class Product extends Model
     protected $table = 'products';
     protected $fillable = [
         'id',
-        'product_type_id',
         'name',
         'description',
         'quantity',
         'validity'
     ];
 
-    public function type(): BelongsTo
-    {
-        return $this->belongsTo(ProductType::class, 'product_type_id');
-    }
-
-    public function details()
+      public function details()
     {
         return $this->hasOne(ProductDetail::class);
     }

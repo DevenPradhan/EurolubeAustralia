@@ -33,7 +33,7 @@
                         repudiandae ad. Ipsum incidunt necessitatibus adipisci, sint ullam repellat et quibusdam
                         quisquam error voluptatibus cumque, repudiandae veniam?
                     </p>
-                    <div class="space-x-4 inline-flex uppercase text-white">
+                    <div class="space-x-4 inline-flex uppercase text-white font-semibold">
                         <a href="#" class="bg-red-800 px-5 py-3">Contact Us Today</a>
                         <a href="#" class="bg-[#929494] px-5 py-3">Download Our Guide</a>
                     </div>

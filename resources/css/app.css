@@ -5,7 +5,7 @@
 
 /* classlist for subnavbar */
 .sidebar_list{
-    @apply uppercase flex justify-center items-end font-semibold px-2 py-2 rounded-sm hover:shadow-md border-none transition-all text-black w-44 outline-none;
+    @apply uppercase flex justify-start  text-sm px-2 py-2 rounded-sm hover:bg-gray-50 transition-all w-48 space-x-2;
 }
 
 .disabled{
@@ -17,7 +17,7 @@
 }
 
 .user_td{
-    @apply  py-4 px-2 min-w-[150px] border-b ;
+    @apply  py-4 px-2 min-w-[180px] border-b ;
 }
 
 .form_input{
@@ -37,7 +37,7 @@
 }
 
 .anchor_tag{
-    @apply flex font-semibold uppercase font-mono hover:underline;
+    @apply flex font-semibold font-mono hover:underline tracking-wide;
 }
 
 .table_border{

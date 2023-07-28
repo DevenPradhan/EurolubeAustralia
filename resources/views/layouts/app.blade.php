@@ -22,7 +22,7 @@
     @trixassets
 </head>
 
-<body class="font-sans antialiased">
+<body class="font-sans antialiased font-roboto">
     <div class="min-h-screen bg-gray-100 dark:bg-gray-900">
         @include('layouts.navigation')
 
@@ -40,21 +40,24 @@
         <!-- Page Content -->
         <main class="mt-10">
             @include('flash-message')
+            <div class="w-full flex">
+                @include('User.sidebar')
+                <div class="max-w-6xl container mx-auto">
+                    {{ $slot }}
 
-            {{-- @include('User.sidebar') --}}
-            {{ $slot }}
+                </div>
+
+            </div>
         </main>
     </div>
-
-
-
-    {{-- script for type/category description etc --}}
-    <script>
-        function edit_desc(id) {
-            $('#description').val(id.description);
-            // console.log(id);
-        }
-    </script>
+   
 </body>
+
+<style>
+       .font-roboto {
+        font-family: 'Roboto';
+        src: url('fonts/Roboto');
+    }
+</style>
 
 </html>

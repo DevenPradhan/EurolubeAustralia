@@ -34,42 +34,7 @@ Route::get('/dashboard', function () {
 
 Route::middleware('auth')->group(function () {
 
-
-    Route::get('test', [ProductImageController::class, 'index'])->name('test');
-    Route::post('test', [ProductImageController::class, 'store'])->name('test.store');
-
-    Route::post('user/products/categories/{id}/upload.images', [ImagesController::class, 'uploadCategory'])->name('category.image.upload');
-    Route::post('user/products/types/{id}/upload.images', [ImagesController::class, 'uploadType'])->name('type.image.upload');
-    Route::post('user/products/{id}/upload.image', [ImagesController::class, 'uploadProduct'])->name('product.image.upload');
-
-    Route::get('user/products', [ProductController::class, 'index'])->name('products');
-    Route::post('user/products', [ProductController::class, 'add_product'])->name('products.add');
-    
-    Route::delete('user/product/{id}', [ProductController::class, 'destroy'])->name('product.destroy');
-
-    // product details
-    Route::get('user/products/{id}/details', [ProductDetailController::class, 'index'])->name('product.details');
-    Route::patch('user/products/{id}/details', [ProductDetailController::class, 'updateDetails'])->name('product-details.edit');
-
-    // Route::get('user/products/details/{id}', [ProductController::class, 'details'])->name('product.details');
-
-    Route::get('user/products/types', [TypeController::class, 'index'])->name('types');
-    Route::post('user/products/types', [TypeController::class, 'add_type'])->name('type.add');
-    Route::patch('user/products/types', [TypeController::class, 'edit'])->name('type.edit');
-    Route::delete('user/products/types/{id}/destroy', [TypeController::class, 'destroy'])->name('type.destroy');
-    Route::get('user/products/types/{id}', [TypeController::class, 'detail'])->name('type.details');
-    
-    Route::put('user/products/{type_id}', [TypeController::class, 'add_products'])->name('type.products.add');
-    
-    Route::patch('user/products/types/{id}/description', [TypeController::class, 'putDescription'])->name('type-description-edit');
-
-    Route::get('user/products/categories', [CategoryController::class, 'index'])->name('categories');
-    Route::post('user/products/categories', [CategoryController::class, 'add_category'])->name('category.add');
-    Route::post('user/products/categories/{id}/type', [CategoryController::class, 'add_type'])->name('category.type.add');
-    Route::patch('user/products/categories', [CategoryController::class, 'edit'])->name('category.edit');
-    Route::delete('user/products/category/destroy/{id}', [CategoryController::class, 'destroy_category'])->name('category.destroy');
-    Route::get('user/products/categories/{id}', [CategoryController::class, 'detail'])->name('category.details');
-    Route::patch('user/products/categories/{id}/description', [CategoryController::class, 'putDescription'])->name('category-description-edit');
+    Route::resource('admin/products', ProductController::class);
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

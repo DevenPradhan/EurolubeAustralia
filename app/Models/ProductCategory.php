@@ -10,14 +10,7 @@ class ProductCategory extends Model
 {
     use HasFactory;
 
-    protected $table = 'product_categories';
-    protected $fillable = ['id', 'name', 'validity', 'description'];
-
-   public function product_types()
-   {
-     return $this->hasMany(ProductType::class);
-   }
-
+   
    public function images()
    {
     return $this->morphMany(Image::class, 'imageable');

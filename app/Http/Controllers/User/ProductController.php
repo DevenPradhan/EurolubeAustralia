@@ -3,57 +3,63 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
-use App\Models\Product;
-use App\Models\ProductCategory;
-use App\Models\ProductType;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
+    /**
+     * Display a listing of the resource.
+     */
     public function index()
     {
         return view('User.products');
     }
 
-    public function add_product(Request $request)
+    /**
+     * Show the form for creating a new resource.
+     */
+    public function create()
     {
-
-        // $validated = $request->validateWithBag('productAddition', [
-        //     'name' => 'required|unique:products|max:40',
-        //     'product_type' => 'required'
-        //     // 'quantity' => 'required'
-        // ], [
-        //     'name.unique' => 'The item has already been added',
-        // ]);
-
-        foreach ($request->newProducts as $newProduct) {
-            $product = Product::create([
-                'name' => $newProduct['name'],
-                'product_type_id' => $newProduct['product_type'],
-                'validity' => 0,
-                'quantity' => $newProduct['quantity']
-            ]);
-
-            $product->details()->create([
-                'part_no' => $newProduct['part_no']
-                
-            ]);
-        }
-
-        return back()->with('success', 'Products has been added successfully');
+        //
     }
 
-    public function destroy($id)
+    /**
+     * Store a newly created resource in storage.
+     */
+    public function store(Request $request)
     {
-        if(Product::where('id', $id)->value('validity') == 1)
-        {
-            return back()->with('error', 'You cannot delete this product unless you change its validity');
-        }
-        $product = Product::where('id', $id)->delete();
-
-        return redirect('user/products')->with('warning', 'Product has been deleted.');
+        //
     }
 
+    /**
+     * Display the specified resource.
+     */
+    public function show(string $id)
+    {
+        //
+    }
 
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function edit(string $id)
+    {
+        //
+    }
 
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update(Request $request, string $id)
+    {
+        //
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy(string $id)
+    {
+        //
+    }
 }
