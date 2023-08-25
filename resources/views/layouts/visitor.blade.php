@@ -70,11 +70,69 @@
     <main>
         {{ $slot }}
     </main>
+    <footer class="max-w-7xl container mx-auto">
+        <div class="p-16 space-y-20 text-neutral-400 text-sm tracking-wide">
+            <div class="">
+                <h5 class="font-bold text-[#33333380] font-archivo">Would you like to receive our regural news & special
+                    updates? Join our monthly newsletter!</h5>
+                    <div class="flex space-x-10 mt-8 max-w-3xl">
+                        <div class="grid grid-cols-2 w-full gap-2.5">
+                            <x-text-input type="text"
+                                class="h-12 ring-0 placeholder-neutral-400 font-light text-sm  bg-neutral-200 rounded-sm border-0 "
+                                placeholder="FIRST NAME" />
+                            <x-text-input type="text"
+                                class="h-12 ring-0 placeholder-neutral-400  bg-neutral-200 rounded-sm border-0 font-light text-sm"
+                                placeholder="LAST NAME" />
+                            <x-text-input type="text"
+                                class="h-12 ring-0 col-span-2 placeholder-neutral-400  bg-neutral-200 rounded-sm border-0 font-light text-sm"
+                                placeholder="EMAIL" />
+                            <a href="#"
+                                class=" bg-red-800 px-8 py-3 text-white uppercase tracking-wide text-sm max-w-max">sign up</a>
+                        </div>
+                        <div class="grid grid-flow-row md:grid-flow-col p-10  gap-5 md:place-items-center">
+                            <a href="#"><x-icons.facebook/></a>
+                            <a href="#"><x-icons.linked-in/></a>
+                            <a href="#"><x-icons.instagram/></a>
+                        </div>
+                    </div>
+                
+            </div>
+            <div class="flex space-x-20">
+                <div class="max-w-2xl space-y-10 ">
+                    <a href="/">
+                        <img src="{{ asset('images/logo-f-de.png') }}" alt="" class="w-56 grayscale">
+                    </a>
+                    <p class="">We are recognized worldwide for our products, systems and solutions for pumping, dispensing and
+                        measuring oil, grease, coolants and other comparable fluids.
+                        <br><br>
+                        Our Products and solutions contributes to a safer better environment with increased efficiency
+                        and profitability.
+                    </p>
+                    <p>Copyright @ Eurolube Australia Pty, Ltd. 2021 - 2023</p>
+                </div>
+                <div class="space-y-3 tracking-wide flex flex-col">
+                    <p class="text-[#33333380] font-semibold uppercase">Resources</p>
+                    <a href="#">FAQ</a>
+                    <a href="#">Downloads</a>
+                    <a href="#">Solutions</a>
+                    <a href="#">Branding</a>
+                    <a href="#">Products</a>
+                </div>
+                <div class="space-y-3 tracking-wide flex flex-col">
+                    <p class="text-[#33333380] font-semibold uppercase">Company</p>
+                    <a href="#">Our Team</a>
+                    <a href="#">Location</a>
+                    <a href="#">News / Blog</a>
+                    <a href="#">Qualifications</a>
+                    <a href="#">Legal</a>
+                </div>
+            </div>
+        </div>
+    </footer>
 
 </body>
 
 <style>
-    
     .font-roboto {
         font-family: 'Roboto';
         src: url('fonts/Roboto');
