@@ -62,3 +62,15 @@ h5{
 h6{
     @apply text-xl;
 }
+
+/* modified classes */
+
+/* dark heading */
+.heading_dark_small{
+    @apply font-semibold tracking-wide text-[#252f3];
+}
+.heading_dark_lg{
+    @apply uppercase font-black text-[#252f3];
+}
+
+/* card */

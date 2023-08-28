@@ -19,4 +19,14 @@ class VisitorController extends Controller
         $products = Product::where('status', 1)->paginate(12);
         return view('Visitor.products', compact('products'));
     }
+
+    public function aboutUs()
+    {
+        return view('Visitor.about-us');
+    }
+
+    public function newsBlog()
+    {
+        return view('Visitor.news-blogs');
+    }
 }

@@ -13,6 +13,7 @@
     <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
 
     <!-- Scripts -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
@@ -24,8 +25,9 @@
             </a>
         </div>
         <div
-            class="flex flex-row space-x-4 uppercase  font-semibold text-lg text-[##252f33] items-center justify-evenly whitespace-nowrap">
-            <a href="/">
+            class="hidden md:flex flex-row space-x-4 uppercase  font-semibold text-lg text-[##252f33] items-center justify-evenly whitespace-nowrap">
+           
+            <a href="{{route('about.us')}}">
                 About us
             </a>
             <a href="{{ route('view_products') }}">
@@ -36,6 +38,9 @@
             </a>
             <a href="#">
                 Downloads
+            </a>
+            <a href="{{route('news.blogs')}}">
+                News/Blog
             </a>
             <a href="#">
                 Contact Us
@@ -65,7 +70,11 @@
                 </div>
             @endif
         </div>
-
+        <button type="button"
+        class="max-w-max p-2 hidden bg-gray-100 md:hidden shadow-md text-black rounded-sm fixed bottom-20 left-10 z-50"
+        id="page-up">
+        <x-icons.page-up />
+    </button>
     </div>
     <main>
         {{ $slot }}
@@ -75,8 +84,8 @@
             <div class="">
                 <h5 class="font-bold text-[#33333380] font-archivo">Would you like to receive our regural news & special
                     updates? Join our monthly newsletter!</h5>
-                    <div class="flex space-x-10 mt-8 max-w-3xl">
-                        <div class="grid grid-cols-2 w-full gap-2.5">
+                    <div class="flex space-x-6 justify-between mt-8">
+                        <div class="grid grid-cols-2 w-full gap-2.5 max-w-xl">
                             <x-text-input type="text"
                                 class="h-12 ring-0 placeholder-neutral-400 font-light text-sm  bg-neutral-200 rounded-sm border-0 "
                                 placeholder="FIRST NAME" />
@@ -143,5 +152,29 @@
         src: url('fonts/Archivo-SemiBold.ttf');
     }
 </style>
+
+<script>
+    window.addEventListener("scroll", function(){
+        var pageUpIcon = document.getElementById('page-up');
+        var scrollThreshold = 160;
+
+        if(window.pageYOffset > scrollThreshold){
+            pageUpIcon.classList.remove('md:hidden');
+            pageUpIcon.classList.add('md:block');
+        }
+        else{
+            pageUpIcon.classList.add('md:hidden');
+            pageUpIcon.classList.remove('md:block');
+        }
+    });
+
+    $(document).ready(function(){
+        $('#page-up').click(function(){
+            $('html, body').animate({
+                scrollTop: 0
+            }, 'slow');
+            });
+        });
+</script>
 
 </html>
