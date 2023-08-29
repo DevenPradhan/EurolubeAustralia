@@ -73,4 +73,8 @@ h6{
     @apply uppercase font-black text-[#252f3];
 }
 
+.button_link{
+    @apply px-7 py-3 uppercase tracking-wide text-white whitespace-nowrap;
+}
+
 /* card */

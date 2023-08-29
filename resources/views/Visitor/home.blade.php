@@ -16,7 +16,7 @@
                     </p>
                     <div class="">
                         <a href="#"
-                            class=" bg-red-800 p-4 text-white uppercase font-semibold whitespace-nowrap">Download our
+                            class=" bg-red-800 button_link">Download our
                             latest
                             catalogues</a>
                     </div>
@@ -25,9 +25,9 @@
             </section>
 
 
-            <section class="relative w-full h-[900px]">
-                <img src="{{ asset('images/Asset 1@4x.png') }}" alt="topo"
-                    class="absolute inset-0 opacity-80 -z-10 w-full h-full object-cover ">
+            <section class="relative w-full h-full">
+                <img src="{{ asset('images/banner2-17.jpg') }}" alt="topo"
+                    class="absolute inset-0 opacity-50 -z-10 w-full h-full object-cover ">
                 <div class=" py-44 px-4 md:px-16 max-w-2xl space-y-4">
                     <h1 class="uppercase font-black font-archivo text-[#252f3]">Agriculte & Farming</h1>
                     <p class=" bg-[#E7EAEC] px-10 py-4 max-w-md text-zinc-400 text-sm">Lorem ipsum dolor sit amet
@@ -35,9 +35,10 @@
                         repudiandae ad. Ipsum incidunt necessitatibus adipisci, sint ullam repellat et quibusdam
                         quisquam error voluptatibus cumque, repudiandae veniam?
                     </p>
-                    <div class="space-x-4 inline-flex uppercase text-white font-semibold">
-                        <a href="#" class="bg-red-800 px-5 py-3">Contact Us Today</a>
-                        <a href="#" class="bg-[#929494] px-5 py-3">Download Our Guide</a>
+                    <div class="space-x-4 inline-flex"> 
+                        {{-- button_link css at app.css --}}
+                        <a href="#" class="bg-red-800 button_link">Contact Us Today</a>
+                        <a href="#" class="bg-[#929494] button_link">Download Our Guide</a>
                     </div>
                 </div>
             </section>
@@ -46,7 +47,7 @@
                 <div class="py-44 items-center flex space-x-3 px-10 ">
                     <i><x-icons.slider-left/></i>
                     <i class=" order-last"><x-icons.slider-right/></i>
-                    <div class="flex space-x-10 overflow-x-auto">
+                    <div class="flex space-x-10 ">
                         <div class="w-64 shadow-lg shadow-gray-300 shrink-0">
                             <div class="h-36 relative">
                                 <img src="{{ asset('images/card bg img.jpg') }}" alt=""

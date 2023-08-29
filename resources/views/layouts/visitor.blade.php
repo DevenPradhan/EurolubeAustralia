@@ -84,7 +84,7 @@
             <div class="">
                 <h5 class="font-bold text-[#33333380] font-archivo">Would you like to receive our regural news & special
                     updates? Join our monthly newsletter!</h5>
-                    <div class="flex space-x-6 justify-between mt-8">
+                    <div class="flex flex-col space-y-8 sm:space-y-0 sm:flex-row sm:space-x-6 justify-between mt-8">
                         <div class="grid grid-cols-2 w-full gap-2.5 max-w-xl">
                             <x-text-input type="text"
                                 class="h-12 ring-0 placeholder-neutral-400 font-light text-sm  bg-neutral-200 rounded-sm border-0 "
@@ -96,12 +96,12 @@
                                 class="h-12 ring-0 col-span-2 placeholder-neutral-400  bg-neutral-200 rounded-sm border-0 font-light text-sm"
                                 placeholder="EMAIL" />
                             <a href="#"
-                                class=" bg-red-800 px-8 py-3 text-white uppercase tracking-wide text-sm max-w-max">sign up</a>
+                                class=" bg-red-800 button_link text-sm max-w-max">sign up</a>
                         </div>
-                        <div class="grid grid-flow-row md:grid-flow-col p-10  gap-5 md:place-items-center">
-                            <a href="#"><x-icons.facebook/></a>
-                            <a href="#"><x-icons.linked-in/></a>
-                            <a href="#"><x-icons.instagram/></a>
+                        <div class="grid grid-flow-col sm:p-10 gap-5 place-items-center max-w-max sm:w-full">
+                            <a href="#"><x-icons.facebook width="30"/></a>
+                            <a href="#"><x-icons.linked-in width="30"/></a>
+                            <a href="#"><x-icons.instagram width="38"/></a>
                         </div>
                     </div>
                 

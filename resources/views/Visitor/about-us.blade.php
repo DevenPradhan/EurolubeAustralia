@@ -18,7 +18,7 @@
                         simply, is how we contribute to our partners’ efficiency and their profitability.
                     </p>
                     <div class="">
-                        <a href="#" class=" bg-red-800 p-4 whitespace-nowrap text-white uppercase font-semibold">Download our latest
+                        <a href="#" class=" bg-red-800 button_link">Download our latest
                             catalogues</a>
                     </div>
 
@@ -27,8 +27,8 @@
 
 
             <section class="relative w-full h-full">
-                <img src="{{ asset('images/Asset 1@4x.png') }}" alt="topo"
-                    class="absolute inset-0 opacity-50 -z-10 w-full h-full object-scale-down">
+                <img src="{{ asset('images/banner2-17.jpg') }}" alt="topo"
+                    class="absolute inset-0 opacity-50 -z-10 w-full h-full object-cover">
                 <div class=" pt-32 md:pt-44 pb-20 px-4 md:px-16 w-full space-y-4">
                     <h1 class="font-archivo heading_dark_lg max-w-2xl">What are we all about?</h1>
                     <div class="grid grid-flow-row-dense md:grid-cols-3 gap-4">
@@ -79,37 +79,42 @@
                 </div>
             </section>
             <section class="w-full relative h-full md:h-[900px] overflow-hidden">
-                <img src="{{ asset('images/sdfafdsfsdafsdafsd.jpg') }}" alt="banner12332fs"
-                    class="absolute inset-0 -z-10 w-full h-full object-cover brightness-50">
+                <img src="{{ asset('images/banner2-21.jpg') }}" alt="banner12332fs"
+                    class="absolute inset-0 -z-10 w-full h-full object-cover contrast-75">
                 <div class="font-roboto space-y-10 px-4 md:px-16 py-44">
-                    <h1 class=" uppercase font-black text-white tracking-wide font-archivo max-w-2xl">Frequently Used
-                        Services...
+                    <h1 class=" uppercase font-black text-white tracking-wide font-archivo max-w-2xl">Questions we get a
+                        lot
                     </h1>
 
-                    <div class="my-5 grid max-w-sm md:max-w-4xl text-[#faf9f9da] grid-flow-row md:grid-flow-col gap-4">
-                        <a class="space-y-3 p-5 backdrop-brightness-125 hover:bg-opacity-80 hover:bg-red-800 transition-all"
-                            href="#">
-                            <h6 class="uppercase text-white text-sm">Our support network</h6>
-                            <p class="text-sm font-normal tracking-wide">We make it easier for our customers to choose
-                                the right product when chemicals must be
-                                pumped. Check our Pump Selection Guide to Choose the chemical to be pumped, and find out
-                                what materials are compatible with the selected chemical.</p>
-                        </a>
-                        <a class="space-y-3 p-5 backdrop-brightness-125 hover:bg-opacity-80 hover:bg-red-800 transition-all"
-                            href="#">
-                            <h6 class="uppercase text-white text-sm">Catalogues & Tech Sheets</h6>
-                            <p class="text-sm font-normal tracking-wide">Here you will find products that improve
-                                efficiency, reduce environmental impact and increase your profitability. You can view
-                                all our products, catalogues and tech sheets online or download a copy today.</p>
-                        </a>
-                        <a class="space-y-3 p-5 backdrop-brightness-125 hover:bg-opacity-80 hover:bg-red-800 transition-all"
-                            href="#">
-                            <h6 class="uppercase text-white text-sm">Pump Selection Guide</h6>
-                            <p class="text-sm font-normal tracking-wide">We make it easier for our customers to choose
-                                the right product when chemicals must be pumped. Click here for our Pump Selection
-                                Guide.</p>
-                        </a>
+                    <div class="flex flex-col space-y-4">
+                        <div class="max-w-2xl space-y-2" x-data="{ tab : ''}">
+                            <button x-on:click.prevent="tab = (tab === 'first_tab') ? '' : 'first_tab'"
+                                {{-- x-bind:class= --}}
+                                class="flex text-sm tracking-wide font-semibold w-full items-center justify-between px-4 py-4 bg-white">Questions
+                                that people ask a lot on the phone or in an email <span><x-icons.dropdown-arrow
+                                        class="w-4" /></span></button>
+                            <div class="p-4 space-y-4 bg-neutral-200 font-neutral-400" x-show="tab === 'first_tab'">
+                                <p class="text-sm font-semibold">Answer Title</p>
+                                <p class="text-neutral-400 text-sm tracking-wide">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae ea necessitatibus
+                                    natus corporis delectus! Incidunt, odio, dolore quaerat cupiditate voluptatum
+                                    reiciendis dolorum dolorem possimus quo assumenda et id totam numquam.</p>
+                            </div>
+                        </div>
+                        <div class="max-w-2xl space-y-2" x-data="{ tab : ''}">
+                            <button x-on:click.prevent="tab = (tab === 'second_tab') ? '' : 'second_tab'"
+                                {{-- x-bind:class= --}}
+                                class="flex text-sm tracking-wide font-semibold w-full items-center justify-between px-4 py-4 bg-white">Questions
+                                that people ask a lot on the phone or in an email <span><x-icons.dropdown-arrow
+                                        class="w-4" /></span></button>
+                            <div class="p-4 space-y-4 bg-neutral-200 font-neutral-400" x-show="tab === 'second_tab'">
+                                <p class="text-sm font-semibold">Answer Title</p>
+                                <p class="text-neutral-400 text-sm tracking-wide">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae ea necessitatibus
+                                    natus corporis delectus! Incidunt, odio, dolore quaerat cupiditate voluptatum
+                                    reiciendis dolorum dolorem possimus quo assumenda et id totam numquam.</p>
+                            </div>
+                        </div>
                     </div>
+
                 </div>
             </section>
         </div>

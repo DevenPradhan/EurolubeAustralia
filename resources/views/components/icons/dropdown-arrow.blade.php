@@ -1,0 +1,4 @@
+<svg xmlns="http://www.w3.org/2000/svg" data-name="Layer 2" viewBox="0 0 32 32" id="down-arrow"
+    {{ $attributes->merge(['class' => 'w-20 h-auto']) }}>
+    <path d="m16 18.17-10-10v5.66l10 10 10-10V8.17l-10 10z"></path>
+</svg>
