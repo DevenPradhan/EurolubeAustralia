@@ -29,4 +29,9 @@ class VisitorController extends Controller
     {
         return view('Visitor.news-blogs');
     }
+
+    public function allNews()
+    {
+        return view('visitor.all-news');
+    }
 }

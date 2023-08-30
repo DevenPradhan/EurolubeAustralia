@@ -28,7 +28,7 @@
 
             <section class="relative w-full h-full">
                 <img src="{{ asset('images/banner2-17.jpg') }}" alt="topo"
-                    class="absolute inset-0 opacity-50 -z-10 w-full h-full object-cover">
+                    class="absolute inset-0 opacity-30 -z-10 w-full h-full object-cover">
                 <div class=" pt-32 md:pt-44 pb-20 px-4 md:px-16 w-full space-y-4">
                     <h1 class="font-archivo heading_dark_lg max-w-2xl">What are we all about?</h1>
                     <div class="grid grid-flow-row-dense md:grid-cols-3 gap-4">

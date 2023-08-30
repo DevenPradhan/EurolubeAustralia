@@ -15,8 +15,7 @@
                         smart search function to find the product you are looking for.
                     </p>
                     <div class="">
-                        <a href="#"
-                            class=" bg-red-800 button_link">Download our
+                        <a href="#" class=" bg-red-800 button_link">Download our
                             latest
                             catalogues</a>
                     </div>
@@ -24,8 +23,68 @@
                 </div>
             </section>
 
-
             <section class="relative w-full h-full">
+                <img src="{{ asset('images/banner2-17.jpg') }}" alt="topo"
+                    class="absolute inset-0 opacity-30 -z-40 w-full h-full object-cover ">
+                <div class="w-full py-44 px-4 md:px-16 max-w-2xl space-y-10">
+                    <h1 class="heading_dark_lg font-archivo ">Featured Products</h1>
+                    {{-- slider products --}}
+                    <div class="items-center flex space-x-3">
+                        <div class="flex space-x-10 ">
+                            <div class="w-72 shadow-sm shadow-gray-300 shrink-0 bg-white">
+                                <div class="h-36 relative">
+                                    <img src="{{ asset('images/card bg img.jpg') }}" alt=""
+                                        class="absolute -z-10 inset-0 opacity-70">
+                                    <img src="{{ asset('/images/My project.png') }}" alt=""
+                                        class="w-full h-full object-cover">
+                                </div>
+                                <div class="py-6 pl-6 pr-10 space-y-4 ">
+                                    <h6 class="heading_dark_small whitespace-nowrap ml-4">Product Name</h6>
+                                    <div class="flex space-x-4">
+                                        <div class="border-l-2 h-full border-separate border-spacing-10 border-black">
+                                            <p class="text-xs ml-4 py-2">Lorem ipsum dolor sit amet consectetur
+                                                adipisicing
+                                                elit.
+                                                Harum distinctio omnis iure ex quam ab natus sapiente similique officia,
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <a href="" class="text-xs text-red-800 ml-4 font-semibold">Read More</a>
+                                </div>
+                            </div>
+                            <div class="bg-white w-72 shadow-sm shadow-gray-300 shrink-0">
+                                <div class="h-36 relative">
+                                    <img src="{{ asset('/images/My project.png') }}" alt=""
+                                        class="w-full h-full absolute inset-0 z-10 object-cover">
+                                </div>
+                                <div class="py-6 pl-6 pr-10 space-y-4 ">
+                                    <h6 class="heading_dark_small whitespace-nowrap ml-4">Product Name</h6>
+                                    <div class="flex space-x-4">
+                                        <div class="border-l-2 h-full border-separate border-spacing-10 border-black">
+                                            <p class="text-xs ml-4 py-2">Lorem ipsum dolor sit amet consectetur
+                                                adipisicing
+                                                elit.
+                                                Harum distinctio omnis iure ex quam ab natus sapiente similique officia,
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <a href="" class="text-xs text-red-800 ml-4 font-semibold">Read More</a>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                    <div class="space-x-4 flex justify-center w-full">
+                        {{-- button_link css at app.css --}}
+                        <a href="#" class="bg-red-800 button_link">Browse all our products</a>
+                        <a href="#" class="bg-[#929494] button_link">Download Our Guide</a>
+                    </div>
+                </div>
+            </section>
+
+
+            {{-- <section class="relative w-full h-full">
                 <img src="{{ asset('images/banner2-17.jpg') }}" alt="topo"
                     class="absolute inset-0 opacity-50 -z-10 w-full h-full object-cover ">
                 <div class=" py-44 px-4 md:px-16 max-w-2xl space-y-4">
@@ -35,95 +94,14 @@
                         repudiandae ad. Ipsum incidunt necessitatibus adipisci, sint ullam repellat et quibusdam
                         quisquam error voluptatibus cumque, repudiandae veniam?
                     </p>
-                    <div class="space-x-4 inline-flex"> 
-                        {{-- button_link css at app.css --}}
+                    <div class="space-x-4 inline-flex">
                         <a href="#" class="bg-red-800 button_link">Contact Us Today</a>
                         <a href="#" class="bg-[#929494] button_link">Download Our Guide</a>
                     </div>
                 </div>
-            </section>
-            
-            <section class="w-full h-full">
-                <div class="py-44 items-center flex space-x-3 px-10 ">
-                    <i><x-icons.slider-left/></i>
-                    <i class=" order-last"><x-icons.slider-right/></i>
-                    <div class="flex space-x-10 ">
-                        <div class="w-64 shadow-lg shadow-gray-300 shrink-0">
-                            <div class="h-36 relative">
-                                <img src="{{ asset('images/card bg img.jpg') }}" alt=""
-                                    class="absolute -z-10 inset-0 opacity-70">
-                                <img src="{{ asset('/images/My project.png') }}" alt=""
-                                    class="w-full h-full object-cover">
-                            </div>
-                            <div class="py-6 pl-6 pr-10 space-y-4 ">
-                                <h6 class="heading_dark_small whitespace-nowrap ml-4">Product Name</h6>
-                                <div class="flex space-x-4">
-                                    <div class="border-l-2 h-full border-separate border-spacing-10 border-black">
-                                        <p class="text-xs ml-4 py-2">Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                                            Harum distinctio omnis iure ex quam ab natus sapiente similique officia, </p>
-                                    </div>
-                                </div>
-                                <a href="" class="text-xs text-red-800 ml-4 font-semibold">Read More</a>
-                            </div>
-                        </div>
-                        <div class="w-64 shadow-lg shadow-gray-300 shrink-0">
-                            <div class="h-36 relative">
-                                <img src="{{ asset('images/card bg img.jpg') }}" alt=""
-                                    class="absolute -z-10 inset-0 opacity-70">
-                                <img src="{{ asset('/images/My project.png') }}" alt=""
-                                    class="w-full h-full object-cover">
-                            </div>
-                            <div class="py-6 pl-6 pr-10 space-y-4 ">
-                                <h6 class="heading_dark_small whitespace-nowrap ml-4">Product Name</h6>
-                                <div class="flex space-x-4">
-                                    <div class="border-l-2 h-full border-separate border-spacing-10 border-black">
-                                        <p class="text-xs ml-4 py-2">Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                                            Harum distinctio omnis iure ex quam ab natus sapiente similique officia, </p>
-                                    </div>
-                                </div>
-                                <a href="" class="text-xs text-red-800 ml-4 font-semibold">Read More</a>
-                            </div>
-                        </div>
-                        <div class="w-64 shadow-lg shadow-gray-300 shrink-0">
-                            <div class="h-36 relative">
-                                <img src="{{ asset('images/card bg img.jpg') }}" alt=""
-                                    class="absolute -z-10 inset-0 opacity-70">
-                                <img src="{{ asset('/images/My project.png') }}" alt=""
-                                    class="w-full h-full object-cover">
-                            </div>
-                            <div class="py-6 pl-6 pr-10 space-y-4 ">
-                                <h6 class="heading_dark_small whitespace-nowrap ml-4">Product Name</h6>
-                                <div class="flex space-x-4">
-                                    <div class="border-l-2 h-full border-separate border-spacing-10 border-black">
-                                        <p class="text-xs ml-4 py-2">Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                                            Harum distinctio omnis iure ex quam ab natus sapiente similique officia, </p>
-                                    </div>
-                                </div>
-                                <a href="" class="text-xs text-red-800 ml-4 font-semibold">Read More</a>
-                            </div>
-                        </div>
-                        <div class="w-64 shadow-lg shadow-gray-300 shrink-0">
-                            <div class="h-36 relative">
-                                <img src="{{ asset('images/card bg img.jpg') }}" alt=""
-                                    class="absolute -z-10 inset-0 opacity-70">
-                                <img src="{{ asset('/images/My project.png') }}" alt=""
-                                    class="w-full h-full object-cover">
-                            </div>
-                            <div class="py-6 pl-6 pr-10 space-y-4 ">
-                                <h6 class="heading_dark_small whitespace-nowrap ml-4">Product Name</h6>
-                                <div class="flex space-x-4">
-                                    <div class="border-l-2 h-full border-separate border-spacing-10 border-black">
-                                        <p class="text-xs ml-4 py-2">Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                                            Harum distinctio omnis iure ex quam ab natus sapiente similique officia, </p>
-                                    </div>
-                                </div>
-                                <a href="" class="text-xs text-red-800 ml-4 font-semibold">Read More</a>
-                            </div>
-                        </div>
-                    </div>
-                    
-                </div>
-            </section>
+            </section> --}}
+
+
             <section class="w-full relative h-full md:h-[900px] overflow-hidden">
                 <img src="{{ asset('images/sdfafdsfsdafsdafsd.jpg') }}" alt="banner12332fs"
                     class="absolute inset-0 -z-10 w-full h-full object-cover brightness-50">

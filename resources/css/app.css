@@ -2,7 +2,16 @@
 @tailwind components;
 @tailwind utilities;
 
-
+/*home/guest navigation menu */
+.nav-titles{
+    @apply relative;
+}
+.nav-titles::after{
+    @apply content-[''] bg-red-800 h-[3px] w-0 left-0 -bottom-1 absolute duration-300;
+}
+.nav-titles:hover::after{
+    @apply w-full;
+}
 /* classlist for subnavbar */
 .sidebar_list{
     @apply uppercase flex justify-start  text-sm px-2 py-2 rounded-sm hover:bg-gray-50 transition-all w-48 space-x-2;
@@ -67,10 +76,10 @@ h6{
 
 /* dark heading */
 .heading_dark_small{
-    @apply font-semibold tracking-wide text-[#252f3];
+    @apply font-semibold tracking-wide text-[#252f33];
 }
 .heading_dark_lg{
-    @apply uppercase font-black text-[#252f3];
+    @apply uppercase font-black text-[#252f33];
 }
 
 .button_link{

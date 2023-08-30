@@ -11,7 +11,7 @@
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
-
+   
     <!-- Scripts -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
@@ -27,22 +27,22 @@
         <div
             class="hidden md:flex flex-row space-x-4 uppercase  font-semibold text-lg text-[##252f33] items-center justify-evenly whitespace-nowrap">
            
-            <a href="{{route('about.us')}}">
+            <a href="{{route('about.us')}}" class="nav-titles">
                 About us
             </a>
-            <a href="{{ route('view_products') }}">
+            <a href="{{ route('view_products') }}" class="nav-titles ">
                 Products
             </a>
-            <a href="#">
+            <a href="#" class="nav-titles">
                 Services
             </a>
-            <a href="#">
+            <a href="#" class="nav-titles">
                 Downloads
             </a>
-            <a href="{{route('news.blogs')}}">
+            <a href="{{route('news.blogs')}}" class="nav-titles">
                 News/Blog
             </a>
-            <a href="#">
+            <a href="#" class="nav-titles">
                 Contact Us
             </a>
         </div>
@@ -51,7 +51,7 @@
                 <div class="sm:fixed sm:top-0 sm:right-0 p-6 text-right z-10">
                     @auth
                         <a href="{{ url('/dashboard') }}"
-                            class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">
+                            class=" font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">
                             Dashboard
                         </a>
                     @else
