@@ -32,7 +32,7 @@
                 </div>
             </section>
             <section class="relative w-full h-full md:h-full">
-                <img src="{{ asset('images/banner2-17.jpg') }}" alt="topo"
+                <img src="{{ asset('images/banner2-17.jpg') }}" alt="banner2-17.jpg"
                     class="absolute inset-0 opacity-30 -z-10 w-full h-full object-cover object-bottom">
                 <div class=" py-44 px-4 md:px-16 space-y-20">
                     <h1 class="heading_dark_lg font-archivo max-w-xl">Previous News...</h1>
@@ -75,7 +75,7 @@
                         </div>
                         <div class=" max-w-sm shadow-md shadow-gray-200">
                             <div class=" bg-black h-52 relative shadow-md overflow-hidden">
-                                <img src="{{ asset('images/1-3.jpg') }}" alt=""
+                                <img src="{{ asset('images/1-3.jpg') }}" alt="1-3.jpg"
                                     class="w-full h-full object-cover">
                                 <p
                                     class="bg-red-800 bg-opacity-90 top-10 -right-11 whitespace-nowrap absolute z-10 -rotate-90 max-w-max text-[#ffffffd8] text-sm px-3 py-1.5">
