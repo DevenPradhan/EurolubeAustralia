@@ -6,9 +6,9 @@
                 <img src="{{ asset('images/banner2-2.jpg') }}" alt="fdshajkhf1212"
                     class="absolute inset-0 -z-10 w-full h-full object-cover object-left">
                 <div class="font-roboto space-y-10 px-4 md:px-16 py-44 max-w-2xl">
-                    <h1 class=" uppercase font-black text-white tracking-wide font-archivo">Quality You can trust</h1>
+                    <h1 class=" uppercase font-black text-white  font-archivo">Quality You can trust</h1>
 
-                    <p class="text-white opacity-90 text-sm tracking-wide max-w-md">
+                    <p class="text-[#ffffffc7]  text-sm r max-w-md">
                         We are recognized worldwide for our products, systems and solutions for pumping, dispensing and
                         measuring oil, grease, coolants and other comparable fluids. Our products and solutions
                         contribute to a safer better environment with increased efficiency and profitability. Use our
@@ -106,15 +106,15 @@
                 <img src="{{ asset('images/sdfafdsfsdafsdafsd.jpg') }}" alt="banner12332fs"
                     class="absolute inset-0 -z-10 w-full h-full object-cover brightness-50">
                 <div class="font-roboto space-y-10 px-4 md:px-16 py-44">
-                    <h1 class=" uppercase font-black text-white tracking-wide font-archivo max-w-2xl">Frequently Used
+                    <h1 class=" uppercase font-black text-white  font-archivo max-w-2xl">Frequently Used
                         Services...
                     </h1>
 
-                    <div class="my-5 grid max-w-sm md:max-w-4xl text-[#faf9f9da] grid-flow-row md:grid-flow-col gap-4">
+                    <div class="my-5 grid max-w-sm md:max-w-4xl text-[#ffffffc7] grid-flow-row md:grid-flow-col gap-4">
                         <a class="space-y-3 p-5 backdrop-brightness-125 hover:bg-opacity-80 hover:bg-red-800 transition-all"
                             href="#">
                             <h6 class="uppercase text-white text-sm">Our support network</h6>
-                            <p class="text-sm font-normal tracking-wide">We make it easier for our customers to choose
+                            <p class="text-sm font-normal tracking-wider">We make it easier for our customers to choose
                                 the right product when chemicals must be
                                 pumped. Check our Pump Selection Guide to Choose the chemical to be pumped, and find out
                                 what materials are compatible with the selected chemical.</p>
@@ -122,14 +122,14 @@
                         <a class="space-y-3 p-5 backdrop-brightness-125 hover:bg-opacity-80 hover:bg-red-800 transition-all"
                             href="#">
                             <h6 class="uppercase text-white text-sm">Catalogues & Tech Sheets</h6>
-                            <p class="text-sm font-normal tracking-wide">Here you will find products that improve
+                            <p class="text-sm font-normal tracking-wider">Here you will find products that improve
                                 efficiency, reduce environmental impact and increase your profitability. You can view
                                 all our products, catalogues and tech sheets online or download a copy today.</p>
                         </a>
                         <a class="space-y-3 p-5 backdrop-brightness-125 hover:bg-opacity-80 hover:bg-red-800 transition-all"
                             href="#">
                             <h6 class="uppercase text-white text-sm">Pump Selection Guide</h6>
-                            <p class="text-sm font-normal tracking-wide">We make it easier for our customers to choose
+                            <p class="text-sm font-normal tracking-wider">We make it easier for our customers to choose
                                 the right product when chemicals must be pumped. Click here for our Pump Selection
                                 Guide.</p>
                         </a>

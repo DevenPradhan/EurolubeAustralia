@@ -6,9 +6,9 @@
                 <img src="{{ asset('images/banner2-6.jpg') }}" alt="fdshajkfdshf1212"
                     class="absolute inset-0 -z-10 w-full h-full object-cover">
                 <div class="font-roboto space-y-10 px-4 md:px-16 py-44 max-w-2xl">
-                    <h1 class=" uppercase font-black text-white tracking-wide font-archivo">Get to know us</h1>
+                    <h1 class=" uppercase font-black text-white  font-archivo">Get to know us</h1>
 
-                    <p class="text-white opacity-90 text-sm tracking-wide max-w-md">
+                    <p class="text-[#ffffffe1] opacity-90 text-sm  max-w-md">
                         Eurolube is a Swedish company specializing in the manufacture, distribution, and support of
                         environmentally-friendly products and tailor-made complete and professional solutions for the
                         handling of lubricants and fluids. We provide quality products to partners in more than 40
@@ -82,7 +82,7 @@
                 <img src="{{ asset('images/banner2-21.jpg') }}" alt="banner12332fs"
                     class="absolute inset-0 -z-10 w-full h-full object-cover contrast-75">
                 <div class="font-roboto space-y-10 px-4 md:px-16 py-44">
-                    <h1 class=" uppercase font-black text-white tracking-wide font-archivo max-w-2xl">Questions we get a
+                    <h1 class=" uppercase font-black text-white  font-archivo max-w-2xl">Questions we get a
                         lot
                     </h1>
 
@@ -90,12 +90,12 @@
                         <div class="max-w-2xl space-y-2" x-data="{ tab : ''}">
                             <button x-on:click.prevent="tab = (tab === 'first_tab') ? '' : 'first_tab'"
                                 {{-- x-bind:class= --}}
-                                class="flex text-sm tracking-wide font-semibold w-full items-center justify-between px-4 py-4 bg-white">Questions
+                                class="flex text-sm  font-semibold w-full items-center justify-between px-4 py-4 bg-white">Questions
                                 that people ask a lot on the phone or in an email <span><x-icons.dropdown-arrow
                                         class="w-4" /></span></button>
                             <div class="p-4 space-y-4 bg-neutral-200 font-neutral-400" x-show="tab === 'first_tab'">
                                 <p class="text-sm font-semibold">Answer Title</p>
-                                <p class="text-neutral-400 text-sm tracking-wide">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae ea necessitatibus
+                                <p class="text-neutral-400 text-sm ">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae ea necessitatibus
                                     natus corporis delectus! Incidunt, odio, dolore quaerat cupiditate voluptatum
                                     reiciendis dolorum dolorem possimus quo assumenda et id totam numquam.</p>
                             </div>
@@ -103,12 +103,12 @@
                         <div class="max-w-2xl space-y-2" x-data="{ tab : ''}">
                             <button x-on:click.prevent="tab = (tab === 'second_tab') ? '' : 'second_tab'"
                                 {{-- x-bind:class= --}}
-                                class="flex text-sm tracking-wide font-semibold w-full items-center justify-between px-4 py-4 bg-white">Questions
+                                class="flex text-sm  font-semibold w-full items-center justify-between px-4 py-4 bg-white">Questions
                                 that people ask a lot on the phone or in an email <span><x-icons.dropdown-arrow
                                         class="w-4" /></span></button>
                             <div class="p-4 space-y-4 bg-neutral-200 font-neutral-400" x-show="tab === 'second_tab'">
                                 <p class="text-sm font-semibold">Answer Title</p>
-                                <p class="text-neutral-400 text-sm tracking-wide">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae ea necessitatibus
+                                <p class="text-neutral-400 text-sm ">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae ea necessitatibus
                                     natus corporis delectus! Incidunt, odio, dolore quaerat cupiditate voluptatum
                                     reiciendis dolorum dolorem possimus quo assumenda et id totam numquam.</p>
                             </div>

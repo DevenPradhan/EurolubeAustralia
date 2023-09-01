@@ -5,7 +5,7 @@
                 <img src="{{ asset('images/sdfasfsafsa.jpg') }}" alt="sdfasfsafsa"
                     class="absolute inset-0 -z-10 w-full h-full object-cover object-left brightness-75">
 
-                <div class="py-44 px-4 md:px-16 space-y-20 tracking-wide">
+                <div class="py-44 px-4 md:px-16 space-y-20 ">
                     <h1 class=" uppercase max-w-xl font-black text-white font-archivo">Get the <br> latest news</h1>
                     <div class="flex shadow-md max-h-80">
                         <div class="py-10 px-16 w-1/2 bg-white space-y-4 min-h-max flex flex-col ">
@@ -48,7 +48,7 @@
                             <div class="py-4 bg-[#E7EAEC] px-5 space-y-2">
                                 <p class="text-sm font-semibold">Blog Test 6</p>
                                 <div class="border-t-2 w-48 border-red-800"></div>
-                                <p class="line-clamp-3 text-sm text-zinc-400 tracking-wide">
+                                <p class="line-clamp-3 text-sm text-zinc-400 ">
                                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis, incidunt dolore?
                                     Harum quae cum possimus tempore fugit. Quod magni quia dolorem quis! Quaerat quae
                                     eligendi numquam, deserunt quia deleniti cum.
@@ -66,7 +66,7 @@
                             <div class="py-4 bg-[#E7EAEC] px-5 space-y-2">
                                 <p class="text-sm font-semibold">Blog Test 6</p>
                                 <div class="border-t-2 w-48 border-red-800"></div>
-                                <p class="line-clamp-3 text-sm text-zinc-400 tracking-wide">
+                                <p class="line-clamp-3 text-sm text-zinc-400 ">
                                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis, incidunt dolore?
                                     Harum quae cum possimus tempore fugit. Quod magni quia dolorem quis! Quaerat quae
                                     eligendi numquam, deserunt quia deleniti cum.
@@ -84,7 +84,7 @@
                             <div class="py-4 bg-[#E7EAEC] px-5 space-y-2">
                                 <p class="text-sm font-semibold">Blog Test 6</p>
                                 <div class="border-t-2 w-48 border-red-800"></div>
-                                <p class="line-clamp-3 text-sm text-zinc-400 tracking-wide">
+                                <p class="line-clamp-3 text-sm text-zinc-400 ">
                                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis, incidunt dolore?
                                     Harum quae cum possimus tempore fugit. Quod magni quia dolorem quis! Quaerat quae
                                     eligendi numquam, deserunt quia deleniti cum.
@@ -103,10 +103,10 @@
                 <img src="{{ asset('images/banner2-23.jpg') }}" alt="banner12332fs"
                     class="absolute inset-0 -z-10 w-full h-full object-cover brightness-50">
                 <div class="font-roboto space-y-10 px-4 md:px-16 py-44">
-                    <h1 class=" uppercase font-black text-white tracking-wide font-archivo max-w-2xl">Other Publications
+                    <h1 class=" uppercase font-black text-white  font-archivo max-w-2xl">Other Publications
                     </h1>
 
-                    <div class="my-5 grid max-w-sm md:max-w-max text-[#faf9f9da] grid-flow-row md:grid-flow-col gap-4">
+                    <div class="my-5 grid max-w-sm md:max-w-max text-[#ffffffc7] grid-flow-row md:grid-flow-col gap-4">
                         <a class="space-y-3 p-5 w-60 backdrop-brightness-125 hover:bg-opacity-80 hover:bg-red-800 transition-all"
                             href="#">
                             <h6 class="uppercase text-white text-sm">Newsletters</h6>
@@ -124,7 +124,7 @@
                             <div class="p-10"></div>
                         </a>
                     </div>
-                    <p class="max-w-3xl text-zinc-300 tracking-wide">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nesciunt rem sint doloribus maxime quam
+                    <p class="max-w-3xl text-zinc-300 ">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nesciunt rem sint doloribus maxime quam
                         ea iusto libero, nihil est neque eum modi fuga laboriosam necessitatibus? Commodi maxime libero
                         enim nulla.</p>
                 </div>

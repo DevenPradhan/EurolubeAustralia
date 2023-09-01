@@ -34,4 +34,14 @@ class VisitorController extends Controller
     {
         return view('visitor.all-news');
     }
+
+    public function productsAll()
+    {
+        return view('Visitor.products-all');
+    }
+
+    public function contactUs()
+    {
+        return view('Visitor.contact-us');
+    }
 }

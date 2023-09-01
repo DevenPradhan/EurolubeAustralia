@@ -18,7 +18,7 @@
                                     <p class="text-sm ">14 | 03 | 2022 &nbsp; <span
                                             class="text-red-800 font-semibold border-l-2 border-red-800"> &nbsp; Marine</span></p>
                                     <h5 class="font-semibold text-[#252f33]">Blog Test 7</h5>
-                                    <p class="tracking-wide text-sm max-w-md line-clamp-3 ">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam eveniet quam
+                                    <p class=" text-sm max-w-md line-clamp-3 ">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam eveniet quam
                                         assumenda cum velit quis fuga, doloribus beatae sunt saepe, amet laboriosam
                                         suscipit iusto totam unde laudantium. Unde, quibusdam architecto.</p>
                                 </div>
@@ -33,7 +33,7 @@
                                     <p class="text-sm ">14 | 03 | 2022 &nbsp; <span
                                             class="text-red-800 font-semibold border-l-2 border-red-800"> &nbsp; Marine</span></p>
                                     <h5 class="font-semibold text-[#252f33]">Blog Test 7</h5>
-                                    <p class="tracking-wide text-sm max-w-md line-clamp-3 ">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam eveniet quam
+                                    <p class=" text-sm max-w-md line-clamp-3 ">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam eveniet quam
                                         assumenda cum velit quis fuga, doloribus beatae sunt saepe, amet laboriosam
                                         suscipit iusto totam unde laudantium. Unde, quibusdam architecto.</p>
                                 </div>
@@ -48,7 +48,7 @@
                                     <p class="text-sm ">14 | 03 | 2022 &nbsp; <span
                                             class="text-red-800 font-semibold border-l-2 border-red-800"> &nbsp; Marine</span></p>
                                     <h5 class="font-semibold text-[#252f33]">Blog Test 7</h5>
-                                    <p class="tracking-wide text-sm max-w-md line-clamp-3 ">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam eveniet quam
+                                    <p class=" text-sm max-w-md line-clamp-3 ">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam eveniet quam
                                         assumenda cum velit quis fuga, doloribus beatae sunt saepe, amet laboriosam
                                         suscipit iusto totam unde laudantium. Unde, quibusdam architecto.</p>
                                 </div>
@@ -70,7 +70,7 @@
                 <img src="{{ asset('images/cristian-palmer-ig98EoFd-XY-unsplash.jpg') }}" alt="cristian-palmer-ig98EoFd-XY-unsplash.jpg"
                     class="absolute inset-0 -z-10 w-full h-full object-cover brightness-50">
                 <div class="font-roboto space-y-10 px-4 md:px-16 py-44">
-                    <h1 class=" uppercase font-black text-white tracking-wide font-archivo max-w-2xl">Other Publications
+                    <h1 class=" uppercase font-black text-white  font-archivo max-w-2xl">Other Publications
                     </h1>
 
                     <div class="my-5 grid max-w-sm md:max-w-max text-[#faf9f9da] grid-flow-row md:grid-flow-col gap-4">
@@ -91,7 +91,7 @@
                             <div class="p-10"></div>
                         </a>
                     </div>
-                    <p class="max-w-3xl text-zinc-300 tracking-wide">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nesciunt rem sint doloribus maxime quam
+                    <p class="max-w-3xl text-zinc-300 ">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nesciunt rem sint doloribus maxime quam
                         ea iusto libero, nihil est neque eum modi fuga laboriosam necessitatibus? Commodi maxime libero
                         enim nulla.</p>
                 </div>

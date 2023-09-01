@@ -6,7 +6,7 @@
                 <img src="{{ asset('images/banner2-24.jpg') }}" alt="banner2-24.jpg"
                     class="absolute inset-0 -z-10 w-full h-full object-cover object-left brightness-75">
 
-                <div class="py-44 px-4 md:px-16 space-y-20 tracking-wide">
+                <div class="py-44 px-4 md:px-16 space-y-20 ">
                     <h1 class=" uppercase max-w-2xl font-black text-white font-archivo">Get the best from Eurolube</h1>
                     <div class="max-w-2xl h-auto">
                         <img src="{{ asset('images/banner2-25.jpg') }}" alt="banner2-25.jpg"
@@ -69,8 +69,8 @@
                     </div>
                     <div class="space-x-4 flex justify-center w-full">
                         {{-- button_link css at app.css --}}
-                        <a href="#" class="bg-red-800 button_link">Browse all our products</a>
-                        <a href="#" class="bg-[#929494] button_link">Download Our Guide</a>
+                        <a href="{{route('products.all')}}" class="bg-red-800 button_link">Browse all our products</a>
+                        <a href="#" class="bg-[#929494] button_link">Pump Selection Guide</a>
                     </div>
                 </div>
             </section>
@@ -78,9 +78,9 @@
                 <img src="{{ asset('images/banner2-26.jpg') }}" alt="banner2-26.jpg"
                     class="absolute inset-0 -z-10 w-full h-full object-cover brightness-75">
                 <div class="font-roboto space-y-10 px-4 md:px-16 py-44">
-                    <h1 class=" uppercase font-black text-white tracking-wide font-archivo max-w-2xl">See our collection.
+                    <h1 class=" uppercase font-black text-white  font-archivo max-w-2xl">See our collection.
                     </h1>
-                    <p class="text-[#ffffffc2] text-sm tracking-wide">Find the documents that have information on your products or that suit your business ventures.
+                    <p class="text-[#ffffffc7] text-sm ">Find the documents that have information on your products or that suit your business ventures.
                     </p>
                     <div class="space-x-10 flex">
                         <a href="{{asset('brochures/Eurolube Australia Lubrication Equipment.pdf')}}" target="__blank">

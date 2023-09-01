@@ -27,9 +27,11 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [VisitorController::class, 'index'])->name('/');
 Route::get('/products', [VisitorController::class, 'products'])->name('view_products');
+Route::get('products.all', [VisitorController::class, 'productsAll'])->name('products.all');
 Route::get('about-us', [VisitorController::class, 'aboutUs'])->name('about.us');
 Route::get('news-blogs', [VisitorController::class, 'newsBlog'])->name('news.blogs');
 Route::get('all-news', [VisitorController::class, 'allNews'])->name('all.news');
+Route::get('contact-us', [VisitorController::class, 'contactUs'])->name('contact.us');
 
 Route::get('/dashboard', function () {
     return view('dashboard');

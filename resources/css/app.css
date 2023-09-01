@@ -46,7 +46,7 @@
 }
 
 .anchor_tag{
-    @apply flex font-semibold font-mono hover:underline tracking-wide;
+    @apply flex font-semibold font-mono hover:underline ;
 }
 
 .table_border{
@@ -76,14 +76,19 @@ h6{
 
 /* dark heading */
 .heading_dark_small{
-    @apply font-semibold tracking-wide text-[#252f33];
+    @apply font-semibold  text-[#252f33];
 }
 .heading_dark_lg{
     @apply uppercase font-black text-[#252f33];
 }
 
 .button_link{
-    @apply px-7 py-3 uppercase tracking-wide text-white whitespace-nowrap;
+    @apply px-7 py-3 uppercase  text-white whitespace-nowrap font-medium;
 }
 
+/*Products */
+
+.sidebar_icons{
+    @apply font-semibold text-sm px-4 py-3 bg-[#F1F4F5] whitespace-nowrap w-full hover:bg-red-800 hover:text-[#F1F4F5] transition-colors duration-150 flex tracking-wide;
+}
 /* card */

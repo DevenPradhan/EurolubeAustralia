@@ -17,7 +17,7 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
-<body class="font-sans text-gray-900 antialiased font-roboto">
+<body class="font-sans text-gray-900 antialiased font-roboto tracking-wide">
     <div class="max-w-6xl container flex flex-row space-x-10 justify-between py-10 bg-gray-100 mx-auto">
         <div class="shrink-0">
             <a href="{{ route('/') }}">
@@ -25,7 +25,7 @@
             </a>
         </div>
         <div
-            class="hidden md:flex flex-row space-x-4 uppercase  font-semibold text-lg text-[##252f33] items-center justify-evenly whitespace-nowrap">
+            class="hidden md:flex flex-row space-x-4 uppercase font-semibold text-lg text-[##252f33] items-center justify-evenly whitespace-nowrap">
            
             <a href="{{route('about.us')}}" class="nav-titles">
                 About us
@@ -42,7 +42,7 @@
             <a href="{{route('news.blogs')}}" class="nav-titles">
                 News/Blog
             </a>
-            <a href="#" class="nav-titles">
+            <a href="{{route('contact.us')}}" class="nav-titles">
                 Contact Us
             </a>
         </div>
@@ -80,11 +80,11 @@
         {{ $slot }}
     </main>
     <footer class="max-w-7xl container mx-auto">
-        <div class="p-16 space-y-20 text-neutral-400 text-sm tracking-wide">
+        <div class="p-16 space-y-20 text-neutral-400 text-sm ">
             <div class="">
                 <h5 class="font-bold text-[#33333380] font-archivo">Would you like to receive our regural news & special
                     updates? Join our monthly newsletter!</h5>
-                    <div class="flex flex-col space-y-8 sm:space-y-0 sm:flex-row sm:space-x-6 justify-between mt-8">
+                    <div class="flex flex-col space-y-8 sm:space-y-0 sm:items-end  sm:flex-row sm:space-x-6 justify-between mt-8">
                         <div class="grid grid-cols-2 w-full gap-2.5 max-w-xl">
                             <x-text-input type="text"
                                 class="h-12 ring-0 placeholder-neutral-400 font-light text-sm  bg-neutral-200 rounded-sm border-0 "
@@ -98,10 +98,16 @@
                             <a href="#"
                                 class=" bg-red-800 button_link text-sm max-w-max">sign up</a>
                         </div>
-                        <div class="grid grid-flow-col sm:p-10 gap-5 place-items-center max-w-max sm:w-full">
-                            <a href="#"><x-icons.facebook width="30"/></a>
-                            <a href="#"><x-icons.linked-in width="30"/></a>
-                            <a href="#"><x-icons.instagram width="38"/></a>
+                        <div class="grid grid-flow-col gap-5 place-items-center max-w-max sm:w-full">
+                            <a href="#">
+                                <img src="{{asset('images/facebook.png')}}" alt="fb" class="w-12 h-auto">
+                            </a>
+                            <a href="#">
+                                <img src="{{asset('images/linkedin.png')}}" alt="In" class="w-12 h-auto">
+                            </a>
+                            <a href="#">
+                                <img src="{{asset('images/instagram.png')}}" alt="Insta" class="w-12 h-auto">
+                            </a>
                         </div>
                     </div>
                 
@@ -119,7 +125,7 @@
                     </p>
                     <p>Copyright @ Eurolube Australia Pty, Ltd. 2021 - 2023</p>
                 </div>
-                <div class="space-y-3 tracking-wide flex flex-col">
+                <div class="space-y-3  flex flex-col">
                     <p class="text-[#33333380] font-semibold uppercase">Resources</p>
                     <a href="#">FAQ</a>
                     <a href="#">Downloads</a>
@@ -127,7 +133,7 @@
                     <a href="#">Branding</a>
                     <a href="#">Products</a>
                 </div>
-                <div class="space-y-3 tracking-wide flex flex-col">
+                <div class="space-y-3  flex flex-col">
                     <p class="text-[#33333380] font-semibold uppercase">Company</p>
                     <a href="#">Our Team</a>
                     <a href="#">Location</a>
