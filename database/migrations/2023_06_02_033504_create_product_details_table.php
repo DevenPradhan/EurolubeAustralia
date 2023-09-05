@@ -29,13 +29,13 @@ return new class extends Migration
         //     $table->timestamps();
         // });
 
-        Schema::create('product_images', function ( Blueprint $table) {
-            $table->id();
-            $table->unsignedBigInteger('product_id');
-            $table->string('image_url');
-            $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
-            $table->timestamps();
-        });
+        // Schema::create('product_images', function ( Blueprint $table) {
+        //     $table->id();
+        //     $table->unsignedBigInteger('product_id');
+        //     $table->string('image_url');
+        //     $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
+        //     $table->timestamps();
+        // });
     }
 
     /**
@@ -44,8 +44,8 @@ return new class extends Migration
     public function down(): void
     { 
         Schema::dropIfExists('product_details');
-        Schema::dropIfExists('product_features');
-        Schema::dropIfExists('product_images');
+        // Schema::dropIfExists('product_features');
+        // Schema::dropIfExists('product_images');
 
     }
 };

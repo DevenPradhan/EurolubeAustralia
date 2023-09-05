@@ -111,14 +111,14 @@
                     </h1>
 
                     <div class="my-5 grid max-w-sm md:max-w-4xl text-[#ffffffc7] grid-flow-row md:grid-flow-col gap-4">
-                        <a class="space-y-3 p-5 backdrop-brightness-125 hover:bg-opacity-80 hover:bg-red-800 transition-all"
+                        {{-- <a class="space-y-3 p-5 backdrop-brightness-125 hover:bg-opacity-80 hover:bg-red-800 transition-all"
                             href="#">
                             <h6 class="uppercase text-white text-sm">Our support network</h6>
                             <p class="text-sm font-normal tracking-wider">We make it easier for our customers to choose
                                 the right product when chemicals must be
                                 pumped. Check our Pump Selection Guide to Choose the chemical to be pumped, and find out
                                 what materials are compatible with the selected chemical.</p>
-                        </a>
+                        </a> --}}
                         <a class="space-y-3 p-5 backdrop-brightness-125 hover:bg-opacity-80 hover:bg-red-800 transition-all"
                             href="#">
                             <h6 class="uppercase text-white text-sm">Catalogues & Tech Sheets</h6>
@@ -127,11 +127,12 @@
                                 all our products, catalogues and tech sheets online or download a copy today.</p>
                         </a>
                         <a class="space-y-3 p-5 backdrop-brightness-125 hover:bg-opacity-80 hover:bg-red-800 transition-all"
-                            href="#">
+                            href="https://www.eurolube.com/en/pump-selection-guide/" target="__blank">
                             <h6 class="uppercase text-white text-sm">Pump Selection Guide</h6>
                             <p class="text-sm font-normal tracking-wider">We make it easier for our customers to choose
-                                the right product when chemicals must be pumped. Click here for our Pump Selection
-                                Guide.</p>
+                                the right product when chemicals must be
+                                pumped. Check our Pump Selection Guide to Choose the chemical to be pumped, and find out
+                                what materials are compatible with the selected chemical.</p>
                         </a>
                     </div>
                 </div>

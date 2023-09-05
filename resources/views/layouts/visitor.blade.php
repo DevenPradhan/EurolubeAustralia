@@ -99,15 +99,17 @@
                                 class=" bg-red-800 button_link text-sm max-w-max">sign up</a>
                         </div>
                         <div class="grid grid-flow-col gap-5 place-items-center max-w-max sm:w-full">
-                            <a href="#">
-                                <img src="{{asset('images/facebook.png')}}" alt="fb" class="w-12 h-auto">
+                            <a href="https://www.facebook.com/EurolubeInfo" target="__blank">
+                                <img src="{{asset('images/facebook.png')}}" alt="fb" class="w-8 h-auto">
                             </a>
-                            <a href="#">
-                                <img src="{{asset('images/linkedin.png')}}" alt="In" class="w-12 h-auto">
+                            <a href="https://www.linkedin.com/company/eurolube-australia/" target="__blank">
+                                <img src="{{asset('images/linkedin.png')}}" alt="In" class="w-8 h-auto">
                             </a>
-                            <a href="#">
-                                <img src="{{asset('images/instagram.png')}}" alt="Insta" class="w-12 h-auto">
-                            </a>
+                            {{-- <a href="#" target="__blank">
+                                <img src="{{asset('images/instagram.png')}}" alt="Insta" class="w-8 h-auto">
+                            </a> --}}
+                            <a href="https://twitter.com/EurolubeInfo" target="__blank">
+                            <img src="{{asset('images/twitter-x.png')}}" alt="X" class="w-8 h-auto"></a>
                         </div>
                     </div>
                 

@@ -16,5 +16,9 @@
         <i class="w-5"><x-icons.abacus/></i>
         <span>Orders</span>
     </a>
+    {{-- <a href="{{route('profile.edit')}}" class="sidebar_list {{ str_contains(Request::path(), 'profile') ? 'bg-gray-50' : '' }}">
+        <i class="w-5"><x-icons.profile/></i>
+        <span>Profile</span>
+    </a> --}}
 
 </div>

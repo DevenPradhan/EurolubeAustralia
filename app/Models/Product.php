@@ -18,7 +18,8 @@ class Product extends Model
         'name',
         'description',
         'quantity',
-        'validity'
+        'status',
+        'category_id'
     ];
 
       public function details()
