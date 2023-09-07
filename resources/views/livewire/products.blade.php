@@ -1,6 +1,6 @@
 <div class="space-y-10 w-full">
     <x-primary-button wire:click.prevent="openProductModal">Add Product</x-primary-button>
-
+    <a href=""><x-primary-button>Categories</x-primary-button></a>
     <div class="w-full">
         <div class="flex justify-end">
             <x-text-input placeholder="Search" class="pl-2 h-10" wire:model.debounce.500ms="search" />
@@ -33,7 +33,7 @@
                                         <x-secondary-button>View</x-secondary-button>
                                     </a>
                                     <x-danger-button type="button"
-                                        wire:click.prevent="deleteProductModal({{$product->id}})">Del</x-danger-button>
+                                        wire:click.prevent="deleteProductModal({{ $product->id }})">Del</x-danger-button>
                                 </div>
                             </th>
                         </tr>
@@ -51,20 +51,49 @@
     <x-livewire-modal wire:model="productModal">
         <div class="p-6">
             <form action="" wire:submit.prevent="addProduct">
-                <div class="space-y-8">
+                <div class="space-y-8" x-data="{ show_categories: false }">
                     <h6>Add Product</h6>
                     <div class="flex space-x-10 items-center">
-                        <x-input-label for="productName" value="Product Name" class="w-20" />
+                        <x-input-label for="productName" value="Name" class="w-20" />
                         <x-text-input type="text" wire:model.debounce.500ms="productName" name="productName" required
                             class="w-full" />
                         <x-input-error :messages="$errors->get('productName')" class="mt-2" />
                     </div>
                     <div class="flex space-x-10 items-center">
-                        <x-input-label for="productDescription" value="Product Name" class="w-20" />
+                        <x-input-label for="productDescription" value="Description" class="w-20" />
                         <x-textbox wire:model.debounce.1000ms="productDescription" name="productDescription"
                             class="w-full h-20"></x-textbox>
                         <x-input-error :messages="$errors->get('productName')" class="mt-2" />
                     </div>
+                    <div class="flex space-x-10 items-center">
+                        <x-input-label for="productCategory" value="Category" class="w-20" />
+                        <x-secondary-button x-on:click.prevent="show_categories = true">Select a
+                            category</x-secondary-button>
+
+                        <x-input-error :messages="$errors->get('productName')" class="mt-2" />
+                    </div>
+                    <div class="flex justify-end items-center flex-col space-y-2 p-3 rounded border"
+                        x-show="show_categories" x-transition.duration.200ms>
+                        <div class="">
+                            <x-secondary-button class="max-w-max">Add</x-secondary-button>
+                            <ul>
+                                <li>alpha</li>
+                                <li>alpha</li>
+                                <li>alpha</li>
+
+                            </ul>
+                        </div>
+                        <div class="">
+
+                            <div class="flex h-10 rounded border">
+                                <button type="button" class="p-2 b-r-2">...</button>
+                                <input type="text" class=" ring-0 border-none active:border-none">
+                            </div>
+
+                        </div>
+
+                    </div>
+
                     <div class="flex space-x-10 items-center">
                         <x-input-label for="productQuantity" value="Quantity" class="w-20" />
                         <x-text-input type="number" wire:model="productQuantity" name="productQuantity" required
