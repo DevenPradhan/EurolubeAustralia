@@ -3,6 +3,7 @@
 namespace App\Http\Livewire;
 
 use App\Models\Product;
+use App\Models\ProductCategory;
 use Livewire\Component;
 
 class Products extends Component
@@ -15,17 +16,68 @@ class Products extends Component
     public $productQuantity;
     public $productModal = false;
     public $deleteModal = false;
+    public $upperCategory;
+    public $newCategory;
+    public $productCategory;
+    public $categories;
+
+    // protected $listeners = ['reset-category' => 'mount'];
+
+    public function saveCategory()
+    {
+        $this->validate([
+            'newCategory' => 'required|unique:product_categories,name'
+        ]);
+
+            $category = new ProductCategory;
+            $category->name = $this->newCategory;
+        if(!empty($this->upperCategory)){
+            
+            $category->level = 2;
+            $category->referencing = $this->upperCategory;
+        }else{
+            
+            $category->level = 1;
+        }
+        
+            $category->save();
+            $this->categories = ProductCategory::where('level', 1)->get('name', 'id', 'level');
+            $this->reset('newCategory');
+            $this->emit('saved');
+    }
+
+    public function addCategory($id)
+    {
+        if(ProductCategory::where('referencing', $id)->count() === 0){
+            
+            $this->productCategory = ProductCategory::find($id);
+            $this->emit('select-category'); //after selecting category close select category div
+            $this->categories = ProductCategory::where('level', 1)->get();
+
+        }else{
+            $this->categories = ProductCategory::where('referencing', $id)
+                                ->get();
+        }
+        
+    }
+
+    public function mainCategory()
+    {
+        $this->categories = ProductCategory::where('level', 1)->get();
+    }
 
     public function openProductModal()
     {
-        $this->reset();
+        $this->reset('productId', 'productName', 'productDescription', 'productCategory');
         $this->productModal = true;
         $this->productQuantity = 1;
+
     }
 
     public function deleteProductModal($id)
     {
-        $this->reset();
+        $this->reset('password');
+        $this->resetValidation();
         $this->productId = $id;
         $this->deleteModal = true;
     }
@@ -36,9 +88,14 @@ class Products extends Component
             'password' => 'required|current-password'
         ]);
 
-        Product::destroy($this->productId);
+            Product::destroy($this->productId);
 
         $this->deleteModal = false;
+    }
+
+    public function mount()
+    {
+        $this->categories = ProductCategory::where('level', 1)->get();
     }
 
 
@@ -48,18 +105,22 @@ class Products extends Component
             'name' => $this->productName,
             'description' => $this->productDescription,
             'quantity' => $this->productQuantity,
+            'category_id' => $this->productCategory->id,
             'status' => 0
         ]);
 
-        $product->details()->create();
+            $product->details()->create();
 
-        return redirect()->route('products.show', $product->id)->with('success', 'product created, Please edit the details before publishing');
+        return redirect()
+                ->route('products.show', $product->id)
+                ->with('success', 'product created, Please edit the details before publishing');
     }
 
     public function render()
     {
-
-        $products = Product::where('name', 'like', '%' . $this->search . '%')->get();
+        
+        $products = Product::where('name', 'like', '%' . $this->search . '%')
+                            ->get();
         return view('livewire.products', compact('products'));
     }
 }

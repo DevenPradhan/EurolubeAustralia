@@ -1,4 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" class="w-12" viewBox="0 0 24 24" id="arrow-right">
+<svg xmlns="http://www.w3.org/2000/svg" 
+    {{$attributes->merge(['class' => 'w-12'])}} viewBox="0 0 24 24" id="arrow-right">
     <path fill="none" d="M0 0h24v24H0V0z"></path>
     <path d="M10 17l5-5-5-5v10z"></path>
 </svg>
