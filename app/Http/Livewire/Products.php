@@ -16,10 +16,12 @@ class Products extends Component
     public $productQuantity;
     public $productModal = false;
     public $deleteModal = false;
+    public $categoryDiv = false;
+    public $activeDiv = 'category_list';
     public $upperCategory;
     public $newCategory;
     public $productCategory;
-    public $categories;
+    public $categories; 
 
     // protected $listeners = ['reset-category' => 'mount'];
 
@@ -31,17 +33,21 @@ class Products extends Component
 
             $category = new ProductCategory;
             $category->name = $this->newCategory;
+        
         if(!empty($this->upperCategory)){
             
             $category->level = 2;
             $category->referencing = $this->upperCategory;
+        
         }else{
             
             $category->level = 1;
         }
         
             $category->save();
-            $this->categories = ProductCategory::where('level', 1)->get('name', 'id', 'level');
+
+            $this->categories = ProductCategory::where('level', 1)
+                                ->pluck('name', 'id');
             $this->reset('newCategory');
             $this->emit('saved');
     }
@@ -52,26 +58,39 @@ class Products extends Component
             
             $this->productCategory = ProductCategory::find($id);
             $this->emit('select-category'); //after selecting category close select category div
-            $this->categories = ProductCategory::where('level', 1)->get();
+            $this->categories = ProductCategory::where('level', 1)
+                                ->pluck('name', 'id');
 
         }else{
             $this->categories = ProductCategory::where('referencing', $id)
-                                ->get();
+                                ->pluck('name', 'id');
         }
         
     }
 
     public function mainCategory()
     {
-        $this->categories = ProductCategory::where('level', 1)->get();
+        $this->categories = ProductCategory::where('level', 1)
+                            ->pluck('name', 'id');
     }
 
     public function openProductModal()
     {
-        $this->reset('productId', 'productName', 'productDescription', 'productCategory');
+        $this->reset(
+                'productId', 
+                'productName', 
+                'productDescription', 
+                'productCategory', 
+                'categoryDiv', 
+                'activeDiv');
         $this->productModal = true;
         $this->productQuantity = 1;
 
+    }
+
+    public function showCategoryDiv()
+    {
+        $this->categoryDiv = true;
     }
 
     public function deleteProductModal($id)
@@ -95,12 +114,18 @@ class Products extends Component
 
     public function mount()
     {
-        $this->categories = ProductCategory::where('level', 1)->get();
+        $this->categories = ProductCategory::where('level', 1)
+                            ->pluck('name', 'id');
     }
 
 
     public function addProduct()
     {
+        $this->validate([
+            'productName' => 'required',
+            'productCategory' => 'required'
+        ]);
+
         $product = Product::create([
             'name' => $this->productName,
             'description' => $this->productDescription,

@@ -1,6 +1,6 @@
 <div class="space-y-10 w-full">
     <x-primary-button wire:click.prevent="openProductModal">Add Product</x-primary-button>
-    <a href=""><x-primary-button>Categories</x-primary-button></a>
+    <a href="{{route('product-categories')}}"><x-primary-button>Categories</x-primary-button></a>
     <div class="w-full">
         <div class="flex justify-end">
             <x-text-input placeholder="Search" class="pl-2 h-10" wire:model.debounce.500ms="search" />
@@ -10,6 +10,8 @@
                 <thead>
                     <tr>
                         <th scope="col">Product</th>
+                        <th scope="col">Category</th>
+
                         <th scope="col">Quantity</th>
                         <th scope="col">Status</th>
                         <th scope="col"></th>
@@ -20,6 +22,9 @@
                         <tr>
                             <td scope="col">
                                 <p class="user_td">{{ $product->name }}</p>
+                            </td>
+                            <td scope="col">    
+                                <p class="user_td">{{$product->category->name}}</p>
                             </td>
                             <td scope="col">
                                 <p class="user_td">{{ $product->quantity }}</p>
@@ -44,39 +49,45 @@
     </div>
 
 
-
-
-
     {{-- product modal --}}
     <x-livewire-modal wire:model="productModal">
         <div class="p-6">
             <form action="" wire:submit.prevent="addProduct">
-                <div class="space-y-8" x-data="{ show_categories: false }">
+                <div class="space-y-8" 
+                x-data="{ show_categories: @entangle('categoryDiv') }"
+                x-init="@this.on('select-category', () => { show_categories = false })"
+                >
                     <h6>Add Product</h6>
+
                     <div class="flex space-x-10 items-center">
                         <x-input-label for="productName" value="Name" class="w-20" />
-                        <x-text-input type="text" wire:model.debounce.500ms="productName" name="productName" required
-                            class="w-full" />
+                        <x-text-input type="text" name="productName" required
+                                    wire:model.debounce.500ms="productName" class="w-full" />
                         <x-input-error :messages="$errors->get('productName')" class="mt-2" />
                     </div>
+
                     <div class="flex space-x-10 items-center">
                         <x-input-label for="productDescription" value="Description" class="w-20" />
-                        <x-textbox wire:model.debounce.1000ms="productDescription" name="productDescription"
-                            class="w-full h-20"></x-textbox>
+                        <x-textbox name="productDescription" class="w-full h-20"
+                                wire:model.debounce.1000ms="productDescription" ></x-textbox>
                         <x-input-error :messages="$errors->get('productDescription')" class="mt-2" />
                     </div>
+
                     <div class="flex space-x-10 items-center">
                         <x-input-label for="productCategory" value="Category" class="w-20" />
-                        <x-secondary-button x-on:click.prevent="show_categories = true">{{empty($productCategory) ? 'Select a ': 'Change'}}
-                            category</x-secondary-button>
+                        <x-secondary-button wire:click.prevent="showCategoryDiv">
+                            {{empty($productCategory) ? 'Select a Category': 'Change'}}
+                            </x-secondary-button>
                             <p>{{!empty($productCategory) ? $productCategory->name : ''}}</p>
-                        {{-- <x-input-error :messages="$errors->get('productName')" class="mt-2" /> --}}
+                            <x-input-error :messages="$errors->get('productCategory')" class=""/>
                     </div>
+
                     <div class="flex p-3 rounded border h-60 bg-gray-300"
                         x-show="show_categories" 
-                        x-init="@this.on('select-category', () => { show_categories = false })"
+                       
                         x-transition.duration.100ms
-                        x-data="{add_category : 'category_list'}">
+                        x-data="{add_category : @entangle('activeDiv')}"
+                        >
 
                         <div class="space-y-2" 
                             x-show="add_category === 'category_list'" 
@@ -91,17 +102,18 @@
                             <ul class="rounded-sm text-sm max-h-40 overflow-y-auto">
                                 <li><button wire:click.prevent="mainCategory" 
                                     type="button" 
-                                    class="{{$categories->first()->level != 1 ? 'block' : 'hidden'}} flex justify-between border bg-gray-200 text-start hover:bg-gray-700 hover:text-white px-2 py-1 w-80">...</button></li>
-                                @foreach($categories as $category)
+                                    class=" flex justify-between border bg-gray-200 text-start hover:bg-gray-700 hover:text-white px-2 py-1 w-80">...</button></li>
+                                
+                                    @foreach($categories as $key => $category)
                                 
                                 <li>
                                     <button type="button" 
-                                            wire:click.prevent="addCategory({{$category->id}})" 
+                                            wire:click.prevent="addCategory({{$key}})" 
                                             class="flex justify-between border bg-gray-200 text-start hover:bg-gray-700 hover:text-white px-2 py-1 w-80">
-                                        {{$category->name}} 
+                                        {{$category}} 
 
                                         <span>
-                                            <x-icons.slider-right class="w-4 {{App\Models\ProductCategory::where('referencing', $category->id)->count() === 0 ? 'hidden' : ''}}"/>
+                                            <x-icons.slider-right class="w-4 {{App\Models\ProductCategory::where('referencing', $key)->count() === 0 ? 'hidden' : ''}}"/>
                                         </span>
                                     </button>
                                 </li>
@@ -114,6 +126,7 @@
                             @endif
                         </div>
 
+                        {{-- add new category section --}}
                         <div class="space-y-2 relative"  
                             x-show="add_category === 'new_category'" 
                             >
@@ -122,7 +135,7 @@
                                     x-show.transition.opacity.out.duration.1000ms="notification"
                                     x-init="@this.on('saved', () => { notification = true; setTimeout(() => { notification = false }, 2000) })">
                                 Category Saved
-                               </div>
+                            </div>
 
                                 <x-secondary-button class=""
                                                 x-on:click.prevent="add_category = 'category_list'">
@@ -134,8 +147,8 @@
                                     class="bg-gray-300 rounded-l focus:ring-0 focus:border-none border-none w-60"
                                     wire:model="upperCategory">
                                         <option value=""></option>
-                                    @foreach($categories as $category)
-                                        <option value="{{$category->id}}">{{$category->name}}</option>
+                                    @foreach($categories as $key => $category)
+                                        <option value="{{$key}}">{{$category}}</option>
                                     @endforeach
                                 </select>
                                     <div class="">

@@ -8,6 +8,8 @@ use App\Http\Controllers\User\ProductDetailController;
 use App\Http\Controllers\User\ProductImageController;
 use App\Http\Controllers\User\TypeController;
 use App\Http\Controllers\Visitors\VisitorController;
+use App\Http\Livewire\CategoryProducts;
+use App\Http\Livewire\ProductCategories;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -40,6 +42,8 @@ Route::get('/dashboard', function () {
 Route::middleware('auth')->group(function () {
 
     Route::resource('admin/products', ProductController::class);
+    Route::get('product-categories', ProductCategories::class)->name('product-categories');
+    Route::get('product-categories/{category}/products', CategoryProducts::class)->name('category-products');
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
