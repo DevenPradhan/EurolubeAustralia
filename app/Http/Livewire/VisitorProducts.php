@@ -4,11 +4,15 @@ namespace App\Http\Livewire;
 
 use App\Models\Product;
 use App\Models\ProductCategory;
+use Arr;
 use Livewire\Component;
 use DB;
+use Livewire\WithPagination;
 
 class VisitorProducts extends Component
 {
+    use WithPagination;
+
     public $search = '';
     public $categoryId;
     public $categoryCount;
@@ -18,56 +22,42 @@ class VisitorProducts extends Component
     public function getProducts($id)
     {
 
-        if($this->categoryId){
-
-          if($this->categoryId == $id){
-
-            $this->categoryId = '';
-
-          } else {
-
-            $this->categoryId = $id;
-          }
-
+        if ($this->categoryId) {
+            if ($this->categoryId == $id) {
+                $this->categoryId = '';
+            } else {
+                $this->categoryId = $id;
+            }
         } else {
-            
             $this->categoryId = $id;
-
         }
 
-        // dd($this->categoryCount = ProductCategory::where('referencing', $id)->count());
-        $this->categoryCount = ProductCategory::where('referencing', $id)->get('id');
-        // $this->categoryId = ProductCategory::where('referencing', $id)
-        //     ->get('id');
+        $this->categoryCount = ProductCategory::where('referencing', $id)
+            ->orWhere('id', $id)
+            ->get('id');
 
-        
+
     }
 
-    public function mount()
-    {
-        // $this->products = Product::where('name', 'like',  '%'.$this->search. '%')
-        // ->get();
-    }
     public function render()
     {
-        $this->products = Product::where('name', 'like', '%'. $this->search . '%')
-                                    ->get();
+        $products = Product::where('name', 'like', '%'.$this->search. '%')->get();
+        $ids = $products->pluck('id')->flatten();
 
-        $this->products->when($this->categoryId, function($query) {
-            return $query->whereIn('category_id', $this->categoryCount);
-        });
+        if($this->categoryId){
+            $products = Product::whereIn('category_id', $this->categoryCount)->get();
+        }
+        
 
-            // $this->products = Product::when($this->categoryId, function($query) {
-        //     if($this->categoryCount->count() === 0){
-        //         return $query->where('category_id', $this->categoryId);
-        //     } else {
-        //         return $query->whereIn('category_id', $this->categoryId);
-        //     }
-        // })->get();                
+        // if($this->search)
+        // {
+        //     // $products->where('name', 'like', '%'. $this->search. '%');
+        // }
 
-       
+        
+
         $categories = ProductCategory::where('level', 1)->pluck('name', 'id');
 
-        return view('livewire.visitor-products', compact('categories'));
+        return view('livewire.visitor-products', compact('categories', 'products'));
     }
 }

@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
 
 class Product extends Model
 {
@@ -38,8 +39,8 @@ class Product extends Model
         return $this->hasMany(ProductFeature::class);
     }
 
-    public function images()
+    public function images():MorphMany
     {
-        return $this->hasMany(ProductImage::class);
+        return $this->morphMany(Image::class, 'imageable');
     }
 }

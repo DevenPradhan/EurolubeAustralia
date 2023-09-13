@@ -7,7 +7,7 @@
             <button type="button" wire:click.prevent="getSubCategories({{$category->id}})" class="w-48 flex px-3">
                 {{ $category->name }}
             </button>
-            <p>Sub-categories: {{App\Models\productCategory::where('referencing', $category->id)->count()}}</p>
+            {{-- <p>Sub-categories: {{App\Models\productCategory::where('referencing', $category->id)->count()}}</p> --}}
             
             <x-danger-button class=""
                 wire:click.prevent="openDeleteModal({{ $category->id }})">Del</x-danger-button>

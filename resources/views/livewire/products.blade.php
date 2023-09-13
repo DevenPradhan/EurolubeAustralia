@@ -65,7 +65,14 @@
                                     wire:model.debounce.500ms="productName" class="w-full" />
                         <x-input-error :messages="$errors->get('productName')" class="mt-2" />
                     </div>
-
+                    @if(!empty($validationSearch))
+                    
+                    <div class="flex">
+                        <p class="">{{$validationSearch->name}} &emsp; - &emsp;</p>
+                        <p>{{$validationSearch->category->name}}</p>
+                    </div>
+                    
+                    @endif 
                     <div class="flex space-x-10 items-center">
                         <x-input-label for="productDescription" value="Description" class="w-20" />
                         <x-textbox name="productDescription" class="w-full h-20"

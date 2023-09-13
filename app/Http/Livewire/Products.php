@@ -9,6 +9,7 @@ use Livewire\Component;
 class Products extends Component
 {
     public $search;
+    public $validationSearch;
     public $password;
     public $productId;
     public $productName;
@@ -28,7 +29,7 @@ class Products extends Component
     public function saveCategory()
     {
         $this->validate([
-            'newCategory' => 'required|unique:product_categories,name'
+            'newCategory' => 'required|'
         ]);
 
             $category = new ProductCategory;
@@ -114,7 +115,10 @@ class Products extends Component
 
     public function mount()
     {
-        $this->categories = ProductCategory::where('level', 1)
+        
+            
+
+            $this->categories = ProductCategory::where('level', 1)
                             ->pluck('name', 'id');
     }
 
@@ -145,7 +149,12 @@ class Products extends Component
 
     public function render()
     {
-        
+        if($this->productName)
+        {
+            $this->validationSearch = Product::where('name', 'like', '%'. $this->productName. '%')
+                                        ->first();
+        }
+
         $products = Product::where('name', 'like', '%' . $this->search . '%')
                             ->get();
         return view('livewire.products', compact('products'));
