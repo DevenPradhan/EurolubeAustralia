@@ -7,36 +7,7 @@
 
                 <div class=" py-40 px-4 md:px-16 space-y-10">
                     <h1 class="uppercase font-black font-archivo text-[#252f3] max-w-2xl">Products</h1>
-                    <div class="flex flex-row justify-between space-x-5">
-                        <div class="w-full grid grid-cols-3 gap-8">
-                            <div
-                                class="w-60 shadow shadow-gray-300 shrink-0 bg-gray-100 h-72 flex flex-col items-center overflow-hidden">
-                                <div class="w-full-h-60 overflow-hidden">
-                                    <img src="{{ asset('images/25755 pump.jpg') }}" alt=""
-                                        class="w-full h-auto object-scale down">
-                                </div>
-                                <p class="text-[#252f33] px-4 py-2 font-semibold">Meter Module for Oil & Antifreeze</p>
-                            </div>
-                            <div
-                                class="w-60 shadow shadow-gray-300 shrink-0 bg-gray-100 h-72 flex flex-col items-center overflow-hidden">
-                                <div class="w-full-h-60 overflow-hidden">
-                                    <img src="{{ asset('images/25755 pump.jpg') }}" alt=""
-                                        class="w-full h-auto object-scale down">
-                                </div>
-                                <p class="text-[#252f33] px-4 py-2 font-semibold">Meter Module for Oil & Antifreeze</p>
-                            </div>
-                        </div>
-                        <div class="w-80 h-max bg-[#EAECEC] px-8 py-12 space-y-6">
-                            <input type="text" placeholder="Search" class="ring-0 border-none focus:ring-0">
-                            <div class="space-y-3">
-                                <button type="button" class="sidebar_icons">LUBE-master System</button>
-                                <button type="button" class="sidebar_icons">Oil Equipment</button>
-                                <button type="button" class="sidebar_icons">Grease Equipment</button>
-                                <button type="button" class="sidebar_icons">Diaphragm Pumps</button>
-                                <button type="button" class="sidebar_icons">Waste Oil Equipments</button>
-                            </div>
-                        </div>
-                    </div>
+                    @livewire('visitor-products')
 
                 </div>
             </section>

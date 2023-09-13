@@ -15,6 +15,7 @@
     <!-- Scripts -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+    <livewire:styles />
 </head>
 
 <body class="font-sans text-gray-900 antialiased font-roboto tracking-wide">
@@ -146,7 +147,7 @@
             </div>
         </div>
     </footer>
-
+    <livewire:scripts />
 </body>
 
 <style>

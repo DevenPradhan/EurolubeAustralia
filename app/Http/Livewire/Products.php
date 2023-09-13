@@ -127,18 +127,20 @@ class Products extends Component
         ]);
 
         $product = Product::create([
+
             'name' => $this->productName,
             'description' => $this->productDescription,
             'quantity' => $this->productQuantity,
             'category_id' => $this->productCategory->id,
             'status' => 0
+
         ]);
 
             $product->details()->create();
 
-        return redirect()
-                ->route('products.show', $product->id)
-                ->with('success', 'product created, Please edit the details before publishing');
+            return redirect()
+                    ->route('products.show', $product->id)
+                    ->with('success', 'product created, Please edit the details before publishing');
     }
 
     public function render()

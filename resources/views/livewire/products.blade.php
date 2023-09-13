@@ -134,7 +134,7 @@
                                     x-data="{notification: false}" 
                                     x-show.transition.opacity.out.duration.1000ms="notification"
                                     x-init="@this.on('saved', () => { notification = true; setTimeout(() => { notification = false }, 2000) })">
-                                Category Saved
+                                    Category Saved
                             </div>
 
                                 <x-secondary-button class=""
