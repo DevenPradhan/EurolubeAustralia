@@ -1,18 +1,67 @@
 <div class="space-y-4">
-    <h3>{{ $product->name }}</h3>
-    <div class="flex sm:space-x-10 sm:flex-row flex-col space-y-5 sm:space-y-0">
+    <h4 class="tracking-wide">{{ $product->name }}</h4>
 
-        <div class="w-1/4 h-72 space-y-10 ">
+    {{-- Status Div start --}}
+    <div class="relative  " 
+         x-data="{ status: false }" 
+         x-on:click.away="status = false">
+        
+         <button class="px-2 py-1 shadow opacity-75" 
+                x-on:click.prevent="status = !status">Status : 
+                
+                @foreach($statuses as $key => $status)
+                {{$key == $product->status ? $status : ''}}
+                @endforeach
+        </button>
+        
+                <ul class="absolute z-10 bg-white shadow-md px-0.5 pt-3 pb-1 rounded w-40" 
+            x-show="status"
+            x-init="@this.on('status-changed', () => {status = false})">
+            @foreach ($statuses as $key => $status)
+                <button type="button" wire:click.prevent="changeStatus({{$key}})" onclick="return confirm('Are you sure you want to change the status of the product?') || event.stopImmediatePropagation()" class="hover:bg-gray-200 px-2 uppercase w-full flex items-start">
+                    <li class="">{{ $status }}</li>
+                </button>
+            @endforeach
+        </ul>
+    </div>
+    {{-- status div end --}}
+
+    {{-- quantity div start --}}
+    <div class="relative"
+            x-data="{quantity: false}"
+            x-on:click.away="quantity = false">
+        <button class="px-2 py-1 shadow opacity-75"
+                x-on:click.prevent="quantity = !quantity">Quantity : {{$product->quantity}}</button>
+        <div class="absolute z-20 p-3 bg-white shadow-md" 
+            x-show="quantity"
+            x-init="@this.on('quantity-changed', () => {quantity = false})">
+            <form action="" wire:submit.prevent="changeQuantity">
+                <input type="number"
+                    wire:model.defer="productQuantity" 
+                    class="p-2 focus:ring-0 border-gray-400 rounded-sm h-7 w-32 text-sm" 
+                    placeholder="Enter Quantity">
+                <x-primary-button class="text-sm h-7">Save</x-primary-button>    
+            </form>    
+        </div>
+        
+    </div>
+    {{-- quantity div ends --}}
+
+    <div class="flex sm:space-x-10 md:flex-row flex-col space-y-5 sm:space-y-0">
+
+        <div class="md:w-1/4 h-80 space-y-4 border shadow p-3 ">
             <h5>Image</h5>
-            
-            @forelse ($product->images as $images)
-                <img src="{{ asset('storage/products/images/' . $images->url) }}" alt="">
-            @empty
-                <p>Nothing Found</p>
-            @endforelse
-            
+
+            @if ($product->images->count() > 0)
+                <div class="w-full h-48 object-cover">
+                    <img src="{{ asset('storage/products/images/' . $product->images->first()->url) }}" alt=""
+                        class="w-full h-full object-scale-down">
+                </div>
+            @endif
+
             <x-secondary-button
-                wire:click.prevent="openImageModal">{{ $product->images->count() == 0 ? 'Add' : 'Change' }}</x-secondary-button>
+                wire:click.prevent="openImageModal">{{ $product->images->count() == 0 ? 'Add' : 'Change' }}
+            </x-secondary-button>
         </div>
         <div class="space-y-10 w-1/2">
             <p>Product Description: &emsp;

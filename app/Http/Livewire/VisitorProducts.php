@@ -41,20 +41,21 @@ class VisitorProducts extends Component
 
     public function render()
     {
-        $products = Product::where('name', 'like', '%'.$this->search. '%')->get();
-        $ids = $products->pluck('id')->flatten();
+        $products = Product::query();
 
-        if($this->categoryId){
-            $products = Product::whereIn('category_id', $this->categoryCount)->get();
-        }
-        
+        $products->where('name', 'like', '%' .$this->search .'%');
+        // if($this->search){
+        //     $products->where('name', 'like', '%'.$this->search. '%')->whereIn('category_id', $this->categoryCount);
+        // }
+        // else{
+        //     if($this->categoryId){
+        //         $products->whereIn('category_id', $this->categoryCount);
 
-        // if($this->search)
-        // {
-        //     // $products->where('name', 'like', '%'. $this->search. '%');
+        //     }
+            
         // }
 
-        
+        $products = $products->where('status', 1)->get();
 
         $categories = ProductCategory::where('level', 1)->pluck('name', 'id');
 

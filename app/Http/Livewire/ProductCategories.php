@@ -9,20 +9,21 @@ use Livewire\Component;
 class ProductCategories extends Component
 {
     public $categoryId;
+    public $deleteId;
     public $password;
     public $deleteModal = false;
 
     public function getSubCategories($id)
     {
-        $this->categories = ProductCategory::where('referencing', $id)->get();
-        if($this->categories->count() == 0){
+        $this->categoryId = $id;
+        if (ProductCategory::where('referencing', $id)->count() == 0) {
             return to_route('category-products', $id);
         }
     }
     public function openDeleteModal($id)
     {
-        $this->reset();
-        $this->categoryId = $id;
+        $this->reset('password');
+        $this->deleteId = $id;
         $this->deleteModal = true;
     }
 
@@ -32,20 +33,23 @@ class ProductCategories extends Component
             'password' => 'required|current-password'
         ]);
 
-        ProductCategory::destroy($this->categoryId);
-        ProductCategory::where('referencing', $this->categoryId)->delete();
+        ProductCategory::destroy($this->deleteId);
+        ProductCategory::where('referencing', $this->deleteId)->delete();
 
         $this->deleteModal = false;
     }
 
-    public function mount()
-    {
-        $this->categories = ProductCategory::where('level', 1)->get();
-    }
-
     public function render()
     {
-       
-        return view('livewire.product-categories');
+        $categories = ProductCategory::query();
+
+        if ($this->categoryId) {
+            $categories->where('referencing', $this->categoryId);
+        } else {
+            $categories->where('level', 1);
+        }
+        $categories = $categories->get();
+
+        return view('livewire.product-categories', compact('categories'));
     }
 }

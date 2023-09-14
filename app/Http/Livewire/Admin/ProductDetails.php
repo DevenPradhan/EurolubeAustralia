@@ -12,6 +12,7 @@ class ProductDetails extends Component
     use WithFileUploads;
     public Product $product;
     public $productImage;
+    public $productQuantity;
     public $imageModal = false;
 
     public function openImageModal()
@@ -39,16 +40,20 @@ class ProductDetails extends Component
         }
 
         $image_url = $this->productImage->getClientOriginalName();
+        
         Storage::putFileAs('products/images/', $this->productImage, $image_url);
+        
         $this->product->images()->create([
             'url' => $image_url
         ]);
 
+        $this->product->refresh();
         $this->imageModal = false;
     }
 
 
-    private function deleteImage() //called from uploadImage function line 38;
+    // called from uploadImage function line 38;
+    private function deleteImage() 
     {
         foreach ($this->product->images as $image) {
             Storage::delete('/products/images/' . $image->url);
@@ -57,8 +62,27 @@ class ProductDetails extends Component
 
     }
 
+    public function changeStatus($status)
+    {
+        $this->product->update([
+            'status' => $status
+        ]);
+        $this->product->refresh();
+        $this->emit('status-changed');
+    }
+
+    public function changeQuantity()
+    {
+        $this->product->update(['quantity' => $this->productQuantity]);
+        $this->product->refresh();
+        $this->emit('quantity-changed');
+    }
+
     public function render()
     {
-        return view('livewire.admin.product-details');
+        $this->productQuantity = $this->product->quantity;
+        $statuses = collect(['Inactive', 'Active', 'Archived']);
+
+        return view('livewire.admin.product-details', compact('statuses'));
     }
 }
