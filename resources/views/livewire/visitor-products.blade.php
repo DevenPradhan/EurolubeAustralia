@@ -2,18 +2,21 @@
     <div class="flex flex-row justify-between space-x-5 h-screen">
         <div class="w-full grid grid-cols-3 gap-8">
             @forelse ($products as $product)
-                <div
-                    class="w-60 shadow shadow-gray-300 shrink-0 bg-gray-100 h-72 flex flex-col items-center overflow-hidden">
-                    <div class="w-full h-60 overflow-hidden">
-                        @if ($product->images->count() > 0)
-                            <img src="{{ asset('storage/products/images/' . $product->images->first()->url) }}" alt=""
-                                class="w-full h-full object-cover">
-                        @else
-                        <div class="p-4 flex items-center w-full h-full bg-gray-200 justify-center text-sm">Image Not found</div>
-                        @endif
+                <a href="{{route('products-each', $product->id)}}" class="h-max w-max">
+                    <div
+                        class="w-60 border shadow-sm bg-gray-50 shadow-red-800 border-red-800 shrink-0  h-72 flex flex-col items-center overflow-hidden">
+                        <div class="w-full h-60 overflow-hidden">
+                            @if ($product->images->count() > 0)
+                                <img src="{{ asset('storage/products/images/' . $product->images->first()->url) }}"
+                                    alt="" class="w-full h-full object-scale-down">
+                            @else
+                                <div class="p-4 flex items-center w-full h-full bg-gray-200 justify-center text-sm">Image
+                                    Not found</div>
+                            @endif
+                        </div>
+                        <p class="text-[#252f33] px-4 py-2 text-sm font-medium tracking-wider">{{ $product->name }}</p>
                     </div>
-                    <p class="text-[#252f33] px-4 py-2 text-sm font-medium tracking-wider">{{ $product->name }}</p>
-                </div>
+                </a>
             @empty
                 <div class="w-full shadow shadow-gray-300 bg-gray-100 h-72 flex items-center justify-center">
                     Nothing Found

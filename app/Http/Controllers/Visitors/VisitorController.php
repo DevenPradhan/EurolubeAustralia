@@ -32,12 +32,18 @@ class VisitorController extends Controller
 
     public function allNews()
     {
-        return view('visitor.all-news');
+        return view('Visitor.all-news');
     }
 
     public function productsAll()
     {
         return view('Visitor.products-all');
+    }
+
+    public function productsEach($id)
+    {
+        $product = Product::findOrFail($id);
+        return view('Visitor.products-each', compact('product'));
     }
 
     public function contactUs()

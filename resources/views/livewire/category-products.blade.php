@@ -4,7 +4,7 @@
             <a href="{{ route('products.show', $product->id) }}">
                 <div class="h-60 w-48 bg-gray-200">
                     <div class="p-2 h-40 overflow-hidden">
-                        <img src="" alt="" class="h-full w-full object-cover">
+                        <img src="{{asset('storage/products/images/'.$product->images()->first()->url)}}" alt="" class="h-full w-full object-scale-down">
                     </div>
                     <div class="p-4 w-full flex flex-col items-center">
                         <h6 class="tracking-wide text-base">{{ $product->name }}</h6>

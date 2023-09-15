@@ -19,8 +19,9 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 
     <livewire:styles />
-    @trixassets
-</head>
+       <x-rich-text-trix-styles />
+
+   </head>
 
 <body class="font-sans antialiased font-roboto">
     <div class="min-h-screen bg-gray-100 dark:bg-gray-900">
