@@ -108,8 +108,12 @@
                 <p>Dimensions: &emsp;
                     <span class="font-medium"> {{ $product->details->dimensions }}</span>
                 </p>
-                <p>Weight: &emsp;<span class="font-medium"> {{ $product->details->weight }}</span></p>
-                <p>Manual: &emsp;<span class="font-medium"> {{ $product->details->manual }}</span></p>
+                <p>Weight: &emsp;
+                    <span class="font-medium"> {{ $product->details->weight }}</span>
+                </p>
+                <p>Manual: &emsp;
+                    <span class="font-medium"> {{ $product->details->manual }}</span>
+                </p>
             </div>
         </div>
     </div>

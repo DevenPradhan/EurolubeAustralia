@@ -21,14 +21,13 @@
                 <div class="w-full py-44 px-4 md:px-16 max-w-2xl space-y-10">
                     <h1 class="heading_dark_lg font-archivo ">Featured Products</h1>
                     {{-- slider products --}}
-                    <div class="items-center flex space-x-3">
-                        <div class="flex space-x-10 ">
+                    <div class="items-center flex space-x-10">
                             <div class="w-72 shadow-sm shadow-gray-300 shrink-0 bg-white">
                                 <div class="h-36 relative">
                                     <img src="{{ asset('images/card bg img.jpg') }}" alt=""
-                                        class="absolute -z-10 inset-0 opacity-70">
+                                        class="absolute inset-0 opacity-40">
                                     <img src="{{ asset('/images/My project.png') }}" alt=""
-                                        class="w-full h-full object-cover">
+                                        class="w-full h-full object-cover relative z-20">
                                 </div>
                                 <div class="py-6 pl-6 pr-10 space-y-4 ">
                                     <h6 class="heading_dark_small whitespace-nowrap ml-4">Product Name</h6>
@@ -64,7 +63,6 @@
                                 </div>
                             </div>
 
-                        </div>
 
                     </div>
                     <div class="space-x-4 flex justify-center w-full">
