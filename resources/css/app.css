@@ -92,8 +92,8 @@ h6{
 
 /* contacts map */
 .dot{
-    @apply w-2.5 h-2.5 bg-white rounded-full;
+    @apply w-2.5 h-2.5 bg-white rounded-full animate-pulse;
 }
 .dot_active{
-    @apply rounded-full border-white border w-5 h-5 flex items-center;
+    @apply rounded-full border-white border w-5 h-5 flex items-center animate-none;
 }

@@ -56,7 +56,7 @@
                     class="absolute max-w-md md:max-w-3xl h-auto object-scale-down opacity-75 right-10 bottom-16">
 
                 <div class="absolute right-[85px] bottom-[268px]" x-bind:class="{ 'dot_active': city === 'sydney' }">
-                    <button class="dot mx-1" x-on:click.prevent="city = 'sydney'"></button>
+                    <button class="dot mx-1 " x-on:click.prevent="city = 'sydney'"></button>
                 </div><!-- Sydney -->
                 <div class="absolute right-[200px] bottom-[188px]"
                     x-bind:class="{ 'dot_active': city === 'melbourne' }">

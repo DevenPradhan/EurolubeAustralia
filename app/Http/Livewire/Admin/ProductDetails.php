@@ -14,6 +14,7 @@ class ProductDetails extends Component
     public Product $product;
     public $productImage;
     public $featureId;
+    public $featured = false;
     public $productQuantity;
     public $imageModal = false;
     public $trixModal = false;
@@ -91,32 +92,62 @@ class ProductDetails extends Component
 
     public function addFeature()
     {
-        $this->reset('productFeature');
+        $this->reset('productFeature', 'featured');
         $this->trixModal = true;
     }
 
     public function editFeature($id)
     {
+        $this->reset('featureId', 'featured');
         $this->featureId = $id;
-        $this->productFeature = ProductFeature::where('id', $id)
-            ->value('feature');
+        $feature = ProductFeature::find($id);
+        $this->productFeature = $feature->feature;
+        $additional = $feature->additional;
+        if ($additional == 1) {
+            $this->featured = true;
+        }
         $this->trixModal = true;
     }
 
     public function createFeature()
     {
-        $this->product->features()->create([
-            'feature' => $this->productFeature
+        $this->validate([
+            'productFeature' => 'required'
         ]);
+
+        if($this->featured){
+            $this->product->features()->update([
+                'additional' => 0
+            ]);
+        }
+
+        $this->product->features()->create([
+            'feature' => $this->productFeature,
+            'additional' => $this->featured
+        ]);
+
         $this->trixModal = false;
         $this->product->refresh();
     }
 
     public function saveEditFeature()
     {
-        $this->product->features()->find($this->featureId)->update([
-            'feature' => $this->productFeature
+        
+        $this->validate([
+            'productFeature' => 'required'
         ]);
+
+        if($this->featured){
+            $this->product->features()->update([
+                'additional' => 0
+            ]);
+        }
+
+        $this->product->features()->find($this->featureId)->update([
+            'feature' => $this->productFeature,
+            'additional' => $this->featured
+        ]);
+        
         $this->trixModal = false;
         $this->product->refresh();
     }

@@ -1,6 +1,4 @@
 <div class="space-y-4">
-    <h4 class="tracking-wide">{{ $product->name }}</h4>
-
     {{-- Status Div start --}}
     <div class="relative  " x-data="{ status: false }" x-on:click.away="status = false">
 
@@ -86,9 +84,9 @@
                 </div>
 
                 @foreach ($product->features as $features)
-                    <div class=" p-4 rounded-sm group shadow-sm relative">
+                    <div class=" p-4 rounded-sm group shadow-sm relative space-y-3">
                         <p class="w-full">{!! $features->feature !!}</p>
-                        <div class="text-xs tracking-wider absolute top-4 right-4 hidden group-hover:block">
+                        <div class="text-xs tracking-wider absolute top-4 right-4 hidden group-hover:block transition-all">
                             <x-secondary-button class="px-1 py-1 max-w-max"
                                 wire:click.prevent="editFeature({{ $features->id }})">Edit</x-secondary-button>
                             <x-danger-button wire:click.prevent="deleteFeature({{ $features->id }})"
@@ -118,15 +116,22 @@
         </div>
     </div>
 
+    
+
+
     <x-livewire-modal wire:model="trixModal" maxWidth="4xl">
         <div class="p-6 space-y-4">
 
             <h6>Feature/Description</h6>
             <div class="" wire:ignore>
                 <x-trix-field name="productFeature" :value="$productFeature" id="productFeature"
-                    wire:model.defer="productFeature" class="text-sm" />
+                    wire:model.defer="productFeature" class="text-sm" required />
                 <x-input-error :messages="$errors->get('productFeature')" class="mt-2" />
                 <p class="text-xs tracking-wider text-red-600">This input field doesnt currently support drag and drop feature. Please type into the field manually. </p>
+            </div>
+            <div class=" inline-flex space-x-4 items-center">
+                <x-input-label class="w-full">Do you want to make this visible in your featured products page?</x-input-label>
+                <input type="checkbox" wire:model.defer="featured" class="border-gray-400 focus:ring-0 rounded-sm focus:ring-gray-400 text-gray-400">
             </div>
 
             <div class="mt-6 flex justify-end">
@@ -141,7 +146,7 @@
                     </x-primary-button>
                 @else
                     <x-primary-button class="ml-3" type="submit" wire:click.prevent="createFeature"
-                        wire:loading.attr="disabled">
+                        >
                         {{ __('Create') }}
                     </x-primary-button>
                 @endif
@@ -162,18 +167,18 @@
                     </div>
                 </div>
                 <div class="flex space-x-10 items-center">
-                    <x-input-label for="weight" value="Weight" class="w-1/4" />
-                    <div class="w-full">
-                        <x-text-input type="text" wire:model.defer="weight" name="weight" class="w-3/4" />
-                        <x-input-error :messages="$errors->get('weight')" class="mt-2" />
-                    </div>
-                </div>
-                <div class="flex space-x-10 items-center">
                     <x-input-label for="dimensions" value="Dimensions" class="w-1/4" />
                     <div class="w-full">
                         <x-text-input type="text" wire:model.defer="dimensions" name="dimensions"
                             class="w-3/4" />
                         <x-input-error :messages="$errors->get('dimensions')" class="mt-2" />
+                    </div>
+                </div>
+                <div class="flex space-x-10 items-center">
+                    <x-input-label for="weight" value="Weight" class="w-1/4" />
+                    <div class="w-full">
+                        <x-text-input type="text" wire:model.defer="weight" name="weight" class="w-3/4" />
+                        <x-input-error :messages="$errors->get('weight')" class="mt-2" />
                     </div>
                 </div>
                 <div class="mt-6 flex justify-end">
