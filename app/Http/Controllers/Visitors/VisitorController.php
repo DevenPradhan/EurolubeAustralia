@@ -52,4 +52,10 @@ class VisitorController extends Controller
     {
         return view('Visitor.contact-us');
     }
+
+    public function services()
+    {
+
+        return view('Visitor.services');
+    }
 }

@@ -34,7 +34,7 @@
             <a href="{{ route('view_products') }}" class="nav-titles ">
                 Products
             </a>
-            <a href="#" class="nav-titles">
+            <a href="{{route('services')}}" class="nav-titles">
                 Services
             </a>
             <a href="#" class="nav-titles">
