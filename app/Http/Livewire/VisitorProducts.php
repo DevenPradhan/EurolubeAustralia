@@ -55,7 +55,7 @@ class VisitorProducts extends Component
             
         // }
 
-        $products = $products->where('status', 1)->get();
+        $products = $products->where('status', 1)->paginate(9);
 
         $categories = ProductCategory::where('level', 1)->pluck('name', 'id');
 

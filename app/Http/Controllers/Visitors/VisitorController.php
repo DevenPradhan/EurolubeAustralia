@@ -58,4 +58,10 @@ class VisitorController extends Controller
 
         return view('Visitor.services');
     }
+
+    public function downloads()
+    {
+
+        return view('Visitor.downloads');
+    }
 }

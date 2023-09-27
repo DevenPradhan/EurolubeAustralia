@@ -37,7 +37,7 @@
             <a href="{{route('services')}}" class="nav-titles">
                 Services
             </a>
-            <a href="#" class="nav-titles">
+            <a href="{{route('downloads')}}" class="nav-titles">
                 Downloads
             </a>
             <a href="{{route('news.blogs')}}" class="nav-titles">

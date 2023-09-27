@@ -4,96 +4,110 @@
 @tailwind utilities;
 
 /*home/guest navigation menu */
-.nav-titles{
+.nav-titles {
     @apply relative;
 }
-.nav-titles::after{
+
+.nav-titles::after {
     @apply content-[''] bg-red-800 h-[3px] w-0 left-0 -bottom-1 absolute duration-300;
 }
-.nav-titles:hover::after{
+
+.nav-titles:hover::after {
     @apply w-full;
 }
+
 /* classlist for subnavbar */
-.sidebar_list{
-    @apply uppercase flex justify-start  text-sm px-2 py-2.5 rounded-sm hover:bg-gray-50 transition-all w-48 space-x-4;
+.sidebar_list {
+    @apply uppercase flex justify-start text-sm px-2 py-2.5 rounded-sm hover:bg-gray-50 transition-all w-48 space-x-4;
 }
 
-.disabled{
+.disabled {
     @apply bg-gray-200 hover:shadow-none text-neutral-600 hover:text-neutral-600;
 }
 
-.user_th{
+.user_th {
     @apply border-b-2 border-neutral-800 min-w-[130px] pb-2;
 }
 
-.user_td{
-    @apply flex justify-center w-full border-b py-3 ;
+.user_td {
+    @apply flex justify-center w-full border-b py-3;
 }
 
-.form_input{
+.form_input {
     @apply text-black rounded-sm min-h-[40px] px-4;
 }
 
-.form_label{
+.form_label {
     @apply text-neutral-400 font-light;
 }
 
-.form_tr{
-    @apply bg-gray-800 text-white h-max;  
+.form_tr {
+    @apply bg-gray-800 text-white h-max;
 }
 
-.select_new{
+.select_new {
     @apply text-gray-600 font-semibold;
 }
 
-.anchor_tag{
-    @apply flex font-semibold font-mono hover:underline ;
+.anchor_tag {
+    @apply flex font-semibold font-mono hover:underline;
 }
 
-.table_border{
-    @apply  p-4 border-2 border-red-100 rounded-sm;
+.table_border {
+    @apply p-4 border-2 border-red-100 rounded-sm;
 }
 
-h1{
+h1 {
     @apply text-6xl;
 }
-h2{
+
+h2 {
     @apply text-5xl;
 }
-h3{
+
+h3 {
     @apply text-4xl;
 }
-h4{
+
+h4 {
     @apply text-3xl;
 }
-h5{
+
+h5 {
     @apply text-2xl;
 }
-h6{
+
+h6 {
     @apply text-xl;
 }
 
 /* modified classes */
 
 /* dark heading */
-.heading_dark_small{
-    @apply font-semibold  text-[#252f33];
+.heading_dark_small {
+    @apply font-semibold text-[#252f33];
 }
-.heading_dark_lg{
+
+.heading_dark_lg {
     @apply uppercase font-black text-[#252f33];
 }
 
-.button_link{
-    @apply px-7 py-3 uppercase  text-white whitespace-nowrap font-medium;
+.button_link {
+    @apply px-7 py-3 uppercase text-white whitespace-nowrap font-medium;
 }
 
 /*Products */
 
 
 /* contacts map */
-.dot{
+.dot {
     @apply w-2.5 h-2.5 bg-white rounded-full animate-pulse;
 }
-.dot_active{
+
+.dot_active {
     @apply rounded-full border-white border w-5 h-5 flex items-center animate-none;
+}
+
+.services_absolute_text {
+    @apply px-3 py-2 text-xs font-medium text-start tracking-wide absolute z-20 hover:bg-red-800 bg-[#E7EAEC] text-neutral-600 hover:text-white transition-colors duration-200;
 }

@@ -36,6 +36,7 @@ Route::get('news-blogs', [VisitorController::class, 'newsBlog'])->name('news.blo
 Route::get('all-news', [VisitorController::class, 'allNews'])->name('all.news');
 Route::get('contact-us', [VisitorController::class, 'contactUs'])->name('contact.us');
 Route::get('services', [VisitorController::class, 'services'])->name('services');
+Route::get('downloads', [VisitorController::class, 'downloads'])->name('downloads');
 
 Route::get('/dashboard', function () {
     return view('dashboard');

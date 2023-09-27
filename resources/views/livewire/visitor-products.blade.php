@@ -41,7 +41,7 @@
     </div>
 
     <div class=" justify-self-end">
-        {{-- {{$products->links()}} --}}
+        {{$products->links()}}
 
     </div>
 </div>
