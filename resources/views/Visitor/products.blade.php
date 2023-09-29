@@ -42,7 +42,7 @@
                         <a href="{{ asset('brochures/Eurolube Australia Lubrication Equipment.pdf') }}"
                             target="__blank">
                             <div class="w-56 h-auto overflow-hidden shadow-sm shadow-gray-500">
-                                <img src="{{ asset('images/banner2-27.jpg') }}" alt="eac"
+                                <img src="{{ asset('images/Eurolube Australia Lubrication Equipment.jpg') }}" alt="eac"
                                     class="w-full h-full object-scale-down">
                             </div>
                         </a>

@@ -32,8 +32,8 @@ $maxWidth = [
     {{-- x-on:open-modal.window="$event.detail == '{{ $name }}' ? show = true : null" --}}
     x-on:close.stop="show = false"
     x-on:keydown.escape.window="show = false"
-    x-on:keydown.tab.prevent="$event.shiftKey || nextFocusable().focus()"
-    x-on:keydown.shift.tab.prevent="prevFocusable().focus()"
+    {{-- x-on:keydown.prevent="$event.shiftKey || nextFocusable().focus()" --}}
+    {{-- x-on:keydown.shift.prevent="prevFocusable().focus()" --}}
     x-show="show"
     class="fixed inset-0 overflow-y-auto px-4 py-6 sm:px-0 z-50 top-20" 
     style="display: {{ $show ? 'block' : 'none' }};"

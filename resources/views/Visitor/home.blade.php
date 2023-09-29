@@ -76,7 +76,7 @@
                                 what materials are compatible with the selected chemical.</p>
                         </a> --}}
                         <a class="space-y-3 p-5 backdrop-brightness-125 hover:bg-opacity-80 hover:bg-red-800 transition-all"
-                            href="#">
+                            href="{{route('downloads')}}">
                             <h6 class="uppercase text-white text-sm">Catalogues & Tech Sheets</h6>
                             <p class="text-sm font-normal tracking-wider">Here you will find products that improve
                                 efficiency, reduce environmental impact and increase your profitability. You can view

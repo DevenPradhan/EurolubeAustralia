@@ -171,9 +171,11 @@ class ProductDetails extends Component
     public function saveDetails()
     {
         $this->validate([
-            'partNo' => 'max:20',
+            'partNo' => 'max:20|unique:product_details,part_no',
             'dimensions' => 'max:20',
             'weight' => 'max:20'
+        ], [
+            'partNo' => 'There is already a product with the unique part no.'
         ]);
 
         $this->product->details()->update([
