@@ -1,6 +1,9 @@
 <div class="flex flex-col h-full justify-center">
     <div class="flex flex-row justify-between space-x-5 h-screen">
         <div class="w-full grid grid-flow-row md:grid-cols-3 gap-8 place-content-start">
+            <div class="tracking-wider font-archivo text-[#252f33d3] font-medium italic" wire:loading.delay wire:target="search">
+               ... Loading
+            </div>
             @forelse ($products as $product)
                 <a href="{{ route('products-each', $product->id) }}" class="h-max w-max">
                     <div

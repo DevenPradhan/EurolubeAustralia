@@ -2,11 +2,20 @@
     <div class="w-full">
         <div class="container max-w-7xl mx-auto my-10">
             <section class="w-full relative h-full md:h-[900px]">
-                <img src="{{ asset('images/banner2-31.jpg') }}" alt="public/images/banner2-31.jpg"
-                    class="absolute inset-0 -z-10 w-full h-full object-cover">
+                <img src="{{ asset('images/MAP.jpg') }}" alt="public/images/banner2-31.jpg"
+                    class="absolute inset-0 -z-10 w-full h-full object-cover brightness-90">
                 <div class="font-roboto space-y-10 px-4 md:px-16 py-44 max-w-2xl">
                     <h1 class=" uppercase font-black text-white  font-archivo">How to find us</h1>
 
+                    <p class="text-sm tracking-wide mt-5 text-[#ffffffc7] max-w-md">We're your trusted destination for
+                        fluid technology solutions, specializing in high-quality parts. As authorized distributors of
+                        Eurolube Sweden, we pride ourselves on offering top-notch products to meet your needs.
+                        <br>
+                        <br>
+                        To locate us, simply click the button below. It will seamlessly redirect you to Google Maps,
+                        guiding you to our address at 1146 Abernethy Road, High Wycombe Wa 6057. Finding us has never
+                        been easier! Thank you for choosing us as your fluid technology partner.
+                    </p>
                     <div class="">
                         <a href="https://www.google.com/maps/place/2%2F1146+Abernethy+Rd,+High+Wycombe+WA+6057/@-31.9341828,115.9936982,17z/data=!3m1!4b1!4m5!3m4!1s0x2a32b90287572c79:0xc7a4d30827b4404f!8m2!3d-31.9341828!4d115.9936982?entry=ttu"
                             class=" bg-red-800 button_link" target="__blank">Find us in google maps</a>
@@ -74,10 +83,13 @@
                 <div class="absolute right-[757px] bottom-[282px]" x-bind:class="{ 'dot_active': city === 'bunbury' }">
                     <button class="dot mx-1" x-on:click.prevent="city = 'bunbury'"></button>
                 </div><!-- Bunbury -->
+                <div class="absolute right-[772px] bottom-[365px]" x-bind:class="{ 'dot_active': city === 'geraldton' }">
+                    <button class="dot mx-1" x-on:click.prevent="city = 'geraldton'"></button>
+                </div><!-- Geraldton -->
 
 
                 <div
-                    class=" top-[60%] -left-32 absolute z-10 flex space-x-4 w-max items-start h-max text-zinc-400 -rotate-90">
+                    class=" top-[65%] -left-44 absolute z-10 flex space-x-4 w-max items-start h-max text-zinc-400 -rotate-90">
                     <button class="hover:text-white" x-on:click.prevent="city = 'sydney'"
                         x-bind:class="{ 'text-white': city === 'sydney' }">Sydney</button>
                     <button class="hover:text-white" x-on:click.prevent="city = 'melbourne'"
@@ -90,6 +102,8 @@
                         x-bind:class="{ 'text-white': city === 'hobart' }">Hobart</button>
                     <button class="hover:text-white" x-on:click.prevent="city = 'perth'"
                         x-bind:class="{ 'text-white': city === 'perth' }">Perth</button>
+                        <button class="hover:text-white" x-on:click.prevent="city = 'geraldton'"
+                        x-bind:class="{ 'text-white': city === 'geraldton' }">Geraldton</button>
                 </div>
 
                 <div class="font-roboto space-y-10 px-4 md:px-16 py-16 md:py-44">
@@ -102,6 +116,12 @@
                             <br>
                             <br>
                             Our Head Office
+                        </p>
+                        <p x-show="city === 'geraldton'">Geraldton, <br>
+                            Geraldton
+                            <br>
+                            <br>
+                            Sales Department
                         </p>
                         <p x-show="city === 'brisbane'">Richard Beare, <br>
                             <br>

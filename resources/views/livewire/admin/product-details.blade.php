@@ -53,6 +53,7 @@
                 wire:click.prevent="openImageModal">{{ $product->images->count() == 0 ? 'Add' : 'Change' }}
             </x-secondary-button>
         </div>
+        
         <div class="space-y-10 w-1/2 text-sm tracking-wider">
             <div class="space-y-4" 
                 x-data="{ description: @entangle('description') }">
