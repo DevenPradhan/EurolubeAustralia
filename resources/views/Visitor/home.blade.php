@@ -2,9 +2,8 @@
     <div class="w-full">
         <div class="container max-w-7xl mx-auto my-10">
 
-            <section class="w-full relative h-full md:h-[900px]">
-                <img src="{{ asset('images/banner2-2.jpg') }}" alt="fdshajkhf1212"
-                    class="absolute inset-0 -z-10 w-full h-full object-cover object-left">
+            <section class="w-full relative h-full md:h-[900px] bg-fixed bg-center"
+                style="background-image: url('\images/banner2-2.jpg'); background-size: 1280px">
                 <div class="font-roboto space-y-10 px-4 md:px-16 py-44 max-w-2xl">
                     <h1 class=" uppercase font-black text-white  font-archivo">Quality You can trust</h1>
 
@@ -58,10 +57,9 @@
             </section> --}}
 
 
-            <section class="w-full relative h-full md:h-[900px] overflow-hidden">
-                <img src="{{ asset('images/sdfafdsfsdafsdafsd.jpg') }}" alt="banner12332fs"
-                    class="absolute inset-0 -z-10 w-full h-full object-cover brightness-50">
-                <div class="font-roboto space-y-10 px-4 md:px-16 py-44">
+            <section class="w-full relative h-full md:h-[900px] overflow-hidden bg-fixed bg-center"
+                    style="background-image: url('\images/sdfafdsfsdafsdafsd.jpg'); background-size: 1280px;">
+                <div class="font-roboto space-y-10 px-4 md:px-16 h-full backdrop-brightness-50 flex flex-col justify-center">
                     <h1 class=" uppercase font-black text-white  font-archivo max-w-2xl">Frequently Used
                         Services...
                     </h1>
@@ -75,14 +73,14 @@
                                 pumped. Check our Pump Selection Guide to Choose the chemical to be pumped, and find out
                                 what materials are compatible with the selected chemical.</p>
                         </a> --}}
-                        <a class="space-y-3 p-5 backdrop-brightness-125 hover:bg-opacity-80 hover:bg-red-800 transition-all"
+                        <a class="space-y-3 p-5 bg-neutral-200 bg-opacity-10 hover:bg-opacity-80 hover:bg-red-800 transition-all"
                             href="{{route('downloads')}}">
                             <h6 class="uppercase text-white text-sm">Catalogues & Tech Sheets</h6>
                             <p class="text-sm font-normal tracking-wider">Here you will find products that improve
                                 efficiency, reduce environmental impact and increase your profitability. You can view
                                 all our products, catalogues and tech sheets online or download a copy today.</p>
                         </a>
-                        <a class="space-y-3 p-5 backdrop-brightness-125 hover:bg-opacity-80 hover:bg-red-800 transition-all"
+                        <a class="space-y-3 p-5 bg-neutral-200 bg-opacity-10 hover:bg-opacity-80 hover:bg-red-800 transition-all"
                             href="https://www.eurolube.com/en/pump-selection-guide/" target="__blank">
                             <h6 class="uppercase text-white text-sm">Pump Selection Guide</h6>
                             <p class="text-sm font-normal tracking-wider">We make it easier for our customers to choose

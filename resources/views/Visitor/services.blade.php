@@ -2,10 +2,9 @@
 
     <div class="w-full">
         <div class="container max-w-7xl mx-auto my-10">
-            <section class="w-full relative h-[750px] md:h-[900px]">
-                <img src="{{ asset('images/serv.jpg') }}" alt="serv.jpg"
-                    class="absolute inset-0 -z-10 w-full h-full object-cover object-left brightness-75">
-
+            <section class="w-full relative h-[750px] md:h-[900px] bg-fixed bg-center"
+                style="background-image: url('\images/serv.jpg'); background-size:1280px">
+                
                 <div class="py-44 px-4 md:px-16">
                     <h1 class=" uppercase max-w-xl font-black text-white font-archivo">Check out <br>our solutions</h1>
                     <p class="text-sm tracking-wide mt-5 text-[#ffffffc7] max-w-lg">Here is a showcase of various
@@ -66,9 +65,8 @@
                 </div>
 
             </section>
-            <section class="w-full relative h-full md:h-[900px] overflow-hidden">
-                <img src="{{ asset('images/containers.jpg') }}" alt="banner2-26.jpg"
-                    class="absolute inset-0 -z-10 w-full h-full object-cover brightness-75">
+            <section class="w-full relative h-full md:h-[900px] overflow-hidden bg-fixed bg-center"
+                    style="background-image: url('\images/containers.jpg'); background-size:1280px">
 
             </section>
         </div>

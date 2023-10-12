@@ -1,10 +1,11 @@
 <x-visitor-layout>
     <div class="w-full">
         <div class="container max-w-7xl mx-auto my-10">
-            <section class="w-full relative h-full md:h-[900px]">
-                <img src="{{ asset('images/MAP.jpg') }}" alt="public/images/banner2-31.jpg"
-                    class="absolute inset-0 -z-10 w-full h-full object-cover brightness-90">
-                <div class="font-roboto space-y-10 px-4 md:px-16 py-44 max-w-2xl">
+            <section class="w-full relative h-full md:h-[900px] bg-fixed bg-center bg-cover"
+                    style="background-image: url('\images/MAP.jpg'); background-repeat:no-repeat">
+                {{-- <img src="{{ asset('images/MAP.jpg') }}" alt="public/images/banner2-31.jpg"
+                    class="absolute inset-0 -z-10 w-full h-full object-cover brightness-90"> --}}
+                <div class="backdrop-brightness-90 w-full h-full font-roboto space-y-10 px-4 md:px-16 py-44 ">
                     <h1 class=" uppercase font-black text-white  font-archivo">How to find us</h1>
 
                     <p class="text-sm tracking-wide mt-5 text-[#ffffffc7] max-w-md">We're your trusted destination for
@@ -57,106 +58,100 @@
                     </div>
                 </div>
             </section>
-            <section class="w-full relative h-[600px] md:h-[900px] overflow-hidden" x-data="{ city: 'perth' }">
-                <img src="{{ asset('images/banner2-26.jpg') }}" alt="banner12332fs"
-                    class="absolute inset-0 -z-10 w-full h-full object-cover contrast-75 brightness-75">
+            <section class="w-full relative h-[600px] md:h-[900px] overflow-hidden bg-fixed bg-center bg-cover"
+                style="background-image: url('\images/banner2-26.jpg'); background-repeat:no-repeat"
+                x-data="{ city: 'perth' }">
 
-                <img src="{{ asset('images/ausmap.png') }}" alt="ausmap.png"
-                    class="absolute max-w-md md:max-w-3xl h-auto object-scale-down opacity-75 right-10 bottom-16">
+                <div class="w-full h-full backdrop-brightness-75">
+                    <img src="{{ asset('images/ausmap.png') }}" alt="ausmap.png"
+                        class="absolute max-w-md md:max-w-3xl h-auto object-scale-down opacity-90 right-10 bottom-16">
+                    <div class="absolute right-[165px] top-[305px]"
+                        x-bind:class="{ 'dot_active': city === 'garbutt' }">
+                        <button class="dot mx-1" x-on:click.prevent="city = 'garbutt'"></button>
+                    </div>
+                    {{-- <div class="absolute right-[85px] bottom-[268px]" x-bind:class="{ 'dot_active': city === 'sydney' }">
+                        <button class="dot mx-1 " x-on:click.prevent="city = 'sydney'"></button>
+                    </div> --}}
+                    {{-- <div class="absolute right-[200px] bottom-[188px]"
+                        x-bind:class="{ 'dot_active': city === 'melbourne' }">
+                        <button class="dot mx-1" x-on:click.prevent="city = 'melbourne'"></button>
+                    </div> --}}
+                    {{-- <div class="absolute right-[45px] bottom-[400px]" x-bind:class="{ 'dot_active': city === 'brisbane' }">
+                        <button class="dot mx-1" x-on:click.prevent="city = 'brisbane'"></button>
+                    </div> --}}
+                    {{-- <div class="absolute right-[160px] bottom-[70px]" x-bind:class="{ 'dot_active': city === 'hobart' }">
+                        <button class="dot mx-1" x-on:click.prevent="city = 'hobart'"></button>
+                    </div> --}}
+                    <div class="absolute right-[712px] bottom-[241px]"
+                        x-bind:class="{ 'dot_active': city === 'albany' }">
+                        <button class="dot mx-1" x-on:click.prevent="city = 'albany'"></button>
+                    </div>
+                    <div class="absolute right-[752px] bottom-[310px]"
+                        x-bind:class="{ 'dot_active': city === 'perth' }">
+                        <button class="dot mx-1" x-on:click.prevent="city = 'perth'"></button>
+                    </div><!-- Perth -->
+                    <div class="absolute right-[757px] bottom-[282px]"
+                        x-bind:class="{ 'dot_active': city === 'bunbury' }">
+                        <button class="dot mx-1" x-on:click.prevent="city = 'bunbury'"></button>
+                    </div><!-- Bunbury -->
+                    <div class="absolute right-[772px] bottom-[365px]"
+                        x-bind:class="{ 'dot_active': city === 'geraldton' }">
+                        <button class="dot mx-1" x-on:click.prevent="city = 'geraldton'"></button>
+                    </div><!-- Geraldton -->
 
-                <div class="absolute right-[85px] bottom-[268px]" x-bind:class="{ 'dot_active': city === 'sydney' }">
-                    <button class="dot mx-1 " x-on:click.prevent="city = 'sydney'"></button>
-                </div><!-- Sydney -->
-                <div class="absolute right-[200px] bottom-[188px]"
-                    x-bind:class="{ 'dot_active': city === 'melbourne' }">
-                    <button class="dot mx-1" x-on:click.prevent="city = 'melbourne'"></button>
-                </div><!-- Melbourne -->
-                <div class="absolute right-[45px] bottom-[400px]" x-bind:class="{ 'dot_active': city === 'brisbane' }">
-                    <button class="dot mx-1" x-on:click.prevent="city = 'brisbane'"></button>
-                </div><!-- Brisbane -->
-                <div class="absolute right-[160px] bottom-[70px]" x-bind:class="{ 'dot_active': city === 'hobart' }">
-                    <button class="dot mx-1" x-on:click.prevent="city = 'hobart'"></button>
-                </div><!-- Hobart -->
-                <div class="absolute right-[752px] bottom-[310px]" x-bind:class="{ 'dot_active': city === 'perth' }">
-                    <button class="dot mx-1" x-on:click.prevent="city = 'perth'"></button>
-                </div><!-- Perth -->
-                <div class="absolute right-[757px] bottom-[282px]" x-bind:class="{ 'dot_active': city === 'bunbury' }">
-                    <button class="dot mx-1" x-on:click.prevent="city = 'bunbury'"></button>
-                </div><!-- Bunbury -->
-                <div class="absolute right-[772px] bottom-[365px]" x-bind:class="{ 'dot_active': city === 'geraldton' }">
-                    <button class="dot mx-1" x-on:click.prevent="city = 'geraldton'"></button>
-                </div><!-- Geraldton -->
 
-
-                <div
-                    class=" top-[65%] -left-44 absolute z-10 flex space-x-4 w-max items-start h-max text-zinc-400 -rotate-90">
-                    <button class="hover:text-white" x-on:click.prevent="city = 'sydney'"
-                        x-bind:class="{ 'text-white': city === 'sydney' }">Sydney</button>
-                    <button class="hover:text-white" x-on:click.prevent="city = 'melbourne'"
-                        x-bind:class="{ 'text-white': city === 'melbourne' }">Melbourne</button>
-                    <button class="hover:text-white" x-on:click.prevent="city = 'bunbury'"
-                        x-bind:class="{ 'text-white': city === 'bunbury' }">Bunbury</button>
-                    <button class="hover:text-white" x-on:click.prevent="city = 'brisbane'"
-                        x-bind:class="{ 'text-white': city === 'brisbane' }">Brisbane</button>
-                    <button class="hover:text-white" x-on:click.prevent="city = 'hobart'"
-                        x-bind:class="{ 'text-white': city === 'hobart' }">Hobart</button>
-                    <button class="hover:text-white" x-on:click.prevent="city = 'perth'"
-                        x-bind:class="{ 'text-white': city === 'perth' }">Perth</button>
+                    <div
+                        class=" top-[65%] -left-16 absolute z-10 flex space-x-4 w-max items-start h-max text-zinc-400 -rotate-90">
+                        <button class="hover:text-white" x-on:click.prevent="city = 'albany'"
+                            x-bind:class="{ 'text-white': city === 'albany' }">Albany</button>
+                        <button class="hover:text-white" x-on:click.prevent="city = 'garbutt'"
+                            x-bind:class="{ 'text-white': city === 'garbutt' }">Garbutt</button>
+                        <button class="hover:text-white" x-on:click.prevent="city = 'bunbury'"
+                            x-bind:class="{ 'text-white': city === 'bunbury' }">Bunbury</button>
+                        {{-- hobart button --}}
+                        <button class="hover:text-white" x-on:click.prevent="city = 'perth'"
+                            x-bind:class="{ 'text-white': city === 'perth' }">Perth</button>
                         <button class="hover:text-white" x-on:click.prevent="city = 'geraldton'"
-                        x-bind:class="{ 'text-white': city === 'geraldton' }">Geraldton</button>
-                </div>
-
-                <div class="font-roboto space-y-10 px-4 md:px-16 py-16 md:py-44">
-
-                    <h1 class=" uppercase font-black text-white  font-archivo max-w-md">Pinpoint <br> a city
-                    </h1>
-                    <div class="flex text-[#ffffffc7] ml-20 text-sm">
-                        <p x-show="city === 'perth'">Located in the heart of Perth, <br>
-                            High Wycombe WA 6057
-                            <br>
-                            <br>
-                            Our Head Office
-                        </p>
-                        <p x-show="city === 'geraldton'">Geraldton, <br>
-                            Geraldton
-                            <br>
-                            <br>
-                            Sales Department
-                        </p>
-                        <p x-show="city === 'brisbane'">Richard Beare, <br>
-                            <br>
-                            <br>
-                            Brisbane Regional Office
-                        </p>
-                        <p x-show="city === 'bunbury'">Located in the heart of Perth, <br>
-                            High Wycombe WA 6057
-                            <br>
-                            <br>
-                            Our Head Office
-                        </p>
-                        <p x-show="city === 'hobart'">Located in the heart of Perth, <br>
-                            High Wycombe WA 6057
-                            <br>
-                            <br>
-                            Our Head Office
-                        </p>
-                        <p x-show="city === 'melbourne'">Located in the heart of Perth, <br>
-                            High Wycombe WA 6057
-                            <br>
-                            <br>
-                            Our Head Office
-                        </p>
-                        <p x-show="city === 'sydney'">Located in the heart of Perth, <br>
-                            High Wycombe WA 6057
-                            <br>
-                            <br>
-                            Our Head Office
-                        </p>
+                            x-bind:class="{ 'text-white': city === 'geraldton' }">Geraldton</button>
                     </div>
 
+                    <div class="font-roboto space-y-10 px-4 md:px-16 py-16 md:py-44">
+
+                        <h1 class=" uppercase font-black text-white  font-archivo max-w-md">Pinpoint <br> a city
+                        </h1>
+                        <div class="flex text-[#ffffffc7] ml-20 text-sm">
+                            <p x-show="city === 'perth'">Located in the heart of Perth, <br>
+                                High Wycombe WA 6057
+                                <br>
+                                <br>
+                                Our Head Office
+                            </p>
+                            <p x-show="city === 'geraldton'">
+                                Stay updated about our new store in Geraldtown
+                            </p>
+                            <p x-show="city === 'albany'">
+                                Stay updated about our new store in Albany
+                            </p>
+                            <p x-show="city === 'brisbane'">Richard Beare, <br>
+                                <br>
+                                <br>
+                                Brisbane Regional Office
+                            </p>
+                            <p x-show="city === 'bunbury'">
+                                Stay updated about our new store in Bunbury
+                            </p>
+                            <p class="" x-show="city === 'garbutt'">
+                                Aushose NQ Pty Ltd <br>
+                                62 Pilkington St, Garbutt <br>
+                                Queensland, 4814
+                            </p>
+                        </div>
 
 
+
+                    </div>
                 </div>
+
             </section>
         </div>
     </div>

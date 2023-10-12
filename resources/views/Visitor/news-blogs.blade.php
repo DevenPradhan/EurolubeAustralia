@@ -1,10 +1,8 @@
 <x-visitor-layout>
     <div class="w-full">
         <div class="container max-w-7xl mx-auto my-10">
-            <section class="w-full relative h-full md:h-[900px]">
-                <img src="{{ asset('images/sdfasfsafsa.jpg') }}" alt="sdfasfsafsa"
-                    class="absolute inset-0 -z-10 w-full h-full object-cover object-left brightness-75">
-
+            <section class="w-full relative h-full md:h-[900px] bg-fixed bg-cover bg-center"
+                style="background-image: url('\images/sdfasfsafsa.jpg'); background-repeat:no-repeat">
                 <div class="py-44 px-4 md:px-16 space-y-20 ">
                     <h1 class=" uppercase max-w-xl font-black text-white font-archivo">Get the <br> latest news</h1>
                     <div class="flex shadow-md max-h-80">
@@ -99,26 +97,26 @@
                     </div>
                 </div>
             </section>
-            <section class="w-full relative h-full md:h-[900px] overflow-hidden">
-                <img src="{{ asset('images/banner2-23.jpg') }}" alt="banner12332fs"
-                    class="absolute inset-0 -z-10 w-full h-full object-cover brightness-50">
-                <div class="font-roboto space-y-10 px-4 md:px-16 py-44">
+            <section class="w-full relative h-full md:h-[900px] overflow-hidden bg-fixed bg-center"
+                style="background-image: url('\images/banner2-23.jpg'); 1280px">
+             
+                <div class="font-roboto backdrop-brightness-50 space-y-10 px-4 md:px-16 py-44 h-full">
                     <h1 class=" uppercase font-black text-white  font-archivo max-w-2xl">Other Publications
                     </h1>
 
                     <div class="my-5 grid max-w-sm md:max-w-max text-[#ffffffc7] grid-flow-row md:grid-flow-col gap-4">
-                        <a class="space-y-3 p-5 w-60 backdrop-brightness-125 hover:bg-opacity-80 hover:bg-red-800 transition-all"
+                        <a class="space-y-3 p-5 w-60 bg-neutral-200 bg-opacity-10 hover:bg-opacity-80 hover:bg-red-800 transition-all"
                             href="#">
                             <h6 class="uppercase text-white text-sm">Newsletters</h6>
                             <div class="p-10"></div>
                         </a>
-                        <a class="space-y-3 w-60 p-5 backdrop-brightness-125 hover:bg-opacity-80 hover:bg-red-800 transition-all"
+                        <a class="space-y-3 w-60 p-5 bg-neutral-200 bg-opacity-10 hover:bg-opacity-80 hover:bg-red-800 transition-all"
                             href="#">
                             <h6 class="uppercase text-white text-sm">Catalogues & Tech Sheets</h6>
                             <div class="p-10"></div>
 
                         </a>
-                        <a class="space-y-3 p-5 w-60 backdrop-brightness-125 hover:bg-opacity-80 hover:bg-red-800 transition-all"
+                        <a class="space-y-3 p-5 w-60 bg-neutral-200 bg-opacity-10 hover:bg-opacity-80 hover:bg-red-800 transition-all"
                             href="#">
                             <h6 class="uppercase text-white text-sm">Reports</h6>
                             <div class="p-10"></div>

@@ -2,9 +2,8 @@
     <div class="w-full">
         <div class="container max-w-7xl mx-auto my-10">
 
-            <section class="w-full relative h-full md:h-[900px]">
-                <img src="{{ asset('images/banner2-6.jpg') }}" alt="fdshajkfdshf1212"
-                    class="absolute inset-0 -z-10 w-full h-full object-cover">
+            <section class="w-full bg-fixed bg-center relative h-full md:h-[900px]"
+                style="background-image: url('\images/banner2-6.jpg'); background-size:1280px; background-repeat:no-repeat">
                 <div class="font-roboto space-y-10 px-4 md:px-16 py-44 max-w-2xl">
                     <h1 class=" uppercase font-black text-white  font-archivo">Get to know us</h1>
 
@@ -78,39 +77,53 @@
                     </div>
                 </div>
             </section>
-            <section class="w-full relative h-full md:h-[900px] overflow-hidden">
-                <img src="{{ asset('images/banner2-21.jpg') }}" alt="banner12332fs"
-                    class="absolute inset-0 -z-10 w-full h-full object-cover contrast-75">
-                <div class="font-roboto space-y-10 px-4 md:px-16 py-44">
+            <section class="w-full relative bg-fixed bg-center h-full md:h-[900px] overflow-hidden"
+            style="background-image: url('\images/banner2-21.jpg'); background-size:full 900px; background-repeat:no-repeat">
+                {{-- <img src="{{ asset('images/banner2-21.jpg') }}" alt="banner12332fs"
+                    class="absolute inset-0 -z-10 w-full h-full object-cover contrast-75"> --}}
+                <div class="font-roboto space-y-10 px-4 md:px-16 py-44 h-full">
                     <h1 class=" uppercase font-black text-white  font-archivo max-w-2xl">Questions we get a
                         lot
                     </h1>
 
-                    <div class="flex flex-col space-y-4">
-                        <div class="max-w-2xl space-y-2" x-data="{ tab : ''}">
+                    <div class="flex flex-col space-y-4" x-data="{tab: ''}">
+                        <div class="max-w-2xl space-y-2">
                             <button x-on:click.prevent="tab = (tab === 'first_tab') ? '' : 'first_tab'"
                                 {{-- x-bind:class= --}}
-                                class="flex text-sm  font-semibold w-full items-center justify-between px-4 py-4 bg-white">Questions
-                                that people ask a lot on the phone or in an email <span><x-icons.dropdown-arrow
-                                        class="w-4" /></span></button>
+                                class="flex text-sm  font-semibold w-full items-center justify-between px-4 py-4 bg-white">Are
+                                you a wholesaler? <span><x-icons.dropdown-arrow class="w-4" /></span></button>
                             <div class="p-4 space-y-4 bg-neutral-200 font-neutral-400" x-show="tab === 'first_tab'">
-                                <p class="text-sm font-semibold">Answer Title</p>
-                                <p class="text-neutral-400 text-sm ">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae ea necessitatibus
-                                    natus corporis delectus! Incidunt, odio, dolore quaerat cupiditate voluptatum
-                                    reiciendis dolorum dolorem possimus quo assumenda et id totam numquam.</p>
+                                <p class="text-neutral-500 text-sm font-medium">We operate as a wholesaler, supplying a wide range
+                                    of products to retailers and businesses. Our focus is on providing quality goods at
+                                    competitive prices, supporting our clients' success.</p>
                             </div>
                         </div>
-                        <div class="max-w-2xl space-y-2" x-data="{ tab : ''}">
+                        <div class="max-w-2xl space-y-2">
                             <button x-on:click.prevent="tab = (tab === 'second_tab') ? '' : 'second_tab'"
                                 {{-- x-bind:class= --}}
-                                class="flex text-sm  font-semibold w-full items-center justify-between px-4 py-4 bg-white">Questions
-                                that people ask a lot on the phone or in an email <span><x-icons.dropdown-arrow
+                                class="flex text-sm  font-semibold w-full items-center justify-between px-4 py-4 bg-white">
+                                Do you design your own products too? <span><x-icons.dropdown-arrow
                                         class="w-4" /></span></button>
                             <div class="p-4 space-y-4 bg-neutral-200 font-neutral-400" x-show="tab === 'second_tab'">
-                                <p class="text-sm font-semibold">Answer Title</p>
-                                <p class="text-neutral-400 text-sm ">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae ea necessitatibus
-                                    natus corporis delectus! Incidunt, odio, dolore quaerat cupiditate voluptatum
-                                    reiciendis dolorum dolorem possimus quo assumenda et id totam numquam.</p>
+                                <p class="text-neutral-500 text-sm font-medium">In addition to offering a comprehensive range of
+                                    international Eurolube products, we are committed to crafting our own line of goods
+                                    tailored to endure the rigors of our challenging climate and conditions of use. Our
+                                    designs prioritize durability and performance, ensuring our products not only meet
+                                    but exceed the demands of our environment.</p>
+                            </div>
+                        </div>
+                        <div class="max-w-2xl space-y-2">
+                            <button x-on:click.prevent="tab = (tab === 'third_tab') ? '' : 'third_tab'"
+                                {{-- x-bind:class= --}}
+                                class="flex text-sm  font-semibold w-full items-center justify-between px-4 py-4 bg-white">
+                                Is your product compatible with most other company
+                                products?<span><x-icons.dropdown-arrow class="w-4" /></span></button>
+                            <div class="p-4 space-y-4 bg-neutral-200 font-neutral-400" x-show="tab === 'third_tab'">
+                                <p class="text-neutral-500 text-sm font-medium">Our product seamlessly integrates with a wide array
+                                    of other company products, making it a versatile and convenient choice for
+                                    consumers. This compatibility ensures a hassle-free experience and allows for
+                                    enhanced functionality when used in conjunction with various other offerings on the
+                                    market.</p>
                             </div>
                         </div>
                     </div>
