@@ -1,6 +1,6 @@
 <div class="flex flex-col h-full justify-center">
-    <div class="flex flex-row justify-between space-x-5 h-screen">
-        <div class="w-full grid grid-flow-row md:grid-cols-3 gap-8 place-content-start">
+    <div class="flex flex-row justify-between space-x-3 h-screen">
+        <div class="w-full grid grid-flow-row md:grid-cols-3 gap-2 place-content-start">
             <div class="tracking-wider font-archivo text-[#252f33d3] font-medium italic" wire:loading.delay wire:target="search">
                ... Loading
             </div>
@@ -28,16 +28,27 @@
                     Nothing Found
                 </div>
             @endforelse
-
+           
         </div>
-        <div class="w-80 h-max bg-[#EAECEC] px-4 sm:px-8 py-6 sm:py-12 space-y-3 sm:space-y-6">
+        <div class="w-96 h-max bg-[#EAECEC] px-4 sm:px-4 py-4 sm:py-8 space-y-3 sm:space-y-4">
             <input type="text" wire:model.debounce.500ms="search" placeholder="Search"
                 class="ring-0 border-none focus:ring-0 w-full">
             <div class="space-y-3" x-data="{ selected: '' }">
                 @foreach ($categories as $key => $category)
+                    
                     <x-sidebar-icons type="button"
-                        class="{{ $categoryId === $key ? 'bg-red-800 text-white' : 'bg-[#F1F4F5]' }}"
-                        wire:click.prevent="getProducts({{ $key }})">{{ $category }}
+                        class="group  
+                            {{ $categoryId === $key ? 'bg-red-800 text-white' : 'bg-[#F1F4F5]' }}"
+                        wire:click.prevent="getProducts({{ $key }})"
+                       >
+                        <span>{{ $category }}</span>
+
+                        <i class="group-hover:fill-[#F1F4F5] w-full flex justify-end items-center h-5 {{$categoryId === $key ? 'fill-[#F1F4F5]' : 'fill-black'}}
+                            {{App\Models\ProductCategory::where('referencing', $key)->count() > 0 ? 'block' : 'hidden'}}" 
+                           >
+                            <x-icons.plus  class=" {{$categoryId === $key ? 'hidden' : 'block'}}"/>
+                            <x-icons.minus class=" {{$categoryId === $key ? 'block' : 'hidden'}}"/>
+                        </i>
                     </x-sidebar-icons>
                     @if ($categoryId === $key)
                     <div class="-py-3 bg-[#F1F4F5]" >

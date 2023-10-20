@@ -5,7 +5,7 @@
                 <img src="{{ asset('images/banner2-17.jpg') }}" alt="banner2-17.jpg"
                     class="absolute inset-0 -z-10 w-full h-full object-cover opacity-30 ">
 
-                <div class=" py-40 px-4 md:px-16 space-y-10">
+                <div class=" py-40 px-4 md:px-2 space-y-10">
                     <h1 class="uppercase font-black font-archivo text-[#252f3] max-w-2xl">Products</h1>
                     @livewire('visitor-products')
 
