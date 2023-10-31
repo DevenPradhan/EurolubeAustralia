@@ -2,9 +2,9 @@
     <div class="w-full">
         <div class="container max-w-7xl mx-auto my-10">
 
-            <section class="w-full relative h-full md:h-[900px] bg-fixed bg-center"
+            <section class="w-full relative md:h-[900px] bg-fixed bg-center"
                 style="background-image: url('\images/banner2-2.jpg'); background-size: 1280px">
-                <div class="font-roboto space-y-10 px-4 md:px-16 py-44 max-w-2xl">
+                <div class="font-roboto space-y-10 px-4 md:px-16 py-20 md:py-0 flex flex-col justify-center h-full max-w-2xl">
                     <h1 class=" uppercase font-black text-white  font-archivo">Quality You can trust</h1>
 
                     <p class="text-[#ffffffc7]  text-sm r max-w-md">
@@ -57,9 +57,9 @@
             </section> --}}
 
 
-            <section class="w-full relative h-full md:h-[900px] overflow-hidden bg-fixed bg-center"
+            <section class="w-full relative md:h-[900px] overflow-hidden bg-fixed bg-center"
                     style="background-image: url('\images/sdfafdsfsdafsdafsd.jpg'); background-size: 1280px;">
-                <div class="font-roboto space-y-10 px-4 md:px-16 h-full backdrop-brightness-50 flex flex-col justify-center">
+                <div class="font-roboto space-y-10 px-4 md:px-16 py-20 md:py-0 h-full backdrop-brightness-50 flex flex-col justify-center">
                     <h1 class=" uppercase font-black text-white  font-archivo max-w-2xl">Frequently Used
                         Services...
                     </h1>

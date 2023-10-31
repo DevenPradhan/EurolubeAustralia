@@ -9,6 +9,7 @@
             <table class="table-auto w-4/5">
                 <thead>
                     <tr>
+                        <th></th>
                         <th scope="col">Product</th>
                         <th scope="col">Category</th>
 
@@ -20,6 +21,9 @@
                 <tbody>
                     @foreach ($products as $product)
                         <tr>
+                            <td title="Featured">
+                                <x-icons.stars class=" fill-amber-500 {{App\Models\ProductFeature::where('product_id', $product->id)->where('additional', 1)->count()>0 ? 'block' : 'hidden'}}"/>
+                            </td>
                             <td scope="col">
                                 <p class="user_td">{{ $product->name }}</p>
                             </td>
