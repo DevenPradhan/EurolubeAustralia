@@ -12,8 +12,16 @@ class VisitorController extends Controller
 {
     public function index()
     {
+        $featuredProducts = ProductFeature::where('additional', 1)
+        ->get('product_id');
 
-        return view('Visitor.home');
+        $products = Product::whereIn('id', $featuredProducts)
+        ->where('status', 1)
+        ->latest()
+        ->take(3)
+        ->get();
+
+        return view('Visitor.home', compact('products'));
     }
 
     public function products()

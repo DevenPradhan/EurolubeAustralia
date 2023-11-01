@@ -4,7 +4,8 @@
 
             <section class="w-full relative md:h-[900px] bg-fixed bg-center"
                 style="background-image: url('\images/banner2-2.jpg'); background-size: 1280px">
-                <div class="font-roboto space-y-10 px-4 md:px-16 py-20 md:py-0 flex flex-col justify-center h-full max-w-2xl">
+                <div
+                    class="font-roboto space-y-10 px-4 md:px-16 py-20 md:py-0 flex flex-col justify-center h-full max-w-2xl">
                     <h1 class=" uppercase font-black text-white  font-archivo">Quality You can trust</h1>
 
                     <p class="text-[#ffffffc7]  text-sm r max-w-md">
@@ -28,12 +29,40 @@
                 <div class="w-full py-44 px-4 md:px-16 max-w-2xl space-y-10">
                     <h1 class="heading_dark_lg font-archivo ">Featured Products</h1>
                     {{-- slider products --}}
-                    @livewire('guest.featured-products')
-                    
+
+                   <div class="items-center flex space-x-10">
+                    @forelse ($products as $product)
+                    <div class="w-72 shadow-sm shadow-gray-300 shrink-0 bg-white">
+                        <div class="h-48 relative">
+                            <img src="{{ asset('images/card bg img.jpg') }}" alt=""
+                                class="absolute -z-10 inset-0 opacity-70">
+                            <img src="{{ asset('storage/products/images/' . $product->images()->first()->url) }}"
+                                alt="" class="w-full h-full object-scale-down">
+                        </div>
+                        <div class="py-6 pl-6 pr-10 space-y-4 bg-[#E7EAEC]">
+                            <h6 class="heading_dark_small ml-4 leading-6 h-12">{{ $product->name }}</h6>
+                            <div class="flex space-x-4">
+                                <div class="border-l-2 h-full border-separate border-spacing-10 border-black">
+                                    <div
+                                        class="ml-4 h-24 w-full overflow-hidden leading-4 text-xs tracking-wider font-medium">
+                                        {!! App\Models\ProductFeature::where('product_id', $product->id)->where('additional', 1)->value('feature') !!}
+                                    </div>
+                                </div>
+                            </div>
+                            <a href="{{ route('products-each', $product->id) }}"
+                                class="text-xs text-red-800 ml-4 font-semibold">Read More</a>
+                        </div>
+                    </div>
+                @empty
+                    Nothing found
+                @endforelse
+                   </div>
+
                     <div class="space-x-4 flex justify-center w-full">
                         {{-- button_link css at app.css --}}
                         <a href="{{ route('products.all') }}" class="bg-red-800 button_link">Browse all our products</a>
-                        <a href="https://www.eurolube.com/en/pump-selection-guide/" class="bg-[#929494] button_link">Download Our Guide</a>
+                        <a href="https://www.eurolube.com/en/pump-selection-guide/"
+                            class="bg-[#929494] button_link">Download Our Guide</a>
                     </div>
                 </div>
             </section>
@@ -58,8 +87,9 @@
 
 
             <section class="w-full relative md:h-[900px] overflow-hidden bg-fixed bg-center"
-                    style="background-image: url('\images/sdfafdsfsdafsdafsd.jpg'); background-size: 1280px;">
-                <div class="font-roboto space-y-10 px-4 md:px-16 py-20 md:py-0 h-full backdrop-brightness-50 flex flex-col justify-center">
+                style="background-image: url('\images/sdfafdsfsdafsdafsd.jpg'); background-size: 1280px;">
+                <div
+                    class="font-roboto space-y-10 px-4 md:px-16 py-20 md:py-0 h-full backdrop-brightness-50 flex flex-col justify-center">
                     <h1 class=" uppercase font-black text-white  font-archivo max-w-2xl">Frequently Used
                         Services...
                     </h1>
@@ -74,7 +104,7 @@
                                 what materials are compatible with the selected chemical.</p>
                         </a> --}}
                         <a class="space-y-3 p-5 bg-neutral-200 bg-opacity-10 hover:bg-opacity-80 hover:bg-red-800 transition-all"
-                            href="{{route('downloads')}}">
+                            href="{{ route('downloads') }}">
                             <h6 class="uppercase text-white text-sm">Catalogues & Tech Sheets</h6>
                             <p class="text-sm font-normal tracking-wider">Here you will find products that improve
                                 efficiency, reduce environmental impact and increase your profitability. You can view

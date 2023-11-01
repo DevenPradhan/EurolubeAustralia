@@ -1,4 +1,10 @@
-<div class="items-center flex space-x-10">
+
+
+
+
+
+
+{{-- <div class="">
     @forelse ($products as $product)
         <div class="w-72 shadow-sm shadow-gray-300 shrink-0 bg-white">
             <div class="h-48 relative">
@@ -22,4 +28,4 @@
     @empty
         Nothing found
     @endforelse
-</div>
+</div> --}}

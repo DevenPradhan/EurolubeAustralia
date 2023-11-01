@@ -2,9 +2,9 @@
 
     <div class="w-full">
         <div class="container max-w-7xl mx-auto my-10">
-            <section class="w-full relative h-full md:h-[900px] bg-fixed bg-center"
+            <section class="w-full relative h-full md:h-[900px] bg-fixed bg-center "
                 style="background-image: url('\images/banner2-24.jpg'); background-size:1280px">
-                <div class="py-44 px-4 md:px-16 space-y-20 backdrop-brightness-75">
+                <div class="py-44 px-4 md:px-16 space-y-20 backdrop-brightness-50 h-full">
                     <h1 class=" uppercase max-w-2xl font-black text-white font-archivo">Get the best from Eurolube</h1>
                     <div class="max-w-2xl h-auto">
                         <img src="{{ asset('images/banner2-25.jpg') }}" alt="banner2-25.jpg"
@@ -13,19 +13,55 @@
                 </div>
             </section>
 
-            <section class="relative w-full h-full">
+            <section class="relative w-full h-full md:h-[1400px]">
                 <img src="{{ asset('images/banner2-17.jpg') }}" alt="topo"
-                    class="absolute inset-0 opacity-30 -z-40 w-full h-full object-cover ">
-                <div class="w-full py-44 px-4 md:px-16 max-w-2xl space-y-10">
-                    <h1 class="heading_dark_lg font-archivo ">Featured Products</h1>
+                    class="absolute inset-0 opacity-20 -z-40 w-full h-full object-cover ">
+                <div class="w-full flex justify-center sm:justify-between h-full py-6 px-4 md:px-0">
+                    <div class="space-y-6 w-72 shrink-0 hidden sm:flex flex-col p-10 h-full bg-[#252f33] text-[#e5e5e5da] text-sm">
+                        <button class=" text-start">
+                            Equipment for Oil
+                        </button>
+                        <button class="text-start">
+                            Equipment for Grease
+                        </button>
+                    </div>
+                  
+                    <div class="px-6 py-20 w-3/4 place-content-center flex">
+                        <div class="grid grid-flow-row lg:grid-cols-2 w-max text-sm tracking-wider  text-[#ffffffe5] gap-10 place-content-start">
+                            <div class="w-80 h-60 drop-shadow-md relative rounded-sm overflow-clip">
+                                <img src="{{asset('images/lube reels.jpg')}}" alt="" class="inset-0 absolute -z-10 w-full h-full object-cover">
+                                <p class="mt-10 w-72 pt-2 pb-1.5 px-6 ml-10 bg-red-800 rounded-l-sm shadow-sm shadow-neutral-700 ">Equipment for Oil</p>
+                            </div>
+                            <div class="w-80 h-60 drop-shadow-md relative rounded-sm overflow-clip">
+                                <img src="{{asset('images/lube reels.jpg')}}" alt="" class="inset-0 absolute -z-10 w-full h-full object-cover">
+                                <p class="mt-10 w-72 pt-2 pb-1.5 px-6 ml-10 bg-red-800 rounded-l-sm shadow-sm shadow-neutral-700 ">Equipment for Grease</p>
+                            </div>
+                            <div class="w-80 h-60 drop-shadow-md relative rounded-sm overflow-clip">
+                                <img src="{{asset('images/lube reels.jpg')}}" alt="" class="inset-0 absolute -z-10 w-full h-full object-cover">
+                                <p class="mt-10 w-72 pt-2 pb-1.5 px-6 ml-10 bg-red-800 rounded-l-sm shadow-sm shadow-neutral-700 ">Waste Oil Equipment</p>
+                            </div>
+                            <div class="w-80 h-60 drop-shadow-md relative rounded-sm overflow-clip">
+                                <img src="{{asset('images/lube reels.jpg')}}" alt="" class="inset-0 absolute -z-10 w-full h-full object-cover">
+                                <p class="mt-10 w-72 pt-2 pb-1.5 px-6 ml-10 bg-red-800 rounded-l-sm shadow-sm shadow-neutral-700 ">Diaphragm Pumps</p>
+                            </div>
+                            <div class="w-80 h-60 drop-shadow-md relative rounded-sm overflow-clip">
+                                <img src="{{asset('images/lube reels.jpg')}}" alt="" class="inset-0 absolute -z-10 w-full h-full object-cover">
+                                <p class="mt-10 w-72 pt-2 pb-1.5 px-6 ml-10 bg-red-800 rounded-l-sm shadow-sm shadow-neutral-700 ">Equipment for Oil</p>
+                            </div>
+                            
+                        </div>
+                    </div>
+                    
                     {{-- slider products --}}
-                    @livewire('guest.featured-products')
-                    <div class="space-x-4 flex justify-center w-full">
+                                       
+                    {{-- <div class="space-x-4 flex justify-center w-full"> --}}
                         {{-- button_link css at app.css --}}
-                        <a href="{{ route('products.all') }}" class="bg-red-800 button_link">Browse all our products</a>
+                        {{-- <a href="{{ route('products.all') }}" class="bg-red-800 button_link">Browse all our products</a>
                         <a href="https://www.eurolube.com/en/pump-selection-guide/"
                             class="bg-[#929494] button_link">Pump Selection Guide</a>
-                    </div>
+                    </div> --}}
+
+
                 </div>
             </section>
             <section class="w-full relative h-full md:h-[900px] overflow-hidden bg-fixed bg-center bg-cover"
