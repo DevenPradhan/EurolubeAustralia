@@ -9,7 +9,7 @@ use App\Http\Controllers\User\ProductImageController;
 use App\Http\Controllers\User\TypeController;
 use App\Http\Controllers\Visitors\VisitorController;
 use App\Http\Livewire\CategoryProducts;
-use App\Http\Livewire\ProductCategories;
+use App\Http\Livewire\Admin\ProductCategories;
 use Illuminate\Support\Facades\Route;
 
 /*

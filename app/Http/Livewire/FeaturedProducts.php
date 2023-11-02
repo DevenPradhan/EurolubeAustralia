@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\Guest;
+namespace App\Http\Livewire;
 
 use Livewire\Component;
 use App\Models\ProductFeature;
@@ -20,6 +20,6 @@ class FeaturedProducts extends Component
             ->take(3)
             ->get();
 
-        return view('livewire.guest.featured-products', compact('products'));
+        return view('livewire.featured-products', compact('products'));
     }
 }

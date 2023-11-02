@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire;
+namespace App\Http\Livewire\Admin;
 
 use App\Models\Product;
 use App\Models\ProductCategory;
@@ -173,6 +173,6 @@ class Products extends Component
         $statuses = collect(['Inactive', 'Active', 'Archived']);
         $products = Product::where('name', 'like', '%' . $this->search . '%')
             ->get();
-        return view('livewire.products', compact('products', 'statuses'));
+        return view('livewire.admin.products', compact('products', 'statuses'));
     }
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire;
+namespace App\Http\Livewire\Admin;
 
 use App\Models\Product;
 use App\Models\ProductCategory;
@@ -126,6 +126,6 @@ class ProductCategories extends Component
         // }
         // $categories = $categories->get();
 
-        return view('livewire.product-categories');
+        return view('livewire.admin.product-categories');
     }
 }
