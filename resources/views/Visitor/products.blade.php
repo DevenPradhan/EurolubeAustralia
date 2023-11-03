@@ -16,7 +16,25 @@
             <section class="relative w-full h-full md:min-h-screen ">
                 <img src="{{ asset('images/banner2-17.jpg') }}" alt="topo"
                     class="absolute inset-0 opacity-20 -z-40 w-full h-full object-cover ">
-                @livewire('guest.categories-products')
+                <div class="w-full flex justify-center sm:justify-between h-full py-6 px-4 md:px-0">
+                    <div
+                        class="space-y-6 w-72 shrink-0 hidden sm:flex flex-col p-10 h-full pb-60 bg-[#010123] text-[#ffffffe5] text-sm">
+                        @foreach ($categories as $category)
+                            <a class=" text-start" href="{{ route('view_products', ['url' => $category->name]) }}">
+                                {{ $category->name }}
+                            </a>
+                        @endforeach
+                    </div>
+
+                    <div class="px-6 py-20 w-3/4 place-content-center flex">
+                        <div
+                            class="grid grid-flow-row lg:grid-cols-2 w-max text-sm tracking-wider  text-[#ffffffe5] gap-10 place-content-start">
+                            
+                        </div>
+                    </div>
+
+                </div>
+
             </section>
             <section class="w-full relative h-full md:h-[900px] overflow-hidden bg-fixed bg-center bg-cover"
                 style="background-image: url('\images/banner2-26.jpg'); background-repeat:no-repeat">
@@ -40,13 +58,14 @@
                         <a href="{{ route('downloads') }}">
                             <div
                                 class="group space-y-6 flex flex-col justify-between h-full w-60 p-5 backdrop-brightness-50 hover:bg-opacity-80 hover:bg-red-800 transition-all">
-                                <p class="text-sm max-w-md font-normal tracking-wider leading-5">Explore our extensive list of
+                                <p class="text-sm max-w-md font-normal tracking-wider leading-5">Explore our extensive
+                                    list of
                                     products that you might find intriguing, all geared towards improving efficiency,
                                     reducing environmental impact, and increasing your profitability. You can view all
                                     our products, catalogues, and tech sheets online or download a copy today.</p>
                                 <div class="flex items-center">
                                     <p>See Downloads</p>
-                                    <x-icons.slider-right class="fill-[#ffffffc7] w-8"/>
+                                    <x-icons.slider-right class="fill-[#ffffffc7] w-8" />
                                 </div>
                             </div>
                         </a>
