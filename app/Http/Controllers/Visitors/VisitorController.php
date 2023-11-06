@@ -24,25 +24,12 @@ class VisitorController extends Controller
         return view('Visitor.home', compact('products'));
     }
 
-    public function products(ProductCategory $url = null)
+    public function products()
     {
-        $categories = ProductCategory::where('level', 1)->get();
-        if ($url) {
-            
-            //get subcategories
-            $get_list = ProductCategory::where('referencing', $url->id)->get();
+        $categories = ProductCategory::where('level', 1)->pluck('name', 'id');
+        $listedEntry = $categories;
 
-            if($get_list->count() == 0){  //if no more categories find the products
-                $get_list = Product::where('category_id', $url->id)->get();
-
-                return view('Visitor.products', compact('categories', 'get_list'));
-            }
-            return view('Visitor.products', compact('categories', 'get_list'));
-        }
-
-        $categories = ProductCategory::where('level', 1)->get();
-        // $products = Product::where('status', 1)->paginate(12);
-        return view('Visitor.products', compact('categories'));
+        return view('Visitor.products', compact('categories', 'listedEntry'));
     }
 
     public function aboutUs()
@@ -60,9 +47,19 @@ class VisitorController extends Controller
         return view('Visitor.all-news');
     }
 
-    public function productsAll()
+    public function productsAll($url)
     {
-        return view('Visitor.products-all');
+        $categories = ProductCategory::where('level',1)->pluck('name', 'id');
+
+        echo $getCategory = ProductCategory::where('name', $url)->value('id');
+
+       echo $listedEntry = ProductCategory::where('referencing', $getCategory)->get();
+
+        if($listedEntry->count() == 0){
+            echo $listedEntry = Product::where('category_id', $getCategory)->get();
+        }
+        // $getCategories = ProductCategory::where('name',$url)->first();
+        return view('Visitor.products', compact('categories', 'url', 'listedEntry'));
     }
 
     public function productsEach($id)
