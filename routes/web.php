@@ -7,6 +7,7 @@ use App\Http\Controllers\User\ProductController;
 use App\Http\Controllers\User\ProductDetailController;
 use App\Http\Controllers\User\ProductImageController;
 use App\Http\Controllers\User\TypeController;
+use App\Http\Controllers\Visitors\ViewProductsController;
 use App\Http\Controllers\Visitors\VisitorController;
 use App\Http\Livewire\CategoryProducts;
 use App\Http\Livewire\Admin\ProductCategories;
@@ -28,8 +29,11 @@ use Illuminate\Support\Facades\Route;
 // });
 
 Route::get('/', [VisitorController::class, 'index'])->name('/');
-Route::get('/products', [VisitorController::class, 'products'])->name('view_products');
-Route::get('products/{url}', [VisitorController::class, 'productsAll'])->name('products.all');
+//products
+Route::get('/Products', [ViewProductsController::class, 'index'])->name('view_products');
+Route::get('/Products/{category1}', [ViewProductsController::class, 'searchCategory1'])->name('searchCategory1');
+Route::get('/Products/{category1}/{category2}', [ViewProductsController::class, 'searchCategory2'])->name('searchCategory2');
+
 Route::get('products/{id}/', [VisitorController::class, 'productsEach'])->name('products-each');
 Route::get('about-us', [VisitorController::class, 'aboutUs'])->name('about.us');
 Route::get('news-blogs', [VisitorController::class, 'newsBlog'])->name('news.blogs');

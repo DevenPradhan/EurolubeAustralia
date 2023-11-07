@@ -24,14 +24,6 @@ class VisitorController extends Controller
         return view('Visitor.home', compact('products'));
     }
 
-    public function products()
-    {
-        $categories = ProductCategory::where('level', 1)->pluck('name', 'id');
-        $listedEntry = $categories;
-
-        return view('Visitor.products', compact('categories', 'listedEntry'));
-    }
-
     public function aboutUs()
     {
         return view('Visitor.about-us');
@@ -49,17 +41,21 @@ class VisitorController extends Controller
 
     public function productsAll($url)
     {
+        $url = str_replace('-', ' ', $url);
+
+        $products = [];
         $categories = ProductCategory::where('level',1)->pluck('name', 'id');
 
-        echo $getCategory = ProductCategory::where('name', $url)->value('id');
+        $category_id = ProductCategory::where('name', $url)->value('id');
 
-       echo $listedEntry = ProductCategory::where('referencing', $getCategory)->get();
+        $listedEntry = ProductCategory::where('referencing', $category_id)->get();
 
-        if($listedEntry->count() == 0){
-            echo $listedEntry = Product::where('category_id', $getCategory)->get();
+    //    echo $listedEntry->count();
+        if($listedEntry->count() === 0){
+            $products = Product::where('category_id', $category_id)->get();
         }
         // $getCategories = ProductCategory::where('name',$url)->first();
-        return view('Visitor.products', compact('categories', 'url', 'listedEntry'));
+        return view('Visitor.products', compact('categories', 'url', 'listedEntry', 'products'));
     }
 
     public function productsEach($id)

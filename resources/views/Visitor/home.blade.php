@@ -60,7 +60,7 @@
 
                     <div class="space-x-4 flex justify-center w-full">
                         {{-- button_link css at app.css --}}
-                        <a href="{{ route('products.all') }}" class="bg-red-800 button_link">Browse all our products</a>
+                        <a href="{{ route('view_products') }}" class="bg-red-800 button_link">Browse all our products</a>
                         <a href="https://www.eurolube.com/en/pump-selection-guide/"
                             class="bg-[#929494] button_link">Download Our Guide</a>
                     </div>

@@ -10,9 +10,9 @@ class ProductCategory extends Model
 {
     use HasFactory;
 
-    public function getRouteKeyName(){
-        return 'name';
-    }
+    // public function getRouteKeyName(){
+    //     return 'name';
+    // }
 
     protected $table = 'product_categories';
 
