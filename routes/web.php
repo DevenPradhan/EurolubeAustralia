@@ -34,7 +34,7 @@ Route::get('/Products', [ViewProductsController::class, 'index'])->name('view_pr
 Route::get('/Products/{category1}', [ViewProductsController::class, 'searchCategory1'])->name('searchCategory1');
 Route::get('/Products/{category1}/{category2}', [ViewProductsController::class, 'searchCategory2'])->name('searchCategory2');
 
-Route::get('products/{id}/', [VisitorController::class, 'productsEach'])->name('products-each');
+Route::get('/Product-details/{name}/', [ViewProductsController::class, 'productsEach'])->name('products.each');
 Route::get('about-us', [VisitorController::class, 'aboutUs'])->name('about.us');
 Route::get('news-blogs', [VisitorController::class, 'newsBlog'])->name('news.blogs');
 Route::get('all-news', [VisitorController::class, 'allNews'])->name('all.news');

@@ -64,18 +64,21 @@
                 <div class="space-y-8" x-data="{ show_categories: @entangle('categoryDiv') }" x-init="@this.on('select-category', () => { show_categories = false })">
                     <h6>Add Product</h6>
 
+                    {{-- Product Name row --}}
                     <div class="flex space-x-10 items-center">
                         <x-input-label for="productName" value="Name" class="w-20" />
                         <x-text-input type="text" name="productName" required wire:model.debounce.500ms="productName"
                             class="w-full" />
                         <x-input-error :messages="$errors->get('productName')" class="mt-2" />
                     </div>
+                    {{-- check if product exists --}}
                     @if (!empty($validationSearch))
                         <div class="flex">
                             <p class="">{{ $validationSearch->name }} &emsp; - &emsp;</p>
                             <p>{{ $validationSearch->category->name }}</p>
                         </div>
                     @endif
+                    {{-- Product Description row --}}
                     <div class="flex space-x-10 items-center">
                         <x-input-label for="productDescription" value="Description" class="w-20" />
                         <x-textbox name="productDescription" class="w-full h-20"
@@ -83,6 +86,8 @@
                         <x-input-error :messages="$errors->get('productDescription')" class="mt-2" />
                     </div>
 
+                    {{-- Product Category row ||
+                                             \ / --}}
                     <div class="flex space-x-10 items-center">
                         <x-input-label for="productCategory" value="Category" class="w-20" />
                         <x-secondary-button wire:click.prevent="showCategoryDiv">
@@ -99,18 +104,20 @@
                             {{-- add button to change from select category function to add category --}}
 
                             <x-secondary-button class="max-w-max"
-                                x-on:click.prevent="add_category = 'new_category'">Add</x-secondary-button>
+                                x-on:click.prevent=" $wire.mainCategory() ; add_category = 'new_category'"
+                                >Add</x-secondary-button>
 
-
-
+                            
                             <ul class="rounded-sm text-sm max-h-40 overflow-y-auto max-w-sm sm:w-full overflow-x-hidden">
-                                <li><button wire:click.prevent="mainCategory" type="button"
-                                        class=" flex justify-between border bg-gray-200 text-start hover:bg-gray-700 hover:text-white px-2 py-1 w-full sm:w-96">...</button>
+                                <li><button wire:click.prevent="mainCategory" 
+                                            type="button"
+                                            class="inline-flex space-x-3 border bg-gray-200 text-start hover:bg-gray-700 hover:text-white px-2 py-1 w-full sm:w-96">...</button>
                                 </li>
 
                                 @foreach ($categories as $key => $category)
                                     <li>
-                                        <button type="button" wire:click.prevent="selectCategory({{ $key }})"
+                                        <button type="button" 
+                                                wire:click.prevent="selectCategory({{ $key }})"
                                             class="flex justify-between border space-x-10 bg-gray-200 text-start hover:bg-gray-700 hover:text-white px-2 py-1 w-full sm:w-96">
                                             {{ $category }}
 
@@ -158,8 +165,8 @@
                                         class="focus:ring-0 focus:border-none border-none w-80" />
                                     <x-input-error :messages="$errors->get('newCategory')" class="mt-2" />
                                 </div>
-
                             </div>
+
                             @if (!empty($newCategorySearch))
                                 <div class="absolute top-25 flex w-full justify-center">
                                     <p class="text-sm text-red-800">{{ $newCategorySearch->name }} : <span

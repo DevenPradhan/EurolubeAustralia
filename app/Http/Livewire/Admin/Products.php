@@ -34,10 +34,10 @@ class Products extends Component
         ]);
 
         $category = new ProductCategory;
-        $category->name = $this->newCategory;
+        $category->name = str_replace('-', ' ', $this->newCategory);
 
-        if (!empty($this->upperCategory)) {
-
+        if (!empty($this->upperCategory)) {  
+        
             $category->level = 2;
             $category->referencing = $this->upperCategory;
 
@@ -60,6 +60,7 @@ class Products extends Component
 
             $this->productCategory = ProductCategory::find($id);
             $this->emit('select-category'); //after selecting category close select category div
+            
             $this->categories = ProductCategory::where('level', 1)
                 ->pluck('name', 'id');
 
@@ -72,6 +73,7 @@ class Products extends Component
 
     public function mainCategory()
     {
+        $this->reset('upperCategory');
         $this->categories = ProductCategory::where('level', 1)
             ->pluck('name', 'id');
     }
@@ -118,8 +120,6 @@ class Products extends Component
     public function mount()
     {
 
-
-
         $this->categories = ProductCategory::where('level', 1)
             ->pluck('name', 'id');
     }
@@ -152,18 +152,18 @@ class Products extends Component
     public function render()
     {
         if ($this->newCategory) {
-            if($this->upperCategory){
+            if ($this->upperCategory) {
                 $this->newCategorySearch = ProductCategory::where('referencing', $this->upperCategory)
-                                            ->where('name', 'like', '%'. $this->newCategory . '%')
-                                            ->first();
-            }else{
+                    ->where('name', 'like', '%' . $this->newCategory . '%')
+                    ->first();
+            } else {
 
                 $this->newCategorySearch = ProductCategory::where('level', 1)
-                                            ->where('name', 'like', '%' . $this->newCategory . '%')
-                                            ->first();
+                    ->where('name', 'like', '%' . $this->newCategory . '%')
+                    ->first();
 
             }
-            
+
         }
         if ($this->productName) {
             $this->validationSearch = Product::where('name', 'like', '%' . $this->productName . '%')

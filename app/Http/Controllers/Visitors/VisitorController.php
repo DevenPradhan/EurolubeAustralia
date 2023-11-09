@@ -58,12 +58,6 @@ class VisitorController extends Controller
         return view('Visitor.products', compact('categories', 'url', 'listedEntry', 'products'));
     }
 
-    public function productsEach($id)
-    {
-        $product = Product::findOrFail($id);
-        return view('Visitor.products-each', compact('product'));
-    }
-
     public function contactUs()
     {
         return view('Visitor.contact-us');

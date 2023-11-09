@@ -58,7 +58,7 @@
                 </div>
                 @if ($categoryForEdit && $categoryForEdit->level > 1)
                     <div class="flex mt-6 items-center">
-                        <x-input-label value="Main Category" class="w-28"/>
+                        <x-input-label value="Main Category" class="w-28" />
                         <div class="space-y-1">
                             <x-select wire:model="upCategory">
                                 @foreach ($categories as $category)
@@ -67,12 +67,31 @@
                             </x-select>
                             <x-input-error :messages="$errors->get('upCategory')" class="mt-2" />
                         </div>
-                        
+
 
                     </div>
                 @endif
 
-                <div class="mt-6 flex">
+                             
+                    <div class="mt-6">
+                        <img src="{{'storage/products/images/'.$categoryImage}}" alt="">
+
+                    </div>
+
+                    <div class="mt-6">
+                        <x-text-input type="file" wire:model="categoryImage" />
+
+
+                        @if ($categoryImage)
+                            <div class="mt-3">
+                                <img src="{{ $categoryImage->temporaryUrl() }}" alt="temp" class="w-full">
+
+                            </div>
+                        @endif
+
+                    </div>
+
+                    <div class="mt-6 flex">
                     <x-secondary-button x-on:click="$dispatch('close')">
                         {{ __('Cancel') }}
                     </x-secondary-button>

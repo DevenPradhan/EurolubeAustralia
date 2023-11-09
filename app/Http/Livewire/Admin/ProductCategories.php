@@ -6,11 +6,14 @@ use App\Models\Product;
 use App\Models\ProductCategory;
 use App\Rules\CategoryExistsRule;
 use Livewire\Component;
+use Livewire\WithFileUploads;
 
 class ProductCategories extends Component
 {
+    use WithFileUploads;
     public $categories;
     public $categoryId;
+    public $categoryImage;
     public $subCategories;
     public $deleteId;
     public $password;
@@ -44,15 +47,16 @@ class ProductCategories extends Component
     public function openEditModal($id)
     {
         $this->resetValidation();
-        $this->reset('categoryName');
-        $this->categoryForEdit = ProductCategory::find($id);    // category to edit
+        $this->reset('categoryName', 'categoryImage');
+        $this->categoryForEdit = ProductCategory::where('id', $id)->first();    // category to edit
         $this->categoryName = $this->categoryForEdit->name;     //category to edit name -> wired model
         
         if($this->categoryForEdit->level > 1)
-        { 
+            { 
             //category to edit referencing other category -> wired model
-            $this->upCategory = ProductCategory::where('id', $this->categoryForEdit->referencing)->value('id'); 
-        }
+            $this->upCategory = ProductCategory::where('id', $this->categoryForEdit->referencing)
+                                ->value('id'); 
+            }
         $this->editModal = true;
         // $this->reset()
     }

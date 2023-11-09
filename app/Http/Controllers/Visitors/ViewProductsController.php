@@ -11,10 +11,11 @@ class ViewProductsController extends Controller
 {
     public function index()
     {
+        $url = '';
         // $categories = ProductCategory::where('level', 1)->pluck('name', 'id');
         $listedEntry = ProductCategory::where('level', 1)->get();
 
-        return view('Visitor.products', compact('listedEntry'));
+        return view('Visitor.products', compact('url', 'listedEntry'));
     }
 
     public function searchCategory1($category1)
@@ -25,13 +26,13 @@ class ViewProductsController extends Controller
 
         $category_id = ProductCategory::where('name', $url)->value('id'); // dont touch
 
-        ProductCategory::findOrFail($category_id);
+        // ProductCategory::findOrFail($category_id);
 
         $subCategories = ProductCategory::where('referencing', $category_id)->get();
         $listedEntry = ProductCategory::where('referencing', $category_id)->get();
 
         if ($subCategories->count() === 0) {
-            echo $products = Product::where('category_id', $category_id)->get();
+            $products = Product::where('category_id', $category_id)->get();
         }
 
         return view('Visitor.products', compact('url', 'listedEntry', 'subCategories', 'products'));
@@ -57,5 +58,12 @@ class ViewProductsController extends Controller
                             ->get();
         
         return view('Visitor.products', compact('url', 'products', 'subCategories'));
+    }
+
+    public function productsEach($name)
+    {
+        dd($name);
+        $product = Product::where('name', str_replace('-', ' ', $name))->first();
+        return view('Visitor.products-each', compact('product'));
     }
 }
