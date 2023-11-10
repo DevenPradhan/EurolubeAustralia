@@ -11,8 +11,7 @@
                     <div class="max-w-4xl h-auto">
                         <div
                             class="w-full min-w-max h-80 sm:h-96 relative bg-gradient-to-r opacity-90 from-gray-100 to-neutral-800 px-1 sm:px-3 py-10 flex items-center justify-center">
-                            <div
-                                class="rounded-2xl bg-neutral-800 opacity-20 hover:opacity-50 absolute md:relative left-5 z-10">
+                            <div class="rounded-2xl bg-neutral-800 opacity-20 hover:opacity-50 absolute md:relative left-5 z-10">
                                 <x-icons.slider-left class="fill-gray-100 w-7 md:w-10" />
                             </div>
                             <div class="w-full flex justify-center sm:justify-start px-2 sm:px-8 h-60 relative">
@@ -23,18 +22,16 @@
                                 <div
                                     class="relative overflow-hidden shrink-0 text-[#fff6f6f8] md:absolute md:top-28 md:left-80 h-full md:h-60 flex flex-col justify-center px-8 sm:px-8 py-6 w-56 sm:w-72 bg-red-800">
                                     <p class=" md:text-lg">3:1 Pump Kit for IBC</p>
-                                    <p class="mt-3 text-xs md:text-sm tracking-wider">Our Mobile oil pump kits are
-                                        designed to meet
+                                    <p class="mt-3 text-xs md:text-sm tracking-wider">Our Mobile oil pump kits are designed to meet
                                         any needs of effective dispensing, based on quiet and trouble-free acting 3:1
                                         pumps.</p>
-                                    <div class="mt-4">
-                                        <a href="#" class="text-sm text-[#fff6f6d7]">Read More</a>
-                                    </div>
-
+                                        <div class="mt-4">
+                                            <a href="#" class="text-sm text-[#fff6f6d7]">Read More</a>
+                                        </div>
+                                    
                                 </div>
                             </div>
-                            <div
-                                class="rounded-2xl bg-gray-100 opacity-20 hover:opacity-50 absolute md:relative right-5 z-10">
+                            <div class="rounded-2xl bg-gray-100 opacity-20 hover:opacity-50 absolute md:relative right-5 z-10">
                                 <x-icons.slider-right class="fill-neutral-800 w-7 md:w-10" />
                             </div>
                             <div class=""></div>
@@ -52,13 +49,13 @@
                     <div
                         class="space-y-5 w-72 shrink-0 hidden sm:flex flex-col p-10 h-full pb-60 bg-[#010123] text-[#ffffffe5] text-sm">
                         <?php
-                        $categories = App\Models\ProductCategory::where('level', 1)->pluck('name', 'id');
+                            $categories = App\Models\ProductCategory::where('level', 1)->pluck('name', 'id');
                         ?>
 
                         @foreach ($categories as $key => $category)
                             {{-- {{str_contains($url, $category) ? 'Y' : 'N'}} --}}
                             <a class=" text-start py-1 {{ $url === $category && str_contains($url, $category) ? ' border-b  max-w-max' : '' }}"
-                                href="{{ route('searchCategory1', ['category1' => str_replace(' ', '-', $category)]) }}">
+                                href="{{route('category', str_replace(' ', '-', $category))}}">
                                 {{ $category }}
                             </a>
 
@@ -69,11 +66,8 @@
                             @if (str_contains($url, $category) && $subCategories->count() > 0)
                                 <div class="space-y-4 ml-3 flex flex-col">
                                     @foreach ($subCategories as $subCategory)
-                                        <a href="{{ route('searchCategory2', [
-                                            'category1' => str_replace(' ', '-', $category),
-                                            'category2' => str_replace(' ', '-', $subCategory->name),
-                                        ]) }}"
-                                            class="text-sm py-1 {{ str_contains($url, $subCategory->name) ? 'border-b max-w-max' : '' }}">
+                                        <a href="{{str_replace(' ', '-', $url.'/'.$subCategory->name)}}"
+                                            class="text-sm py-1  {{ str_contains($url, $subCategory->name) ? 'border-b max-w-max' : '' }}">
                                             {{ $subCategory->name }}
                                         </a>
                                     @endforeach
@@ -86,29 +80,27 @@
                     <div class="px-6 py-20 w-3/4 place-content-center flex">
                         <div
                             class="grid grid-flow-row lg:grid-cols-2 w-max text-sm tracking-wider  text-[#ffffffe5] gap-10 place-content-start">
-                                @foreach ($listedEntry as $entries)
-                                    <a href="{{route('searchCategory2', ['category1' => str_replace(' ', '-', $url), 'category2' => str_replace(' ', '-', $entries->name)])}}"><span class="text-black">{{$entries->name}}</span></a>
-                                @endforeach
                             
-                            {{-- @if (isset($listedEntry) && $listedEntry->count() > 0)
+                          
+                            @if (isset($listedEntry) && $listedEntry->count() > 0)
                                 @foreach ($listedEntry as $entry)
                                     <p class="text-black">
                                         @if ($url == '')
                                             <a
-                                                href="{{ route('searchCategory1', ['category1' => str_replace(' ', '-', $entry->name)]) }}">{{ $entry->name }}</a>
+                                                href="">{{ $entry->name }}</a>
                                         @else
                                             <a
-                                                href="{{ route('searchCategory2', ['category1' => str_replace(' ', '-', $url), 'category2' => str_replace(' ', '-', $entry->name)]) }}">{{ $entry->name }}</a>
+                                                href="">{{ $entry->name }}</a>
                                         @endif
                                     </p>
                                 @endforeach
                             @else
                                 @forelse ($products as $product)
-                                    <a class="text-black" href="{{route(''str_replace(' ', '-', $product->name)}}">{{ $product->name }}</p>
+                                    <a class="text-black" href="Equipment-for-Grease/50:1-Pumps-&-Kits">{{ $product->name }}</p>
                                 @empty
                                     <p class="text-black">nothing found</p>
                                 @endforelse
-                            @endif --}}
+                            @endif
                             {{-- @isset($getCategories)
 
                                 <p class="text-black">hi</p>

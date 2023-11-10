@@ -7,6 +7,7 @@ use App\Http\Controllers\User\ProductController;
 use App\Http\Controllers\User\ProductDetailController;
 use App\Http\Controllers\User\ProductImageController;
 use App\Http\Controllers\User\TypeController;
+use App\Http\Controllers\Visitors\TestController;
 use App\Http\Controllers\Visitors\ViewProductsController;
 use App\Http\Controllers\Visitors\VisitorController;
 use App\Http\Livewire\CategoryProducts;
@@ -29,12 +30,22 @@ use Illuminate\Support\Facades\Route;
 // });
 
 Route::get('/', [VisitorController::class, 'index'])->name('/');
-//products
-Route::get('/Products', [ViewProductsController::class, 'index'])->name('view_products');
-Route::get('/Products/{category1}', [ViewProductsController::class, 'searchCategory1'])->name('searchCategory1');
-Route::get('/Products/{category1}/{category2}', [ViewProductsController::class, 'searchCategory2'])->name('searchCategory2');
+Route::prefix('Products')->group(function () {
+    Route::get('/', [ViewProductsController::class, 'index'])->name('view_products');
+    Route::get('/{category1}', [ViewProductsController::class, 'searchCategory1'])->name('searchCategory1');
+    Route::get('/{category1}/{category2}', [ViewProductsController::class, 'searchCategory2'])->name('searchCategory2');
+    Route::get('/{category1}/{category2}/{category3}', [ViewProductsController::class, 'searchCategory3'])->name('searchCategory3');
+});
 
-Route::get('/Product-details/{name}/', [ViewProductsController::class, 'productsEach'])->name('products.each');
+// Route::prefix('/Products')->group(function(){
+//     Route::get('/', [TestController::class, 'index'])->name('view_products');
+//     Route::get('/{category}', [TestController::class, 'category'])->name('category');
+//     Route::get('/{category}/{subProduct}', [TestController::class, 'subProduct'])->name('subProduct');
+//     Route::get('/{category}/{sub-product}/{product}', [TestController::class, 'product'])->name('getProduct');
+// });
+
+Route::get('test/{url}', [ViewProductsController::class,'test'])->name('test');
+Route::get('/Product-details/{name}/', [ViewProductsController::class, 'productsEach'])->name('products-each');
 Route::get('about-us', [VisitorController::class, 'aboutUs'])->name('about.us');
 Route::get('news-blogs', [VisitorController::class, 'newsBlog'])->name('news.blogs');
 Route::get('all-news', [VisitorController::class, 'allNews'])->name('all.news');
