@@ -87,7 +87,7 @@
                         <div
                             class="grid grid-flow-row lg:grid-cols-2 w-max text-sm tracking-wider  text-[#ffffffe5] gap-10 place-content-start">
                                 @foreach ($listedEntry as $entries)
-                                    <a href="{{route('searchCategory2', ['category1' => str_replace(' ', '-', $url), 'category2' => str_replace(' ', '-', $entries->name)])}}"><span class="text-black">{{$entries->name}}</span></a>
+                                    <a href="{{route('searchCategory1', ['category1' => str_replace(' ', '-', $entries->name)])}}"><span class="text-black">{{$entries->name}}</span></a>
                                 @endforeach
                             
                             {{-- @if (isset($listedEntry) && $listedEntry->count() > 0)
