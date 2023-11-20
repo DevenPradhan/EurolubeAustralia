@@ -9,38 +9,7 @@
                 <div class="flex flex-col justify-center px-2 md:px-16 space-y-20 backdrop-brightness-50 h-full">
                     <h1 class=" uppercase max-w-2xl font-black text-white font-archivo">Get the best from Eurolube</h1>
                     <div class="max-w-4xl h-auto">
-                        <div
-                            class="w-full min-w-max h-80 sm:h-96 relative bg-gradient-to-r opacity-90 from-gray-100 to-neutral-800 px-1 sm:px-3 py-10 flex items-center justify-center">
-                            <div
-                                class="rounded-2xl bg-neutral-800 opacity-20 hover:opacity-50 absolute md:relative left-5 z-10">
-                                <x-icons.slider-left class="fill-gray-100 w-7 md:w-10" />
-                            </div>
-                            <div class="w-full flex justify-center sm:justify-start px-2 sm:px-8 h-60 relative">
-                                <div class="bg-white w-52 sm:w-64 md:w-80 h-full px-8 py-8 bg-opacity-60 shrink-0">
-                                    <img src="{{ asset('images/ibc.test.png') }}" alt=""
-                                        class=" w-full h-full object-contain">
-                                </div>
-                                <div
-                                    class="relative overflow-hidden shrink-0 text-[#fff6f6f8] md:absolute md:top-28 md:left-80 h-full md:h-60 flex flex-col justify-center px-8 sm:px-8 py-6 w-56 sm:w-72 bg-red-800">
-                                    <p class=" md:text-lg">3:1 Pump Kit for IBC</p>
-                                    <p class="mt-3 text-xs md:text-sm tracking-wider">Our Mobile oil pump kits are
-                                        designed to meet
-                                        any needs of effective dispensing, based on quiet and trouble-free acting 3:1
-                                        pumps.</p>
-                                    <div class="mt-4">
-                                        <a href="#" class="text-sm text-[#fff6f6d7]">Read More</a>
-                                    </div>
-
-                                </div>
-                            </div>
-                            <div
-                                class="rounded-2xl bg-gray-100 opacity-20 hover:opacity-50 absolute md:relative right-5 z-10">
-                                <x-icons.slider-right class="fill-neutral-800 w-7 md:w-10" />
-                            </div>
-                            <div class=""></div>
-                        </div>
-                        {{-- <img src="{{ asset('images/banner2-25.jpg') }}" alt="banner2-25.jpg"
-                            class="w-full h-full object-scale-down"> --}}
+                        @livewire('guest.featured-products')
                     </div>
                 </div>
             </section>

@@ -15,6 +15,7 @@ class ViewProductsController extends Controller
     public function index()
     {
         $url = '';
+        // $featured = Product::where('status', 1)->where('features')
         // $categories = ProductCategory::where('level', 1)->pluck('name', 'id');
         $listedEntry = ProductCategory::where('level', 1)->get();
 
@@ -86,10 +87,10 @@ class ViewProductsController extends Controller
         // return view('Visitor.products', compact('url', 'listedEntry', 'subCategories'));
     }
 
-    public function productsEach($name)
+    public function productsEach(Product $name)
     {
-        dd($name);
-        $product = Product::where('name', str_replace('-', ' ', $name))->first();
+        // dd($name);
+        $product = $name;
         return view('Visitor.products-each', compact('product'));
     }
 
