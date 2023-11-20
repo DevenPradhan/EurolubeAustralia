@@ -12,7 +12,7 @@
                     class=" w-full h-full object-contain">
             </div>
             <div
-                class="relative overflow-hidden shrink-0 text-gray-50 md:absolute md:top-28 md:left-80 h-full md:h-60 flex flex-col px-8 sm:px-8 py-6 w-56 sm:w-72 bg-[#a80000] ">
+                class="relative overflow-hidden shrink-0 text-gray-50 md:absolute md:top-28 md:left-80 h-full md:h-60 flex flex-col px-8 sm:px-8 py-6 w-56 sm:w-96 bg-[#a80000] ">
                 <p class="mt-2 md:text-lg">{{ $product->name }}</p>
                 <div class="mt-3 text-xs line-clamp-5 tracking-wider leading-4 overflow-hidden">
                     <p>{!! $product->features->where('additional', 1)->first()->feature !!}</p>
