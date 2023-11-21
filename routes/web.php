@@ -44,7 +44,6 @@ Route::prefix('Products')->group(function () {
 //     Route::get('/{category}/{sub-product}/{product}', [TestController::class, 'product'])->name('getProduct');
 // });
 
-Route::get('test/{url}', [ViewProductsController::class,'test'])->name('test');
 Route::get('/Product-details/{name}/', [ViewProductsController::class, 'productsEach'])->name('products-each');
 Route::get('about-us', [VisitorController::class, 'aboutUs'])->name('about.us');
 Route::get('news-blogs', [VisitorController::class, 'newsBlog'])->name('news.blogs');

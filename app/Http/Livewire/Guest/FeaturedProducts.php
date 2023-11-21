@@ -43,8 +43,8 @@ class FeaturedProducts extends Component
             ->take(6)
             ->get('product_id');
 
-        $this->products = Product::whereIn('id', $this->featuredProducts)
-            ->where('status', 1)
+        $this->products = Product::where('status', 1)
+            ->whereIn('id', $this->featuredProducts)
             ->get();
             
 

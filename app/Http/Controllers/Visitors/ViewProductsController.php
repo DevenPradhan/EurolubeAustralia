@@ -17,9 +17,10 @@ class ViewProductsController extends Controller
         $url = '';
         // $featured = Product::where('status', 1)->where('features')
         // $categories = ProductCategory::where('level', 1)->pluck('name', 'id');
+
         $listedEntry = ProductCategory::where('level', 1)->get();
 
-        return view('Visitor.products', compact('url', 'listedEntry'));
+        return view('Visitor.products.index', compact('url', 'listedEntry'));
     }
 
     public function searchCategory1($category1)
@@ -28,8 +29,7 @@ class ViewProductsController extends Controller
 
         $category_id = ProductCategory::where('name', $url)->value('id'); // dont touch
 
-        // $subCategories = ProductCategory::where('referencing', $category_id)->get();
-
+    //the subCategories fetched are only those having products
         $subCategories = DB::table('product_categories')
             ->leftJoin('products', 'product_categories.id', '=', 'products.category_id')
             ->where('product_categories.referencing', $category_id)
@@ -38,17 +38,16 @@ class ViewProductsController extends Controller
             ->distinct()
             ->get();
 
-        // echo $test = ProductCategory::where('referencing', $url)->distinct()->get();
-
-        // echo $sub = Product::whereIn('category_id', $subCategories->id)->get();
-
-        $listedEntry = $subCategories;
+            $listedEntry = $subCategories;
 
         if ($subCategories->count() === 0) {
+            
             $listedEntry = Product::where('category_id', $category_id)->get();
+
+            return view('Visitor.products.products', compact('url', 'listedEntry', 'subCategories'));
         }
 
-        return view('Visitor.products', compact('url', 'listedEntry', 'subCategories'));
+        return view('Visitor.products.sub-categories', compact('url', 'listedEntry', 'subCategories'));
     }
 
     public function searchCategory2($category1, $category2)
@@ -70,32 +69,43 @@ class ViewProductsController extends Controller
             ->where('name', str_replace('-', ' ', $category2))
             ->value('id');
 
-            $listedEntry = Product::where('category_id', $category)->get();
+        $listedEntry = Product::where('category_id', $category)->get();
 
-        ProductCategory::findOrFail($category);
+        // ProductCategory::findOrFail($category);
 
         // $products = Product::where('category_id', $category)
         //     ->get();
 
-        return view('Visitor.products', compact('url', 'listedEntry', 'subCategories'));
+        return view('Visitor.products.products', compact('url', 'listedEntry', 'subCategories'));
     }
 
     public function searchCategory3($category1, $category2, $category3)
     {
-        dd($category3);
 
-        // return view('Visitor.products', compact('url', 'listedEntry', 'subCategories'));
+        $category_id = ProductCategory::where('name', str_replace('-', ' ', $category1))->value('id');
+
+        $subCategories = DB::table('product_categories')
+            ->leftJoin('products', 'product_categories.id', '=', 'products.category_id')
+            ->where('product_categories.referencing', $category_id)
+            ->whereIn('products.category_id', ProductCategory::where('referencing', $category_id)->get('id'))
+            ->select('product_categories.*')
+            ->distinct()
+            ->get();
+        
+        $product = Product::find(7);
+
+        return view('Visitor.products.products-each', compact('product', 'subCategories'));
     }
 
-    public function productsEach(Product $name)
+    public function productsEach($name)
     {
-        // dd($name);
-        $product = $name;
-        return view('Visitor.products-each', compact('product'));
+        $products = Product::pluck('name', 'id');
+         $prd = preg_match('/'.$name. '/', $products, $match);
+        
+         dd($prd);
+        echo $product = Product::find($prd);
+
+        return view('Visitor.products.products-each', compact('product'));
     }
 
-    public function test($url)
-    {
-        dd($url);
-    }
 }

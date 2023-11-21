@@ -8,12 +8,14 @@
                     <h1 class=" uppercase font-black text-white  font-archivo">Get to know us</h1>
 
                     <p class="text-[#ffffffe1] opacity-90 text-sm  max-w-md">
-                        Eurolube is a Swedish company specializing in the manufacture, distribution, and support of
+                        Eurolube Australia is an Australian company specializing in the manufacture, distribution, and
+                        support of
                         environmentally-friendly products and tailor-made complete and professional solutions for the
                         handling of lubricants and fluids. We provide quality products to partners in more than 40
                         countries.
                         <br><br>
-                        Eurolube’s greatest strength is our ability to quickly deliver tailor-made solutions. That,
+                        Eurolube Australia's greatest strength is our ability to quickly deliver tailor-made solutions.
+                        That,
                         simply, is how we contribute to our partners’ efficiency and their profitability.
                     </p>
                     <div class="">
@@ -78,7 +80,7 @@
                 </div>
             </section>
             <section class="w-full relative bg-fixed bg-center h-full md:h-[900px] overflow-hidden"
-            style="background-image: url('\images/banner2-21.jpg'); background-size:full 900px; background-repeat:no-repeat">
+                style="background-image: url('\images/banner2-21.jpg'); background-size:full 900px; background-repeat:no-repeat">
                 {{-- <img src="{{ asset('images/banner2-21.jpg') }}" alt="banner12332fs"
                     class="absolute inset-0 -z-10 w-full h-full object-cover contrast-75"> --}}
                 <div class="font-roboto space-y-10 px-4 md:px-16 py-44 h-full">
@@ -86,14 +88,15 @@
                         lot
                     </h1>
 
-                    <div class="flex flex-col space-y-4" x-data="{tab: ''}">
+                    <div class="flex flex-col space-y-4" x-data="{ tab: '' }">
                         <div class="max-w-2xl space-y-2">
                             <button x-on:click.prevent="tab = (tab === 'first_tab') ? '' : 'first_tab'"
                                 {{-- x-bind:class= --}}
                                 class="flex text-sm  font-semibold w-full items-center justify-between px-4 py-4 bg-white">Are
                                 you a wholesaler? <span><x-icons.dropdown-arrow class="w-4" /></span></button>
                             <div class="p-4 space-y-4 bg-neutral-200 font-neutral-400" x-show="tab === 'first_tab'">
-                                <p class="text-neutral-500 text-sm font-medium">We operate as a wholesaler, supplying a wide range
+                                <p class="text-neutral-500 text-sm font-medium">We operate as a wholesaler, supplying a
+                                    wide range
                                     of products to retailers and businesses. Our focus is on providing quality goods at
                                     competitive prices, supporting our clients' success.</p>
                             </div>
@@ -105,11 +108,13 @@
                                 Do you design your own products too? <span><x-icons.dropdown-arrow
                                         class="w-4" /></span></button>
                             <div class="p-4 space-y-4 bg-neutral-200 font-neutral-400" x-show="tab === 'second_tab'">
-                                <p class="text-neutral-500 text-sm font-medium">In addition to offering a comprehensive range of
-                                    international Eurolube products, we are committed to crafting our own line of goods
-                                    tailored to endure the rigors of our challenging climate and conditions of use. Our
-                                    designs prioritize durability and performance, ensuring our products not only meet
-                                    but exceed the demands of our environment.</p>
+                                <p class="text-neutral-500 text-sm font-medium">Alongside providing an extensive array
+                                    of international products, we are dedicated to both quality and innovation. Our
+                                    proprietary line of products is specifically crafted to withstand the challenges
+                                    posed by our unique climate and usage conditions. Emphasizing durability and
+                                    performance in our designs ensures that our products not only meet but surpass the
+                                    demands of our environment.
+                                </p>
                             </div>
                         </div>
                         <div class="max-w-2xl space-y-2">
@@ -119,7 +124,8 @@
                                 Is your product compatible with most other company
                                 products?<span><x-icons.dropdown-arrow class="w-4" /></span></button>
                             <div class="p-4 space-y-4 bg-neutral-200 font-neutral-400" x-show="tab === 'third_tab'">
-                                <p class="text-neutral-500 text-sm font-medium">Our product seamlessly integrates with a wide array
+                                <p class="text-neutral-500 text-sm font-medium">Our product seamlessly integrates with a
+                                    wide array
                                     of other company products, making it a versatile and convenient choice for
                                     consumers. This compatibility ensures a hassle-free experience and allows for
                                     enhanced functionality when used in conjunction with various other offerings on the

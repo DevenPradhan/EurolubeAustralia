@@ -39,24 +39,24 @@ class VisitorController extends Controller
         return view('Visitor.all-news');
     }
 
-    public function productsAll($url)
-    {
-        $url = str_replace('-', ' ', $url);
+    // public function productsAll($url)
+    // {
+    //     $url = str_replace('-', ' ', $url);
 
-        $products = [];
-        $categories = ProductCategory::where('level',1)->pluck('name', 'id');
+    //     $products = [];
+    //     $categories = ProductCategory::where('level',1)->pluck('name', 'id');
 
-        $category_id = ProductCategory::where('name', $url)->value('id');
+    //     $category_id = ProductCategory::where('name', $url)->value('id');
 
-        $listedEntry = ProductCategory::where('referencing', $category_id)->get();
+    //     $listedEntry = ProductCategory::where('referencing', $category_id)->get();
 
-    //    echo $listedEntry->count();
-        if($listedEntry->count() === 0){
-            $products = Product::where('category_id', $category_id)->get();
-        }
-        // $getCategories = ProductCategory::where('name',$url)->first();
-        return view('Visitor.products', compact('categories', 'url', 'listedEntry', 'products'));
-    }
+    // //    echo $listedEntry->count();
+    //     if($listedEntry->count() === 0){
+    //         $products = Product::where('category_id', $category_id)->get();
+    //     }
+    //     // $getCategories = ProductCategory::where('name',$url)->first();
+    //     return view('Visitor.products', compact('categories', 'url', 'listedEntry', 'products'));
+    // }
 
     public function contactUs()
     {
