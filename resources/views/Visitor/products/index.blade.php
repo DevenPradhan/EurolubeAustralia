@@ -25,17 +25,16 @@
 
                     <div class="px-6 py-20 w-3/4 place-content-center flex">
                         <div
-                            class="grid grid-flow-row lg:grid-cols-2 w-max text-sm tracking-wider  text-[#ffffffe5] gap-10 place-content-start">
+                            class="grid grid-flow-row lg:grid-cols-3 w-max text-sm tracking-wider  text-[#ffffffe5] gap-10 place-content-start">
                            
                             @foreach ($listedEntry as $category)
-                                <a class=" text-start text-black py-1 {{ $url === $category->name && str_contains($url, $category->name) ? ' border-b  max-w-max' : '' }}"
+                                <a class=" text-start py-1 {{ $url === $category->name && str_contains($url, $category->name) ? ' border-b  max-w-max' : '' }}"
                                     href="{{ route('searchCategory1', ['category1' => str_replace(' ', '-', $category->name)]) }}">
-                                    {{ $category->name }}
+                                    <x-product-card :src="asset('images/ibc.test.png')" alt="category-img" >{{ $category->name }}
+                                    </x-product-card> 
                                 </a>
                             @endforeach
-
                           {{-- <a href="{{route('searchCategory1', ['category1' => 'test1/tes2/assdfa'])}}" class="text-black">tests</a> --}}
-
                         </div>
                     </div>
 

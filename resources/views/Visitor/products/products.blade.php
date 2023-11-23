@@ -27,24 +27,30 @@
                         <div
                             class="grid grid-flow-row lg:grid-cols-2 w-max text-sm tracking-wider  text-[#ffffffe5] gap-10 place-content-start">
                         
-                            @if ($subCategories->count() === 0)
+                            @if ($subCategories->count() < 1)
                                 @foreach ($listedEntry as $product)
-                                    <a class=" text-start text-black py-1 {{ $url === $product->name && str_contains($url, $product->name) ? ' border-b  max-w-max' : '' }}"
-                                        href="{{ route('searchCategory2', ['category1' => str_replace(' ', '-', $url), 'category2' => str_replace(' ', '-', $product->name)]) }}">
-                                        {{ $product->name }}{{$url}}
+                                    <a class=" text-start py-1 {{ $url === $product->name && str_contains($url, $product->name) ? ' border-b  max-w-max' : '' }}"
+                                        href="{{ route('searchCategory2', 
+                                            ['category1' => str_replace(' ', '-', $url), 
+                                             'category2' => str_replace(' ', '-', $product->name)]) }}">
+                                        <x-product-card :src="asset('storage/products/images/'.$product->images->first()->url)" 
+                                                        alt="category-img" >{{ $product->name }}s
+                                        </x-product-card> 
+                                        
                                     </a>
                                 @endforeach
                             @else
                                 <?php $url = explode('/', $url); ?>
                                 @foreach ($listedEntry as $product)
-                                <a href="{{route('products-each', str_replace(' ', '-', $product->name))}}" class="text-black">test</a>
-                                <a class=" text-start text-black py-1 {{ $url === $product->name && str_contains($url, $product->name) ? ' border-b  max-w-max' : '' }}"
+                                {{-- <a href="{{route('products-each', str_replace(' ', '-', $product->name))}}" class="text-black">test</a> --}}
+                                <a class=" text-start py-1 {{ $url === $product->name && str_contains($url, $product->name) ? ' border-b  max-w-max' : '' }}"
                                         href="{{ route('searchCategory3', [
                                             'category1' => str_replace(' ', '-', $url[0]),
                                             'category2' => str_replace(' ', '-', $url[1]),
                                             'category3' => str_replace(' ', '-', $product->name),
                                         ]) }}">
-                                        {{ $product->name }}
+                                        <x-product-card :src="asset('storage/products/images/'.$product->images->first()->url)" alt="category-img" >{{ $product->name }}
+                                        </x-product-card> 
                                     </a>
                                 @endforeach
                             @endif

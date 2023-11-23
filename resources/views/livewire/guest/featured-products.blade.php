@@ -2,7 +2,7 @@
     <div x-data="{ product: @entangle('product') }"
         class="w-full min-w-max h-80 sm:h-96 relative bg-gradient-to-r opacity-80 from-gray-100 to-neutral-800 px-1 sm:px-3 py-10 flex items-center justify-center">
         <button x-on:click.prevent="$wire.previousItem()" {{ $count <= 1 ? 'disabled' : '' }}
-            class="rounded-2xl bg-gray-800 opacity-20  {{ $count > 1 ? 'hover:opacity-50' : '' }}  absolute md:relative left-5 z-10">
+            class="rounded-2xl bg-gray-800 opacity-20  {{ $count > 1 ? 'hover:opacity-50 transition-all' : '' }}  absolute md:relative left-5 z-10">
             <x-icons.slider-left class="fill-gray-100 w-7 md:w-10" />
         </button>
 
@@ -27,7 +27,7 @@
 
 
         <button x-on:click.prevent="$wire.nextItem()"
-            class="rounded-2xl bg-gray-100 opacity-20 hover:opacity-50 absolute md:relative right-5 z-10">
+            class="rounded-2xl bg-gray-100 opacity-20 hover:opacity-50 transition-all absolute md:relative right-5 z-10">
             <x-icons.slider-right class="fill-gray-800 w-7 md:w-10" />
         </button>
 

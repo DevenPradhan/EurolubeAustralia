@@ -76,11 +76,16 @@ class ProductDetails extends Component
 
     public function changeStatus($status)
     {
-        $this->product->update([
-            'status' => $status
-        ]);
-        $this->product->refresh();
-        $this->emit('status-changed');
+        if($this->product->images()->count() < 1){
+            $this->imageModal = true;
+        }else{
+            $this->product->update([
+                'status' => $status
+            ]);
+            $this->product->refresh();
+            $this->emit('status-changed');
+        }
+       
     }
 
     public function changeQuantity()

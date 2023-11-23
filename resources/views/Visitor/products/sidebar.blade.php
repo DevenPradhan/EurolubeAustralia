@@ -1,6 +1,20 @@
 <div class="space-y-5 w-72 shrink-0 hidden sm:flex flex-col p-10 h-full pb-60 bg-[#010123] text-[#ffffffe5] text-sm">
     <?php
-    $categories = App\Models\ProductCategory::where('level', 1)->pluck('name', 'id');
+    
+    $subCat = DB::table('product_categories')
+        ->leftJoin('products', 'product_categories.id', '=', 'products.category_id')
+        ->where('product_categories.level', 2)
+        ->where('products.status', 1)
+        ->distinct()
+        ->pluck('product_categories.referencing');
+    
+        $list_one = App\Models\ProductCategory::where('level', 1)
+        ->whereIn('id', $subCat)
+        ->pluck('name', 'id');
+
+     $categories =$list_one->merge(App\Models\ProductCategory::where('level', 1)
+        ->whereIn('id', App\Models\Product::where('status', 1)->get('category_id'))
+        ->pluck('name', 'id'));
     ?>
 
     @foreach ($categories as $key => $category)

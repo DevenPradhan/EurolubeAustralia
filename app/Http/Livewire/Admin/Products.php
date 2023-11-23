@@ -134,7 +134,7 @@ class Products extends Component
 
         $product = Product::create([
 
-            'name' => $this->productName,
+            'name' => str_replace('/', 'p', $this->productName),
             'description' => $this->productDescription,
             'quantity' => $this->productQuantity,
             'category_id' => $this->productCategory->id,

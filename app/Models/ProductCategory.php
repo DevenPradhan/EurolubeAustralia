@@ -20,9 +20,9 @@ class ProductCategory extends Model
     protected $fillable = ['id', 'level', 'name', 'referencing'];
 
    
-   public function images(): MorphMany
-   {
-    return $this->morphMany(Image::class, 'imageable');
-   }
+    public function images():MorphMany
+    {
+        return $this->morphMany(Image::class, 'imageable');
+    }
    
 }

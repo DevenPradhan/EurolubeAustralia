@@ -28,7 +28,10 @@
                             class="grid grid-flow-row lg:grid-cols-2 w-max text-sm tracking-wider  text-[#ffffffe5] gap-10 place-content-start">
 
                             @foreach($listedEntry as $subCategory)
-                             <a href="{{route('searchCategory2', ['category1' => str_replace(' ', '-', $url), 'category2' => str_replace(' ', '-', $subCategory->name)])}}" class="text-black">{{$subCategory->name}}</a>
+                             <a href="{{route('searchCategory2', ['category1' => str_replace(' ', '-', $url), 'category2' => str_replace(' ', '-', $subCategory->name)])}}">
+                                <x-product-card :src="asset('images/ibc.test.png')" alt="category-img" >{{ $subCategory->name }}
+                                </x-product-card> 
+                            </a>
                             @endforeach
                         </div>
                     </div>
