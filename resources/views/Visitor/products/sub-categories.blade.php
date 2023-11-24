@@ -7,7 +7,7 @@
 
                 {{-- <img src="{{asset('images/banner2-24.jpg')}}" alt="" class="w-full h-full object-cover absolute -z-20 inset-0 "> --}}
                 <div class="flex flex-col justify-center px-2 md:px-16 space-y-20 backdrop-brightness-50 h-full">
-                    <h1 class=" uppercase max-w-2xl font-black text-white font-archivo">Get the best from Eurolube</h1>
+                    <h1 class=" uppercase max-w-2xl font-black text-white font-archivo">Get the best from Eurolube Australia</h1>
                     <div class="max-w-4xl h-auto">
                         @livewire('guest.featured-products')
                     </div>
@@ -18,26 +18,30 @@
                 <img src="{{ asset('images/banner2-17.jpg') }}" alt="topo"
                     class="absolute inset-0 opacity-20 -z-40 w-full h-full object-cover ">
                 <div class="w-full flex justify-center sm:justify-between h-full py-6 px-4 md:px-0" x-ref="mySection">
-                   {{-- sidebar --}}
-                   @include('Visitor.products.sidebar')
-                   {{-- end-sidebar --}}
+                    {{-- sidebar --}}
+                    @include('Visitor.products.sidebar')
+                    {{-- end-sidebar --}}
 
 
-                    <div class="px-6 py-20 w-3/4 place-content-center flex">
+                    <div class="px-6 pt-4 pb-20 w-3/4 flex flex-col h-full justify-between relative">
                         <div
-                            class="grid grid-flow-row lg:grid-cols-2 w-max text-sm tracking-wider  text-[#ffffffe5] gap-10 place-content-start">
+                            class="grid grid-flow-row lg:grid-cols-3 w-full text-sm  text-[#ffffffe5] gap-10 place-content-center lg:place-content-start lg:place-items-center">
 
-                            @foreach($listedEntry as $subCategory)
-                             <a href="{{route('searchCategory2', ['category1' => str_replace(' ', '-', $url), 'category2' => str_replace(' ', '-', $subCategory->name)])}}">
-                                <x-product-card :src="asset('images/ibc.test.png')" alt="category-img" >{{ $subCategory->name }}
-                                </x-product-card> 
-                            </a>
+                            @foreach ($listedEntry as $subCategory)
+                                <a
+                                    href="{{ route('searchCategory2', ['category1' => str_replace(' ', '-', $url), 'category2' => str_replace(' ', '-', $subCategory->name)]) }}">
+                                    <x-product-card :src="asset('images/ibc.test.png')" alt="category-img">{{ $subCategory->name }}
+                                    </x-product-card>
+                                </a>
                             @endforeach
                         </div>
+                        {{-- <p class="text-sm form_label mx-6">If goods are wrongly supplied through our negligence we will gladly exchange when returned to our
+                            warehouse. However goods returned through the fault of, or not required by, the customer will incur
+                            a restocking charge of 20%. <br> We cannot accept for exchange, goods that are damaged, weatherd or used. Goods will not be accepted for return after 7 days. </p> --}}
                     </div>
 
                 </div>
-
+               
             </section>
 
             <section class="w-full relative h-full md:h-[900px] overflow-hidden bg-fixed bg-center bg-cover"

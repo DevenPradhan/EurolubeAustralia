@@ -12,76 +12,124 @@ use App\Models\ProductCategory;
 
 class ViewProductsController extends Controller
 {
+    public $categories;
+
+    public function __construct()
+    {
+        //by default, categories and subCategories that have products which exist and their status is active are shown in the list.
+        //$subCat finds all the subCategories that checks for products with the conditions.
+        $subCat = DB::table('product_categories')
+            ->leftJoin('products', 'product_categories.id', '=', 'products.category_id')
+            ->where('product_categories.level', 2)
+            ->where('products.status', 1)
+            ->distinct()
+            ->pluck('product_categories.referencing');
+
+        //$list_one is to get the catories that the $subCat is referencing to.
+        $list_one = ProductCategory::where('level', 1)
+            ->whereIn('id', $subCat)
+            ->pluck('name', 'id');
+
+        //$categories is a result of $list_one merging with all the categories that dont have subcategories but products(active)
+        $this->categories = $list_one->merge(ProductCategory::where('level', 1)
+            ->whereIn('id', Product::where('status', 1)->pluck('category_id'))
+            ->pluck('name', 'id'));
+
+    }
+
     public function index()
     {
         $url = '';
 
+        $categories = $this->categories;
+
+        //I am using $listedEntry dynamically to fetch different sets of data unlike $categories, $subCategories
+        //since they change on each request while $categories, $subCategories..etc are recurring in a few pages. 
         $listedEntry = ProductCategory::where('level', 1)->get();
 
-        return view('Visitor.products.index', compact('url', 'listedEntry'));
+        return view('Visitor.products.index', compact('url', 'listedEntry', 'categories'));
     }
 
     public function searchCategory1($category1)
     {
+        //search for sub-categories list. If not found look for products directly under this category. 
         $url = str_replace('-', ' ', $category1);
+
+        $categories = $this->categories;
 
         $category_id = ProductCategory::where('name', $url)->value('id'); // dont touch
 
         $subCategories = $this->getSubcategories($category_id);
 
-        $listedEntry = $subCategories;
+        if ($subCategories->count() < 1) {
 
-        if ($subCategories->count() === 0) {
+            $listedEntry = Product::where('status', 1)->where('category_id', $category_id)->get();
+            $subCategories = $listedEntry;
 
-            $listedEntry = Product::where('category_id', $category_id)->get();
+        } else {
+            $listedEntry = $subCategories;
         }
 
-        return view('Visitor.products.sub-categories', compact('url', 'listedEntry', 'subCategories'));
+        return view('Visitor.products.sub-categories', compact('url', 'listedEntry', 'subCategories', 'categories'));
     }
 
     public function searchCategory2($category1, $category2)
     {
 
-        $url = str_replace('-', ' ', $category1) . '/' . str_replace('-', ' ', $category2);
-
-        $category_id = ProductCategory::where('name', str_replace('-', ' ', $category1))->value('id'); // dont touch
+        $categories = $this->categories;
+        $category_id = ProductCategory::where('name', str_replace('-', ' ', $category1))
+        ->value('id'); // dont touch
 
         $subCategories = $this->getSubcategories($category_id);
 
-        if ($subCategories->count() === 0) {
-            $product = $this->getProduct($data = [$category_id, $category2]);
+        $url = str_replace('-', ' ', $category1) . '/' . str_replace('-', ' ', $category2);
 
-            return view('Visitor.products.products-each', compact('url', 'subCategories', 'product'));
+        if ($subCategories->count() < 1) {
+            //since there are no subcategories under this Category, this function call will search for products using the same keywords.
+            $product = $this->getProduct($data = [$category_id, $category2]); 
+            $subCategories = Product::where('status', 1)->where('category_id', $category_id)
+                ->get();
+
+            return view('Visitor.products.products-each', compact('url', 'subCategories', 'product', 'categories'));
         }
 
-        $category = ProductCategory::where('referencing', $category_id)
-            ->where('name', str_replace('-', ' ', $category2))
-            ->value('id');
+        //to get the list of products we find the matching category and the subcategory both.
+        $listedEntry = Product::where('status', 1)
+            ->where('category_id', ProductCategory::where('referencing', $category_id)
+                ->where('name', str_replace('-', ' ', $category2))
+                ->value('id'))
+            ->get();
+        $products = $listedEntry;
 
-        $listedEntry = Product::where('category_id', $category)->get();
-
-        return view('Visitor.products.products', compact('url', 'listedEntry', 'subCategories'));
+        return view('Visitor.products.products', compact('url', 'listedEntry', 'subCategories', 'categories', 'products'));
     }
 
     public function searchCategory3($category1, $category2, $category3)
     {
-        $url = str_replace('-', ' ', $category1) . str_replace('-', ' ', $category2) . str_replace('-', ' ', $category3);
-
+        $categories = $this->categories;
         $category_id = ProductCategory::where('name', str_replace('-', ' ', $category1))->value('id');
+        $subCategoryId = ProductCategory::where('referencing', $category_id)
+            ->where('name', str_replace('-', ' ', $category2))
+            ->value('id');
 
         $subCategories = $this->getSubcategories($category_id);
+        $products = Product::where('category_id', $subCategoryId)
+            ->get('name', 'id');
+
+        $url = str_replace('-', ' ', $category1) . str_replace('-', ' ', $category2) . str_replace('-', ' ', $category3);
 
         //get product using the category Id and the product naame
-        $product = $this->getProduct($data = [ProductCategory::where('referencing', $category_id)
-                            ->where('name', str_replace('-', ' ', $category2))
-                            ->value('id'), $category3]);
+        $product = $this->getProduct($data = [
+            $subCategoryId,
+            $category3
+        ]);
 
-        return view('Visitor.products.products-each', compact('product', 'subCategories', 'url'));
+        return view('Visitor.products.products-each', compact('product', 'subCategories', 'url', 'categories', 'products'));
     }
 
     public function getSubcategories($category_id)
     {
-        
+
         return DB::table('product_categories')
             ->leftJoin('products', 'product_categories.id', '=', 'products.category_id')
             ->where('product_categories.referencing', $category_id)

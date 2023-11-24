@@ -7,7 +7,7 @@
 
                 {{-- <img src="{{asset('images/banner2-24.jpg')}}" alt="" class="w-full h-full object-cover absolute -z-20 inset-0 "> --}}
                 <div class="flex flex-col justify-center px-2 md:px-16 space-y-20 backdrop-brightness-50 h-full">
-                    <h1 class=" uppercase max-w-2xl font-black text-white font-archivo">Get the best from Eurolube</h1>
+                    <h1 class=" uppercase max-w-2xl font-black text-white font-archivo">Get the best from Eurolube Australia</h1>
                     <div class="max-w-4xl h-auto">
                         @livewire('guest.featured-products')
                     </div>
@@ -23,9 +23,9 @@
                     @include('Visitor.products.sidebar')
                     {{-- end-sidebar --}}
 
-                    <div class="px-6 py-20 w-3/4 place-content-center flex">
+                    <div class="px-6 pt-4 pb-20 w-3/4 ">
                         <div
-                            class="grid grid-flow-row lg:grid-cols-3 w-max text-sm tracking-wider  text-[#ffffffe5] gap-10 place-content-start">
+                            class="grid grid-flow-row lg:grid-cols-3 w-full text-sm place-content-center lg:place-content-start text-[#ffffffe5] gap-10 lg:place-items-center">
                            
                             @foreach ($listedEntry as $category)
                                 <a class=" text-start py-1 {{ $url === $category->name && str_contains($url, $category->name) ? ' border-b  max-w-max' : '' }}"
