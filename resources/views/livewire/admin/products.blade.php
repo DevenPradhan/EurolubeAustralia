@@ -118,7 +118,7 @@
                                     <li>
                                         <button type="button" 
                                                 wire:click.prevent="selectCategory({{ $key }})"
-                                            class="flex justify-between border space-x-10 bg-gray-200 text-start hover:bg-gray-700 hover:text-white px-2 py-1 w-full sm:w-96">
+                                            class="flex justify-between border space-x-10 bg-gray-200 text-start hover:bg-gray-700 hover:text-white pl-2 pr-4 py-1 w-full sm:w-96">
                                             {{ $category }}
 
                                             <span>

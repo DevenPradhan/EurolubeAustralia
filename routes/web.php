@@ -3,6 +3,7 @@
 use App\Http\Controllers\ImagesController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\User\CategoryController;
+use App\Http\Controllers\User\DashController;
 use App\Http\Controllers\User\ProductController;
 use App\Http\Controllers\User\ProductDetailController;
 use App\Http\Controllers\User\ProductImageController;
@@ -52,12 +53,9 @@ Route::get('contact-us', [VisitorController::class, 'contactUs'])->name('contact
 Route::get('services', [VisitorController::class, 'services'])->name('services');
 Route::get('downloads', [VisitorController::class, 'downloads'])->name('downloads');
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::middleware(['auth', 'verified'])->group(function () {
 
-Route::middleware('auth')->group(function () {
-
+    Route::get('/dashboard', [DashController::class, 'index'])->name('dashboard');
     Route::resource('admin/products', ProductController::class);
     Route::get('product-categories', ProductCategories::class)->name('product-categories');
     Route::get('product-categories/{category}/products', CategoryProducts::class)->name('category-products');

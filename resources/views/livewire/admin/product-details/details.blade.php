@@ -22,13 +22,18 @@
     {{-- status div end --}}
 
     {{-- quantity div start --}}
-    <div class="relative" x-data="{ quantity: false }" x-on:click.away="quantity = false">
-        <button class="px-2 py-1 shadow opacity-75" x-on:click.prevent="quantity = !quantity">Quantity :
+    <div class="relative" 
+         x-data="{ quantity: false }" 
+         x-on:click.away="quantity = false">
+        <button class="px-2 py-1 shadow opacity-75" 
+                x-on:click.prevent="quantity = !quantity;  $nextTick(() => $refs.quantity.focus());">Quantity :
             {{ $product->quantity }}</button>
         <div class="absolute z-20 p-3 bg-white shadow-md" x-show="quantity" x-init="@this.on('quantity-changed', () => { quantity = false })">
             <form action="" wire:submit.prevent="changeQuantity">
                 <input type="number" wire:model.defer="productQuantity"
-                    class="p-2 focus:ring-0 border-gray-400 rounded-sm h-7 w-32 text-sm" placeholder="Enter Quantity">
+                    class="p-2 focus:ring-0 border-gray-400 rounded-sm h-7 w-32 text-sm" 
+                    placeholder="Enter Quantity"
+                    x-ref="quantity">
                 <x-primary-button class="text-sm h-7">Save</x-primary-button>
             </form>
         </div>

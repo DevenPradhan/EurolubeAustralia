@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\Admin;
+namespace App\Http\Livewire\Admin\ProductDetails;
 
 use App\Models\Product;
 use App\Models\ProductFeature;
@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
-class ProductDetails extends Component
+class Details extends Component
 {
     use WithFileUploads;
     public Product $product;
@@ -219,6 +219,6 @@ class ProductDetails extends Component
         $this->productQuantity = $this->product->quantity;
         $statuses = collect(['Inactive', 'Active', 'Archived']);
 
-        return view('livewire.admin.product-details', compact('statuses'));
+        return view('livewire.admin.product-details.details', compact('statuses'));
     }
 }
