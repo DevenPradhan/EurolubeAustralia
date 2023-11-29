@@ -19,10 +19,7 @@ class EditCategories extends Component
         if (ProductCategory::where('referencing', $id)->count() === 0) {
 
             $this->productCategory = ProductCategory::find($id);
-            $this->emit('categorySelected', $id); //after selecting category close select category div
-
-            // $this->categories = ProductCategory::where('level', 1)
-            //     ->pluck('name', 'id');
+            $this->emitUp('categorySelected', $id); //after selecting category close select category div
 
         } else {
             $this->categories = ProductCategory::where('referencing', $id)
@@ -87,7 +84,6 @@ class EditCategories extends Component
                     ->first();
 
             }
-
         }
         return view('livewire.admin.edit-categories');
     }

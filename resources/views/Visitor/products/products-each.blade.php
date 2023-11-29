@@ -2,17 +2,6 @@
 
     <div class="w-full">
         <div class="container max-w-7xl mx-auto my-10">
-            <section class="w-full relative h-[800px] md:h-[900px] bg-fixed bg-center overflow-clip"
-                style="background-image: url('/images/banner2-24.jpg'); background-size:1280px">
-
-                {{-- <img src="{{asset('images/banner2-24.jpg')}}" alt="" class="w-full h-full object-cover absolute -z-20 inset-0 "> --}}
-                <div class="flex flex-col justify-center px-2 md:px-16 space-y-20 backdrop-brightness-50 h-full">
-                    <h1 class=" uppercase max-w-2xl font-black text-white font-archivo">Get the best from Eurolube</h1>
-                    <div class="max-w-4xl h-auto">
-                        @livewire('guest.featured-products')
-                    </div>
-                </div>
-            </section>
 
             <section class="relative w-full h-full md:min-h-screen " x-data="{ isFocused: false }" x-init="$nextTick(() => $refs.mySection.focus())">
                 <img src="{{ asset('images/banner2-17.jpg') }}" alt="topo"

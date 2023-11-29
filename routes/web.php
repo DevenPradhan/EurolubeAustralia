@@ -11,8 +11,9 @@ use App\Http\Controllers\User\TypeController;
 use App\Http\Controllers\Visitors\TestController;
 use App\Http\Controllers\Visitors\ViewProductsController;
 use App\Http\Controllers\Visitors\VisitorController;
-use App\Http\Livewire\CategoryProducts;
+use App\Http\Livewire\Admin\Orders;
 use App\Http\Livewire\Admin\ProductCategories;
+use App\Http\Livewire\Admin\Category\Details;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -58,7 +59,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/dashboard', [DashController::class, 'index'])->name('dashboard');
     Route::resource('admin/products', ProductController::class);
     Route::get('product-categories', ProductCategories::class)->name('product-categories');
-    Route::get('product-categories/{category}/products', CategoryProducts::class)->name('category-products');
+    Route::get('product-categories/{category}/products', Details::class)->name('category-products');
+
+
+    Route::get('orders', Orders::class)->name('orders');
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

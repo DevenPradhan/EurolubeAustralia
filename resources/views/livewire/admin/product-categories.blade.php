@@ -73,24 +73,6 @@
                 @endif
 
                              
-                    <div class="mt-6">
-                        <img src="{{'storage/products/images/'.$categoryImage}}" alt="">
-
-                    </div>
-
-                    <div class="mt-6">
-                        <x-text-input type="file" wire:model="categoryImage" />
-
-
-                        @if ($categoryImage)
-                            <div class="mt-3">
-                                <img src="{{ $categoryImage->temporaryUrl() }}" alt="temp" class="w-full">
-
-                            </div>
-                        @endif
-
-                    </div>
-
                     <div class="mt-6 flex">
                     <x-secondary-button x-on:click="$dispatch('close')">
                         {{ __('Cancel') }}

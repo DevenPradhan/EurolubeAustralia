@@ -13,7 +13,6 @@ class ProductCategories extends Component
     use WithFileUploads;
     public $categories;
     public $categoryId;
-    public $categoryImage;
     public $subCategories;
     public $deleteId;
     public $password;
@@ -40,14 +39,13 @@ class ProductCategories extends Component
         if ($this->subCategories->count() === 0) {
             return to_route('category-products', $id);
         }
-
         
     }
 
     public function openEditModal($id)
     {
         $this->resetValidation();
-        $this->reset('categoryName', 'categoryImage');
+        $this->reset('categoryName');
         $this->categoryForEdit = ProductCategory::where('id', $id)->first();    // category to edit
         $this->categoryName = $this->categoryForEdit->name;     //category to edit name -> wired model
         

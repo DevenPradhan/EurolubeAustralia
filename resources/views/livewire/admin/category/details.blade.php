@@ -1,0 +1,66 @@
+<div class="">
+    <div class="space-y-10">
+        <div class="w-60">
+            @if ($category->images->count() > 0)
+                <div class="">
+                    <img src="{{ asset('storage/categories/images/' . $category->images()->first()->url) }}" alt="">
+                </div>
+            @endif
+            <x-secondary-button
+                wire:click.prevent="openImageModal">{{ $category->images()->count() == 0 ? 'Add' : 'Change' }}
+            </x-secondary-button>
+        </div>
+
+
+
+        <div class="">
+            <ol class="">
+                @foreach ($products as $product)
+                <li>
+                    <a href="{{ route('products.show', $product->id) }}">
+                            <div class="p-2 w-max bg-gray-200">
+                                <h4 class="tracking-wide uppercase text-lg">{{ $product->name }}</h4>
+                            </div>
+                    </a>
+                </li>
+                
+            @endforeach
+            </ol>
+        </div>
+       
+    </div>
+
+    <x-livewire-modal wire:model="imageModal">
+        <form wire:submit.prevent="uploadImage">
+            <div class="p-6 space-y-8">
+                <h6>Upload Image</h6>
+
+                <div class="flex space-x-10 items-center">
+                    <x-input-label for="productImage" value="Image" class="w-20" />
+                    <x-text-input type="file" name="categoryImage" required
+                        wire:model.debounce.500ms="categoryImage" class="w-full" />
+
+                </div>
+
+                @error('productImage')
+                    <x-input-error :messages="$errors->get('categoryImage')" class="mt-2" />
+                @else
+                    @if ($categoryImage)
+                        <div class="">
+                            <img src="{{ $categoryImage->temporaryUrl() }}" alt="temp">
+                        </div>
+                        <div class="mt-6 flex justify-end">
+                            <x-secondary-button x-on:click="$dispatch('close')">
+                                {{ __('Cancel') }}
+                            </x-secondary-button>
+
+                            <x-primary-button class="ml-3" type="submit">
+                                {{ __('Save') }}
+                            </x-primary-button>
+                        </div>
+                    @endif
+                @enderror
+            </div>
+        </form>
+    </x-livewire-modal>
+</div>

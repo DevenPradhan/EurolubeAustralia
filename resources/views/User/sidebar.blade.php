@@ -12,7 +12,7 @@
         </i>
         <span>Products</span>
     </a>
-    <a href="#" class="sidebar_list">
+    <a href="{{route('orders')}}" class="sidebar_list">
         <i class="w-5"><x-icons.abacus/></i>
         <span>Orders</span>
     </a>

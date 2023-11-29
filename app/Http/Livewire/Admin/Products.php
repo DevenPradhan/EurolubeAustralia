@@ -18,75 +18,26 @@ class Products extends Component
     public $productModal = false;
     public $deleteModal = false;
     public $categoryDiv = false;
-    public $activeDiv = 'category_list';
-    public $upperCategory;
-    public $newCategory;
-    public $newCategorySearch;
     public $productCategory;
-    public $categories;
 
-    // protected $listeners = ['reset-category' => 'mount'];
+    protected $listeners = ['categorySelected'];
 
-    public function saveCategory()
+   
+    public function categorySelected($id)//from livewire component(edit-categories)
     {
-        $this->validate([
-            'newCategory' => 'required|'
-        ]);
-
-        $category = new ProductCategory;
-        $category->name = str_replace('-', ' ', $this->newCategory);
-
-        if (!empty($this->upperCategory)) {  
-        
-            $category->level = 2;
-            $category->referencing = $this->upperCategory;
-
-        } else {
-
-            $category->level = 1;
-        }
-
-        $category->save();
-
-        $this->categories = ProductCategory::where('level', 1)
-            ->pluck('name', 'id');
-        $this->reset('newCategory');
-        $this->emit('saved');
-    }
-
-    public function selectCategory($id)
-    {
-        if (ProductCategory::where('referencing', $id)->count() === 0) {
-
-            $this->productCategory = ProductCategory::find($id);
-            $this->emit('select-category'); //after selecting category close select category div
-            
-            $this->categories = ProductCategory::where('level', 1)
-                ->pluck('name', 'id');
-
-        } else {
-            $this->categories = ProductCategory::where('referencing', $id)
-                ->pluck('name', 'id');
-        }
+       $this->productCategory = ProductCategory::find($id);
+       $this->emit('select-category');
 
     }
 
-    public function mainCategory()
-    {
-        $this->reset('upperCategory');
-        $this->categories = ProductCategory::where('level', 1)
-            ->pluck('name', 'id');
-    }
-
-    public function openProductModal()
+       public function openProductModal()
     {
         $this->reset(
             'productId',
             'productName',
             'productDescription',
             'productCategory',
-            'categoryDiv',
-            'activeDiv'
+            'categoryDiv'
         );
         $this->productModal = true;
         $this->productQuantity = 1;
@@ -117,14 +68,6 @@ class Products extends Component
         $this->deleteModal = false;
     }
 
-    public function mount()
-    {
-
-        $this->categories = ProductCategory::where('level', 1)
-            ->pluck('name', 'id');
-    }
-
-
     public function addProduct()
     {
         $this->validate([
@@ -151,20 +94,6 @@ class Products extends Component
 
     public function render()
     {
-        if ($this->newCategory) {
-            if ($this->upperCategory) {
-                $this->newCategorySearch = ProductCategory::where('referencing', $this->upperCategory)
-                    ->where('name', 'like', '%' . $this->newCategory . '%')
-                    ->first();
-            } else {
-
-                $this->newCategorySearch = ProductCategory::where('level', 1)
-                    ->where('name', 'like', '%' . $this->newCategory . '%')
-                    ->first();
-
-            }
-
-        }
         if ($this->productName) {
             $this->validationSearch = Product::where('name', 'like', '%' . $this->productName . '%')
                 ->first();

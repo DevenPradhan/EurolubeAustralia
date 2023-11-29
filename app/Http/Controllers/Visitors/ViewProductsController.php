@@ -78,7 +78,7 @@ class ViewProductsController extends Controller
 
         $categories = $this->categories;
         $category_id = ProductCategory::where('name', str_replace('-', ' ', $category1))
-        ->value('id'); // dont touch
+            ->value('id'); // dont touch
 
         $subCategories = $this->getSubcategories($category_id);
 
@@ -86,7 +86,7 @@ class ViewProductsController extends Controller
 
         if ($subCategories->count() < 1) {
             //since there are no subcategories under this Category, this function call will search for products using the same keywords.
-            $product = $this->getProduct($data = [$category_id, $category2]); 
+            $product = $this->getProduct($data = [$category_id, $category2]);
             $subCategories = Product::where('status', 1)->where('category_id', $category_id)
                 ->get();
 
@@ -129,12 +129,10 @@ class ViewProductsController extends Controller
 
     public function getSubcategories($category_id)
     {
-
-        return DB::table('product_categories')
-            ->leftJoin('products', 'product_categories.id', '=', 'products.category_id')
+        return ProductCategory::leftJoin('products', 'product_categories.id', '=', 'products.category_id')
             ->where('product_categories.referencing', $category_id)
             ->where('products.status', 1)
-            ->whereIn('products.category_id', ProductCategory::where('referencing', $category_id)->get('id'))
+            ->whereIn('products.category_id', ProductCategory::where('referencing', $category_id)->pluck('id'))
             ->select('product_categories.*')
             ->distinct()
             ->get();
