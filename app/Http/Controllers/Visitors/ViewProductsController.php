@@ -13,12 +13,13 @@ use App\Models\ProductCategory;
 class ViewProductsController extends Controller
 {
     public $categories;
+    public $subCat;
 
     public function __construct()
     {
-        //by default, categories and subCategories that have products which exist and their status is active are shown in the list.
+        //by default, categories and subCategories that have products which exist, and their status is active are shown in the list.
         //$subCat finds all the subCategories that checks for products with the conditions.
-        $subCat = DB::table('product_categories')
+        $this->subCat = DB::table('product_categories')
             ->leftJoin('products', 'product_categories.id', '=', 'products.category_id')
             ->where('product_categories.level', 2)
             ->where('products.status', 1)
@@ -27,13 +28,13 @@ class ViewProductsController extends Controller
 
         //$list_one is to get the catories that the $subCat is referencing to.
         $list_one = ProductCategory::where('level', 1)
-            ->whereIn('id', $subCat)
-            ->pluck('name', 'id');
+            ->whereIn('id', $this->subCat)
+            ->get();
 
         //$categories is a result of $list_one merging with all the categories that dont have subcategories but products(active)
         $this->categories = $list_one->merge(ProductCategory::where('level', 1)
             ->whereIn('id', Product::where('status', 1)->pluck('category_id'))
-            ->pluck('name', 'id'));
+            ->get());
 
     }
 
@@ -45,14 +46,12 @@ class ViewProductsController extends Controller
 
         //I am using $listedEntry dynamically to fetch different sets of data unlike $categories, $subCategories
         //since they change on each request while $categories, $subCategories..etc are recurring in a few pages. 
-        $listedEntry = ProductCategory::where('level', 1)->get();
-
-        return view('Visitor.products.index', compact('url', 'listedEntry', 'categories'));
+        return view('Visitor.products.index', compact('url', 'categories'));
     }
 
     public function searchCategory1($category1)
     {
-        //search for sub-categories list. If not found look for products directly under this category. 
+        //search for sub-categories list. If not found, look for products directly under this category. 
         $url = str_replace('-', ' ', $category1);
 
         $categories = $this->categories;
@@ -95,10 +94,10 @@ class ViewProductsController extends Controller
 
         //to get the list of products we find the matching category and the subcategory both.
         $listedEntry = Product::where('status', 1)
-            ->where('category_id', ProductCategory::where('referencing', $category_id)
+                ->where('category_id', ProductCategory::where('referencing', $category_id)
                 ->where('name', str_replace('-', ' ', $category2))
                 ->value('id'))
-            ->get();
+                ->get();
         $products = $listedEntry;
 
         return view('Visitor.products.products', compact('url', 'listedEntry', 'subCategories', 'categories', 'products'));
@@ -116,7 +115,7 @@ class ViewProductsController extends Controller
         $products = Product::where('category_id', $subCategoryId)
             ->get('name', 'id');
 
-        $url = str_replace('-', ' ', $category1) . str_replace('-', ' ', $category2) . str_replace('-', ' ', $category3);
+        $url = str_replace('-', ' ', $category1) . str_replace('-', ' ', $category2) .  str_replace('-', ' ', $category3);
 
         //get product using the category Id and the product naame
         $product = $this->getProduct($data = [

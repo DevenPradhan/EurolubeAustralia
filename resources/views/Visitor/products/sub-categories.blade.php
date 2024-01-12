@@ -2,27 +2,40 @@
 
     <div class="w-full">
         <div class="container max-w-7xl mx-auto my-10">
-           
 
-            <section class="relative w-full h-full md:min-h-screen " x-data="{ isFocused: false }" x-init="$nextTick(() => $refs.mySection.focus())">
-                <img src="{{ asset('images/banner2-17.jpg') }}" alt="topo"
-                    class="absolute inset-0 opacity-20 -z-40 w-full h-full object-cover ">
-                <div class="w-full flex justify-center sm:justify-between h-full py-6 px-4 md:px-0" x-ref="mySection">
+
+            <section class="relative w-full h-full md:min-h-screen sm:bg-[#010123] py-0.5 sm:pl-8 sm:pr-0.5 px-2 my-2">
+                <div class="w-full flex justify-center sm:justify-between h-full md:px-0">
                     {{-- sidebar --}}
                     @include('Visitor.products.sidebar')
                     {{-- end-sidebar --}}
 
 
-                    <div class="px-6 pt-4 pb-20 w-3/4 flex flex-col h-full justify-between relative">
-                        <div
-                            class="grid grid-flow-row lg:grid-cols-3 w-full text-sm  text-[#ffffffe5] gap-10 place-content-center lg:place-content-start lg:place-items-center">
+                    <div class="px-6 py-4  w-full flex justify-center bg-white min-h-screen">
+                        <div class="mt-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 max-w-3xl text-sm gap-12 md:gap-8 text-[#010123] h-max">
 
                             @foreach ($listedEntry as $subCategory)
                                 <a
                                     href="{{ route('searchCategory2', ['category1' => str_replace(' ', '-', $url), 'category2' => str_replace(' ', '-', $subCategory->name)]) }}">
-                                    <x-product-card :src="asset($subCategory->images()->count() < 1 ? 'images/eurolube-catalogue-017.jpg' : 'storage/categories/images/'.$subCategory->images()->first()->url)" alt="category-img">{{ $subCategory->name }}
-                                    </x-product-card>
+                                    <div class="w-56 h-full  space-y-2.5 pl-1 pt-1 pb-2 pr-3 border shadow">
+
+                                        {{-- location address for category images --}}
+                                        @if (empty($subCategory->category_id))
+                                            <img src="{{ asset($subCategory->images()->count() < 1 ? 'images/no-image.jpg' : 'storage/categories/images/' . $subCategory->images()->first()->url) }}"
+                                                alt="" class="w-52 h-44 object-cover">
+                                        @else
+                                            {{-- location address for product images --}}
+                                            <img src="{{ asset($subCategory->images()->count() < 1 ? 'images/no-image.jpg' : 'storage/products/images/' . $subCategory->images()->first()->url) }}"
+                                                alt="" class="w-52 h-44 object-cover">
+                                        @endif
+
+                                        <p
+                                            class="ml-2 mt-1 font-medium text-center w-full uppercase text-[#010123] text-sm">
+                                            {{ $subCategory->name }}</p>
+                                    </div>
                                 </a>
+
+                               
                             @endforeach
                         </div>
                         {{-- <p class="text-sm form_label mx-6">If goods are wrongly supplied through our negligence we will gladly exchange when returned to our
@@ -31,7 +44,7 @@
                     </div>
 
                 </div>
-               
+
             </section>
 
             <section class="w-full relative h-full md:h-[900px] overflow-hidden bg-fixed bg-center bg-cover"

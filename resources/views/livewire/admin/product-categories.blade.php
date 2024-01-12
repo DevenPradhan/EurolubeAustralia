@@ -1,6 +1,13 @@
 <div class="w-full p-4 space-y-4">
 
-    <h4>Categories</h4>
+    <div class="flex space-x-6 items-center">
+        <h4>Categories</h4>
+
+       @livewire('admin.add-categories')
+
+    </div>
+    
+
     @foreach ($categories as $category)
         <div
             class="flex justify-between items-center w-full px-3 py-2 
@@ -85,6 +92,8 @@
             </form>
         </div>
     </x-livewire-modal>
+
+    
 
     <x-livewire-modal wire:model="deleteModal">
         <div class="p-6">

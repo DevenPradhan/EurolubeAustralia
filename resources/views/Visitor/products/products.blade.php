@@ -3,50 +3,34 @@
     <div class="w-full">
         <div class="container max-w-7xl mx-auto my-10">
 
-            <section class="relative w-full h-full md:min-h-screen " x-data="{ isFocused: false }" x-init="$nextTick(() => $refs.mySection.focus())">
-                <img src="{{ asset('images/banner2-17.jpg') }}" alt="topo"
-                    class="absolute inset-0 opacity-20 -z-40 w-full h-full object-cover ">
-                <div class="w-full flex justify-center sm:justify-between h-full py-6 px-4 md:px-0" x-ref="mySection">
+            <section class="relative w-full h-full md:min-h-screen sm:bg-[#010123] py-0.5 sm:pl-8 sm:pr-0.5 px-2 my-2">
+                <div class="w-full flex justify-center sm:justify-between h-full md:px-0">
                     {{-- sidebar --}}
                     @include('Visitor.products.sidebar')
                     {{-- end-sidebar --}}
 
 
-                    <div class="px-6 pt-4 pb-20 w-3/4 flex">
+                    <div class="px-6 py-4  w-full bg-white min-h-screen flex justify-center">
                         <div
-                            class="grid grid-flow-row lg:grid-cols-3 w-full text-sm text-[#ffffffe5] gap-10 place-content-center lg:place-content-start lg:place-items-center">
-                        
-                            {{-- @if ($subCategories->count() < 1)
-                                @foreach ($listedEntry as $product)
-                                    <a class=" text-start py-1 {{ $url === $product->name && str_contains($url, $product->name) ? ' border-b  max-w-max' : '' }}"
-                                        href="{{ route('searchCategory2', 
-                                            ['category1' => str_replace(' ', '-', $url), 
-                                             'category2' => str_replace(' ', '-', $product->name)]) }}">
-                                        <x-product-card :src="asset('storage/products/images/'.$product->images->first()->url)" 
-                                                        alt="category-img" >{{ $product->name }}s
-                                        </x-product-card> 
-                                        
-                                    </a>
-                                @endforeach
-                            @else --}}
-                                <?php $url = explode('/', $url); ?>
-                                @foreach ($listedEntry as $product)
-                                {{-- <a href="{{route('products-each', str_replace(' ', '-', $product->name))}}" class="text-black">test</a> --}}
-                                <a class=" text-start py-1 {{ $url === $product->name && str_contains($url, $product->name) ? ' border-b  max-w-max' : '' }}"
-                                        href="{{ route('searchCategory3', [
-                                            'category1' => str_replace(' ', '-', $url[0]),
-                                            'category2' => str_replace(' ', '-', $url[1]),
-                                            'category3' => str_replace(' ', '-', $product->name),
-                                        ]) }}">
-                                        <x-product-card :src="asset('storage/products/images/'.$product->images->first()->url)" alt="category-img" >{{ $product->name }}
-                                        </x-product-card> 
-                                    </a>
-                                @endforeach
-                            {{-- @endif --}}
+                            class="mt-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 max-w-3xl text-sm text-[#010123] gap-12 md:gap-8 h-max">
 
-
-
-
+                            <?php $url = explode('/', $url); ?>
+                            @foreach ($listedEntry as $product)
+                                <a
+                                    href="{{ route('searchCategory3', [
+                                        'category1' => str_replace(' ', '-', $url[0]),
+                                        'category2' => str_replace(' ', '-', $url[1]),
+                                        'category3' => str_replace(' ', '-', $product->name),
+                                    ]) }}">
+                                    <div class="w-56 h-full  space-y-2.5 pl-1 pt-1 pb-2 pr-3 border shadow">
+                                        <img src="{{ asset($product->images()->count() < 1 ? 'images/no-image.jpg' : 'storage/products/images/' . $product->images()->first()->url) }}"
+                                            alt="" class="w-52 h-44 object-cover ">
+                                        <p
+                                            class="ml-2 mt-1 font-medium text-center w-full uppercase text-[#010123] text-sm">
+                                            {{ $product->name }}</p>
+                                    </div>
+                                </a>
+                            @endforeach
                         </div>
                     </div>
 
