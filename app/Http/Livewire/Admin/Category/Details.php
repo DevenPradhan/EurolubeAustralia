@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Admin\Category;
 
 use App\Models\Product;
 use App\Models\ProductCategory;
+use App\Rules\Category\ProductExistsRule;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 use Storage;
@@ -14,6 +15,10 @@ class Details extends Component
     public $categoryImage;
     public ProductCategory $category;
     public $imageModal = false;
+    public $productModal = false;
+    public $productName;
+    public $productDescription;
+    public $productQuantity = 1;
 
     public function updated($field)
     {
@@ -23,6 +28,30 @@ class Details extends Component
         ]);
     }
 
+    public function addProductModal()
+    {
+        $this->reset('productName', 'productDescription', 'productQuantity');
+        $this->productModal = true;
+    }
+
+    public function addProductFunction()
+    {
+        $this->validate([
+            'productName' => ['required', new ProductExistsRule($this->category->id)]
+        ]);
+
+        $product = Product::create([
+            'name' => $this->productName,
+            'description' => $this->productDescription, 
+            'quantity' => $this->productQuantity,
+            'status' => 0, 
+            'category_id' => $this->category->id
+        ]);
+
+        $product->details()->create();
+
+        $this->productModal = false;
+    }
 
     public function openImageModal()
     {
@@ -61,10 +90,10 @@ class Details extends Component
         }
 
     }
-   
+
     public function render()
     {
-        
+
         $products = Product::where('category_id', $this->category->id)->get();
         return view('livewire.admin.category.details', compact('products'));
     }

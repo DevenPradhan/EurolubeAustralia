@@ -101,7 +101,7 @@ class Products extends Component
 
         $statuses = collect(['Inactive', 'Active', 'Archived']);
         $products = Product::where('name', 'like', '%' . $this->search . '%')
-            ->get();
+            ->paginate(20);
         return view('livewire.admin.products', compact('products', 'statuses'));
     }
 }

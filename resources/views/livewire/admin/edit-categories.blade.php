@@ -5,7 +5,7 @@
                             {{-- add button to change from select category function to add category --}}
 
                             <x-secondary-button class="max-w-max"
-                                x-on:click.prevent=" $wire.mainCategory() ; add_category = 'new_category'"
+                                x-on:click.prevent=" $wire.woProductsCategory() ; add_category = 'new_category'"
                                 >Add</x-secondary-button>
 
                             
@@ -47,7 +47,7 @@
                                 Category Saved
                             </div>
 
-                            <x-secondary-button class="" x-on:click.prevent="add_category = 'category_list'">
+                            <x-secondary-button class="" x-on:click.prevent="$wire.mainCategory() ; add_category = 'category_list'">
                                 Back
                             </x-secondary-button>
 

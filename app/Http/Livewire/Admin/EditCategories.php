@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Admin;
 
+use App\Models\Product;
 use App\Models\ProductCategory;
 use Livewire\Component;
 
@@ -61,6 +62,13 @@ class EditCategories extends Component
         $this->reset('upperCategory');
         $this->categories = ProductCategory::where('level', 1)
             ->pluck('name', 'id');
+    }
+
+    public function woProductsCategory() //to get the list of lvl 1 categories which dont have products
+    {
+        $this->categories = ProductCategory::where('level', 1)
+                            ->whereNotIn('id', Product::get('category_id')->unique('category_id'))
+                            ->pluck('name', 'id');
     }
 
     public function mount()

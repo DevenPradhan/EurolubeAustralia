@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Admin;
 
+use App\Models\Product;
 use App\Models\ProductCategory;
 use Livewire\Component;
 
@@ -49,7 +50,10 @@ class AddCategories extends Component
 
     public function render()
     {
-        $upCategories = ProductCategory::where('level', 1)->pluck('name', 'id');
+        $upCategories = ProductCategory::where('level', 1)
+                            ->whereNotIn('id', Product::get('category_id')->unique('category_id'))
+                            ->pluck('name', 'id');
+                            
         return view('livewire.admin.add-categories', compact('upCategories'));
     }
 }
