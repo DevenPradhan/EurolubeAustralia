@@ -143,7 +143,7 @@ class ViewProductsController extends Controller
         $products = Product::where('status', 1)->where('category_id', $data[0])->get();
 
         foreach ($products as $product) {
-            $prd = preg_match($prd_search, str_replace('-', ' ', $product->name));
+            $prd = preg_match($prd_search, str_replace(['-', '/'], ' ', $product->name));
             if ($prd) {
                 return $product;
             }

@@ -15,7 +15,7 @@
                 </div>
             </section>
 
-            <section class="relative w-full h-full px-2 my-2 sm:pl-8 sm:pr-0.5 py-0.5 sm:bg-[#010123]">
+            <section class="relative w-full h-full my-2  sm:pr-0.5 py-0.5 sm:bg-[#010123]">
                 <div class="w-full flex justify-center sm:justify-between h-full">
 
                     {{-- sidebar --}}

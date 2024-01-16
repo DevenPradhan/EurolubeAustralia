@@ -50,6 +50,10 @@ class Details extends Component
 
         $product->details()->create();
 
+        return redirect()
+        ->route('products.show', $product->id)
+        ->with('success', 'product created, Please edit the details before publishing');
+
         $this->productModal = false;
     }
 

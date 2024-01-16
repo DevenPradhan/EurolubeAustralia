@@ -4,7 +4,7 @@
         <div class="container max-w-7xl mx-auto my-10">
 
 
-            <section class="relative w-full h-full md:min-h-screen sm:bg-[#010123] py-0.5 sm:pl-8 sm:pr-0.5 px-2 my-2">
+            <section class="relative w-full h-full md:min-h-screen sm:bg-[#010123] py-0.5 sm:pr-0.5 px-2 my-2">
                 <div class="w-full flex justify-center sm:justify-between h-full md:px-0">
                     {{-- sidebar --}}
                     @include('Visitor.products.sidebar')

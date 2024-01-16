@@ -3,16 +3,16 @@
     <div class="w-full">
         <div class="container max-w-7xl mx-auto my-10">
 
-            <section class="relative w-full h-full md:min-h-screen sm:bg-[#010123] py-0.5 sm:pl-8 sm:pr-0.5 px-2 my-2">
+            <section class="relative w-full h-full md:min-h-screen sm:bg-[#010123] py-0.5 sm:pr-0.5  my-2">
                 <div class="w-full flex justify-center sm:justify-between h-full md:px-0">
                     {{-- sidebar --}}
                     @include('Visitor.products.sidebar')
                     {{-- end-sidebar --}}
 
 
-                    <div class="px-6 py-4  w-full bg-white min-h-screen flex justify-center">
+                    <div class="px-2 py-4  w-full bg-white min-h-screen flex justify-center">
                         <div
-                            class="mt-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 max-w-3xl text-sm text-[#010123] gap-12 md:gap-8 h-max">
+                            class="mt-10 place-items-center grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 lg:auto-rows-max lg:grid-flow-row-dense text-sm text-[#010123]  h-max">
 
                             <?php $url = explode('/', $url); ?>
                             @foreach ($listedEntry as $product)
@@ -20,11 +20,11 @@
                                     href="{{ route('searchCategory3', [
                                         'category1' => str_replace(' ', '-', $url[0]),
                                         'category2' => str_replace(' ', '-', $url[1]),
-                                        'category3' => str_replace(' ', '-', $product->name),
+                                        'category3' => str_replace([' ', '/'], '-', $product->name),
                                     ]) }}">
-                                    <div class="w-56 h-full  space-y-2.5 pl-1 pt-1 pb-2 pr-3 border shadow">
+                                    <div class="group w-48 h-full flex flex-col items-center space-y-2.5 pl-1 pt-1 pb-2 pr-3 border shadow">
                                         <img src="{{ asset($product->images()->count() < 1 ? 'images/no-image.jpg' : 'storage/products/images/' . $product->images()->first()->url) }}"
-                                            alt="" class="w-52 h-44 object-cover ">
+                                            alt="" class="w-28 h-28 overflow-clip object-cover group-hover:w-36 transition-all ">
                                         <p
                                             class="ml-2 mt-1 font-medium text-center w-full uppercase text-[#010123] text-sm">
                                             {{ $product->name }}</p>
