@@ -176,7 +176,7 @@ class Details extends Component
     public function saveDetails()
     {
         $this->validate([
-            'partNo' => 'max:20|unique:product_details,part_no',
+            'partNo' => 'max:20|unique:product_details,part_no,'.$this->product->id.'',
             'dimensions' => 'max:20',
             'weight' => 'max:20'
         ], [
@@ -203,7 +203,7 @@ class Details extends Component
     {
 
         $this->validate([
-            'productDescription' => 'max:255'
+            'productDescription' => 'max:400'
         ]);
 
         $this->product->update([

@@ -11,22 +11,22 @@
                     {{-- end-sidebar --}}
 
 
-                    <div class="px-6 py-4  w-full flex justify-center bg-white min-h-screen">
-                        <div class="mt-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 max-w-3xl text-sm gap-12 md:gap-8 text-[#010123] h-max">
+                    <div class="px-2 py-4  w-full flex justify-center bg-white min-h-screen">
+                        <div class="mt-10 place-items-center grid grid-cols-3 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 lg:auto-rows-max lg:grid-flow-row-dense text-sm text-[#010123]  h-max">
 
                             @foreach ($listedEntry as $subCategory)
                                 <a
-                                    href="{{ route('searchCategory2', ['category1' => str_replace(' ', '-', $url), 'category2' => str_replace(' ', '-', $subCategory->name)]) }}">
-                                    <div class="w-56 h-full  space-y-2.5 pl-1 pt-1 pb-2 pr-3 border shadow">
+                                    href="{{ route('searchCategory2', ['category1' => str_replace(' ', '-', $url), 'category2' => str_replace([' ', '/'], '-', $subCategory->name)]) }}">
+                                    <div class="group w-48 h-full flex flex-col items-center space-y-2.5 pl-1 pt-1 pb-2 pr-3 border shadow">
 
                                         {{-- location address for category images --}}
                                         @if (empty($subCategory->category_id))
                                             <img src="{{ asset($subCategory->images()->count() < 1 ? 'images/no-image.jpg' : 'storage/categories/images/' . $subCategory->images()->first()->url) }}"
-                                                alt="" class="w-52 h-44 object-cover">
+                                                alt="" class="w-28 h-28 overflow-clip object-cover group-hover:w-36 transition-all">
                                         @else
                                             {{-- location address for product images --}}
                                             <img src="{{ asset($subCategory->images()->count() < 1 ? 'images/no-image.jpg' : 'storage/products/images/' . $subCategory->images()->first()->url) }}"
-                                                alt="" class="w-52 h-44 object-cover">
+                                                alt="" class="w-28 h-28 overflow-clip object-cover group-hover:w-36 transition-all">
                                         @endif
 
                                         <p

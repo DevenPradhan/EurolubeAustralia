@@ -4,47 +4,37 @@
         <div class="container max-w-7xl mx-auto my-10">
 
             <section class="relative w-full h-full md:min-h-screen sm:bg-[#010123] py-0.5 sm:pr-0.5 px-2 my-2">
-                <div class="w-full flex justify-center sm:justify-between h-full px-4 md:px-0" >
+                <div class="w-full flex justify-center sm:justify-between h-full px-4 md:px-0">
                     {{-- sidebar --}}
                     @include('Visitor.products.sidebar')
                     {{-- end-sidebar --}}
 
 
-                    <div class="px-6 pt-20 mx-auto flex flex-col items-center max-w-full sm:w-full bg-white min-h-screen">
-                        <div class="w-max text-sm tracking-wider">
-
-
-                            <h4 class="tracking-wide font-semibold uppercase">{{ $product->name }}</h4>
-                            <div class="flex mt-4 justify-between max-w-3xl">
-                                <div class="w-52 h-auto">
-                                    <img src="{{ asset('storage/products/images/' . $product->images()->first()->url) }}"
-                                        alt="" class="w-full h-full object-scale-down">
-                                </div>
-                                <div class="space-y-5 mt-4 max-w-md px-5 pt-5 text-xs pb-2 bg-gray-200">
-                                    <p>{{ $product->description }}</p>
-                                    <p>Dimensions: {{ $product->details->dimensions }}</p>
-                                    <p>Weight: {{ $product->details->weight }}</p>
-                                    <p>Part No: {{ $product->details->part_no }}</p>
-
-                                </div>
-                            </div>
-                            <div class="max-w-3xl">
-                                <h5>Features:</h5>
-                                <div class="mt-2 px-5 py-2 bg-gray-200">
-                                    @foreach ($product->features as $feature)
-                                        <p class="p-2">{!! $feature->feature !!}</p>
-                                    @endforeach
+                    <div class="bg-white min-h-screen sm:w-full pt-32 sm:px-20 ">
+                        <div class="space-y-3">
+                            <h5 class="font-semibold tracking-wide">{{ $product->name }}</h5>
+                            <div class="w-full relative py-6 h-44  text-white">
+                                <div class="z-20 relative pr-48 space-y-1.5">
+                                    <h6 class=" text-base">Part No: {{ $product->details->part_no }}</h6>
+                                    <p class=" text-xs tracking-widest">{{ $product->description }}</p>
                                 </div>
 
-
+                                <div class="bg-[#AC0000] inset-0 -left-20 z-10 absolute h-full w-full dynamic_bg">
+                                </div>
+                                <img src="{{ asset('storage/products/images/' . $product->images()->first()->url) }}"
+                                    alt="" class="w-32 h-full z-0 object-scale-down absolute -right-7 bottom-3">
                             </div>
 
-
-
-
-
+                        <p class="font-medium text-sm tracking-widest">{{ $product->details->dimensions }} /
+                            {{ $product->details->weight }}</p>
+                        </div>
+                        <div class="grid grid-cols-2 gap-20 mt-20">
+                            @foreach($product->features as $feature)
+                            <div class="font-medium trackingw-wider text-sm leading-6">{!!$feature->feature!!}</div>
+                            @endforeach
                         </div>
                     </div>
+
 
                 </div>
 
@@ -89,6 +79,13 @@
         </div>
     </div>
 
+    <style>
+        @media screen and (min-width: 768px) {
+            .dynamic_bg {
+                clip-path: polygon(0% 0%, 85% 0%, 100% 100%, 0% 100%);
+            }
+        }
+    </style>
 
 
 </x-visitor-layout>

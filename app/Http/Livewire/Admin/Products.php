@@ -5,9 +5,11 @@ namespace App\Http\Livewire\Admin;
 use App\Models\Product;
 use App\Models\ProductCategory;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class Products extends Component
 {
+    use WithPagination;
     public $search;
     public $validationSearch;
     public $password;

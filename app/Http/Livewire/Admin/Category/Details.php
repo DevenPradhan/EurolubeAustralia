@@ -16,6 +16,7 @@ class Details extends Component
     public ProductCategory $category;
     public $imageModal = false;
     public $productModal = false;
+    public $newProduct;
     public $productName;
     public $productDescription;
     public $productQuantity = 1;
@@ -40,21 +41,29 @@ class Details extends Component
             'productName' => ['required', new ProductExistsRule($this->category->id)]
         ]);
 
-        $product = Product::create([
+        $this->newProduct = Product::create([
             'name' => $this->productName,
-            'description' => $this->productDescription, 
+            'description' => $this->productDescription,
             'quantity' => $this->productQuantity,
-            'status' => 0, 
+            'status' => 0,
             'category_id' => $this->category->id
         ]);
 
-        $product->details()->create();
+        $this->newProduct->details()->create();
+        $this->emit('product-saved');
 
-        return redirect()
-        ->route('products.show', $product->id)
-        ->with('success', 'product created, Please edit the details before publishing');
+    }
 
+    public function closeAddProductModal()
+    {
         $this->productModal = false;
+    }
+
+    public function viewProductModal()
+    {
+        return redirect()
+            ->route('products.show', $this->newProduct->id)
+            ->with('success', 'product created, Please edit the details before publishing');
     }
 
     public function openImageModal()
@@ -98,7 +107,7 @@ class Details extends Component
     public function render()
     {
 
-        $products = Product::where('category_id', $this->category->id)->get();
+        $products = Product::where('category_id', $this->category->id)->orderBy('name', 'asc')->get();
         return view('livewire.admin.category.details', compact('products'));
     }
 }

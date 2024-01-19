@@ -12,7 +12,7 @@
 
                     <div class="px-2 py-4  w-full bg-white min-h-screen flex justify-center">
                         <div
-                            class="mt-10 place-items-center grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 lg:auto-rows-max lg:grid-flow-row-dense text-sm text-[#010123]  h-max">
+                            class="mt-10 place-items-center grid grid-cols-3 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 lg:auto-rows-max lg:grid-flow-row-dense text-sm text-[#010123]  h-max">
 
                             <?php $url = explode('/', $url); ?>
                             @foreach ($listedEntry as $product)

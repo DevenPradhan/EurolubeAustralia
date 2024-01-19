@@ -23,9 +23,20 @@
 
         <div class="space-y-2">
             <x-primary-button wire:click.prevent="addProductModal">Add Product</x-primary-button>
-            <div class="grid gap-3 grid-cols-3 grid-flow-row relative">
+            <div class="grid gap-2 grid-cols-2 grid-flow-row relative max-h-screen">
                 @foreach ($products as $product)
-                    <div class="h-max">
+                    <a href="{{route('products.show', $product->id)}}">
+                        <div class="flex py-1.5 px-1 rounded relative items-end justify-between max-w-md h-full border {{$product->status == 1 ? 'border-emerald-200' : 'border-gray-200'}}">
+                            <h6 class=" w-full">{{$product->name}}</h6>
+                                    @if ($product->images()->exists())
+                                        <img src="{{ asset('storage/products/images/' . $product->images()->first()->url) }}"
+                                            alt="" class="w-max h-20 object-contain ">
+                                    @endif
+                                    <hr class="opacity-70 ">
+                        </div></a>
+
+                    
+                    {{-- <div class="h-max">
                         <a href="{{ route('products.show', $product->id) }}">
                             <div class="p-0.5 w-60 bg-gray-200 space-y-0.5">
                                 @if ($product->images()->exists())
@@ -36,7 +47,7 @@
                                     {{ $product->name }}</h4>
                             </div>
                         </a>
-                    </div>
+                    </div> --}}
                 @endforeach
             </div>
         </div>
@@ -44,10 +55,11 @@
 
     <x-livewire-modal wire:model="productModal">
         <form wire:submit.prevent="addProductFunction">
-            <div class="p-6 space-y-8">
+            <div class="p-6 space-y-8" x-data="{ buttons : 'save-product'}" 
+                x-init="@this.on('product-saved', () => { buttons = 'stay-leave'})">
                 <h6>Add Product</h6>
-                <div class="flex space-x-10 items-center">
-                    <x-input-label for="productName" value="Name" class="w-20" />
+                <div class="flex  items-center">
+                    <x-input-label for="productName" value="Name" class="w-28" />
                     <div class="">
                         <x-text-input type="text" name="productName" required wire:model.debounce.500ms="productName"
                         class="w-full" />
@@ -57,18 +69,22 @@
                   
 
                     </div>
-                <div class="flex space-x-10 items-center">
-                    <x-input-label for="productDescription" value="Description" class="w-20" />
+                <div class="flex items-center">
+                    <x-input-label for="productDescription" value="Description" class="w-28" />
                     <x-textbox name="productDescription" wire:model.defer="productDescription"
-                        class="w-full"></x-textbox>
+                        class="w-max"></x-textbox>
                 </div>
-                <div class="flex space-x-10 items-center">
-                    <x-input-label for="productQuantity" value="Quantity" class="w-20" />
+                <div class="flex items-center">
+                    <x-input-label for="productQuantity" value="Quantity" class="w-28" />
                     <x-text-input type="number" name="productQuantity" required
-                        wire:model.debounce.500ms="productQuantity" class="w-full" />
+                        wire:model.debounce.500ms="productQuantity" class="w-max" />
+                </div>
+                <div class="h-10 flex justify-center space-x-3" x-show="buttons === 'stay-leave'">
+                    <x-secondary-button wire:click.prevent="closeAddProductModal">Stay on Page</x-secondary-button>
+                    <x-primary-button wire:click.prevent="viewProductModal">View Product</x-primary-button>
                 </div>
 
-                <div class="mt-6 flex justify-end">
+                <div class="mt-6 flex justify-end" x-show="buttons === 'save-product'">
                     <x-secondary-button x-on:click="$dispatch('close')">
                         {{ __('Cancel') }}
                     </x-secondary-button>

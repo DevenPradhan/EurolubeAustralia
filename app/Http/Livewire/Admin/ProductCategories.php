@@ -62,7 +62,7 @@ class ProductCategories extends Component
         if ($this->categoryForEdit->level > 1) {
             //category to edit referencing other category -> wired model
             $this->upCategory = ProductCategory::where('id', $this->categoryForEdit->referencing)
-                ->value('id');
+                ->value('id');  
         }
         $this->editModal = true;
         // $this->reset()

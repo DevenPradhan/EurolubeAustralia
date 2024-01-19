@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Visitors;
 
 use App\Http\Controllers\Controller;
 use App\Models\Product;
+use Arr;
 use DB;
 use Illuminate\support\Collection;
 use Illuminate\Database\Eloquent\Builder;
@@ -17,7 +18,8 @@ class ViewProductsController extends Controller
 
     public function __construct()
     {
-        //by default, categories and subCategories that have products which exist, and their status is active are shown in the list.
+        //by default, categories and subCategories that have products which 'exist 
+        //and their status is active' are shown in the list.
         //$subCat finds all the subCategories that checks for products with the conditions.
         $this->subCat = DB::table('product_categories')
             ->leftJoin('products', 'product_categories.id', '=', 'products.category_id')
@@ -35,7 +37,7 @@ class ViewProductsController extends Controller
         $this->categories = $list_one->merge(ProductCategory::where('level', 1)
             ->whereIn('id', Product::where('status', 1)->pluck('category_id'))
             ->get());
-
+        
     }
 
     public function index()
@@ -97,7 +99,9 @@ class ViewProductsController extends Controller
                 ->where('category_id', ProductCategory::where('referencing', $category_id)
                 ->where('name', str_replace('-', ' ', $category2))
                 ->value('id'))
+                ->orderBy('name', 'asc')
                 ->get();
+
         $products = $listedEntry;
 
         return view('Visitor.products.products', compact('url', 'listedEntry', 'subCategories', 'categories', 'products'));
@@ -112,7 +116,9 @@ class ViewProductsController extends Controller
             ->value('id');
 
         $subCategories = $this->getSubcategories($category_id);
-        $products = Product::where('category_id', $subCategoryId)
+        $products = Product::where('status', 1)
+            ->where('category_id', $subCategoryId)
+            ->orderBy('name', 'asc')
             ->get('name', 'id');
 
         $url = str_replace('-', ' ', $category1) . str_replace('-', ' ', $category2) .  str_replace('-', ' ', $category3);
