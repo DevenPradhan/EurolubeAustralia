@@ -6,7 +6,7 @@
             <x-text-input placeholder="Search" class="pl-2 h-10" wire:model.debounce.500ms="search" />
         </div>
         <div class="space-y-3 flex justify-center">
-            <table class="table-auto w-4/5">
+            <table class="table-auto w-full">
                 <thead>
                     <tr>
                         <th></th>
@@ -25,10 +25,14 @@
                                 <x-icons.stars class=" fill-amber-500 {{App\Models\ProductFeature::where('product_id', $product->id)->where('additional', 1)->count()>0 ? 'block' : 'hidden'}}"/>
                             </td>
                             <td scope="col">
-                                <p class="user_td">{{ $product->name }}</p>
+                                <a href="{{route('products.show', $product->id)}}" class="user_td hover:underline hover:underline-offset-2">
+                                    {{$product->name}}    
+                                </a>
                             </td>
                             <td scope="col">
-                                <p class="user_td">{{ $product->category->name }}</p>
+                                <a href="{{route('category-products', $product->category->id)}}" class="user_td hover:underline hover:underline-offset-2">
+                                    {{$product->category->name}}    
+                                </a>
                             </td>
                             <td scope="col">
                                 <p class="user_td">{{ $product->quantity }}</p>
@@ -42,9 +46,9 @@
                             </td>
                             <th scope="col">
                                 <div class="border-b py-2 space-x-3">
-                                    <a href="{{ route('products.show', $product->id) }}">
+                                    {{-- <a href="{{ route('products.show', $product->id) }}">
                                         <x-secondary-button>View</x-secondary-button>
-                                    </a>
+                                    </a> --}}
                                     <x-danger-button type="button" class="shadow-sm shadow-red-800 rounded-sm"
                                         wire:click.prevent="deleteProductModal({{ $product->id }})">Del</x-danger-button>
                                 </div>

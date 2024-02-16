@@ -3,7 +3,8 @@
         <div class="space-y-2">
             <h4>{{ $category->name }}</h4>
             @if ($category->level > 1)
-                <h6 class="text-gray-700">{{ App\Models\ProductCategory::where('id', $category->referencing)->value('name') }}</h6>
+                <h6 class="text-gray-700">
+                    {{ App\Models\ProductCategory::where('id', $category->referencing)->value('name') }}</h6>
             @endif
         </div>
 
@@ -25,17 +26,23 @@
             <x-primary-button wire:click.prevent="addProductModal">Add Product</x-primary-button>
             <div class="grid gap-2 grid-cols-2 grid-flow-row relative max-h-screen">
                 @foreach ($products as $product)
-                    <a href="{{route('products.show', $product->id)}}">
-                        <div class="flex py-1.5 px-1 rounded relative items-end justify-between max-w-md h-full border {{$product->status == 1 ? 'border-emerald-200' : 'border-gray-200'}}">
-                            <h6 class=" w-full">{{$product->name}}</h6>
-                                    @if ($product->images()->exists())
-                                        <img src="{{ asset('storage/products/images/' . $product->images()->first()->url) }}"
-                                            alt="" class="w-max h-20 object-contain ">
-                                    @endif
-                                    <hr class="opacity-70 ">
-                        </div></a>
-
+                <div class="group flex space-x-2 max-w-md">
+                    <a href="{{ route('products.show', $product->id) }}" class="w-full">
+                        <div
+                            class="flex py-1.5 px-1 rounded relative items-end justify-between w-full transition-all h-full border {{ $product->status == 1 ? 'border-emerald-200' : 'border-gray-200' }}">
+                            <h6 class=" w-full">{{ $product->name }}</h6>
+                            @if ($product->images()->exists())
+                                <img src="{{ asset('storage/products/images/' . $product->images()->first()->url) }}"
+                                    alt="" class="w-max h-20 object-contain ">
+                            @endif
+                            <hr class="opacity-70 ">
+                        </div>
+                    </a>
+                    <x-danger-button class="max-w-max h-max hidden group-hover:block transition-all">Delete</x-danger-button>
+                </div>
                     
+
+
                     {{-- <div class="h-max">
                         <a href="{{ route('products.show', $product->id) }}">
                             <div class="p-0.5 w-60 bg-gray-200 space-y-0.5">
@@ -55,20 +62,19 @@
 
     <x-livewire-modal wire:model="productModal">
         <form wire:submit.prevent="addProductFunction">
-            <div class="p-6 space-y-8" x-data="{ buttons : 'save-product'}" 
-                x-init="@this.on('product-saved', () => { buttons = 'stay-leave'})">
+            <div class="p-6 space-y-8" x-data="{ buttons: 'save-product' }" x-init="@this.on('product-saved', () => { buttons = 'stay-leave' })">
                 <h6>Add Product</h6>
                 <div class="flex  items-center">
                     <x-input-label for="productName" value="Name" class="w-28" />
                     <div class="">
                         <x-text-input type="text" name="productName" required wire:model.debounce.500ms="productName"
-                        class="w-full" />
+                            class="w-full" />
                         <x-input-error :messages="$errors->get('productName')" class="mt-2" />
-                        
-                    </div>
-                  
 
                     </div>
+
+
+                </div>
                 <div class="flex items-center">
                     <x-input-label for="productDescription" value="Description" class="w-28" />
                     <x-textbox name="productDescription" wire:model.defer="productDescription"
