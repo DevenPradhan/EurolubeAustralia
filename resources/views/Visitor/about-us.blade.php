@@ -94,8 +94,8 @@
                                 {{-- x-bind:class= --}}
                                 class="flex text-sm  font-semibold w-full items-center justify-between px-4 py-4 bg-white">Are
                                 you a wholesaler? <span><x-icons.dropdown-arrow class="w-4" /></span></button>
-                            <div class="p-4 space-y-4 bg-neutral-200 font-neutral-400" x-show="tab === 'first_tab'">
-                                <p class="text-neutral-500 text-sm font-medium">We operate as a wholesaler, supplying a
+                            <div class="px-4 py-6 space-y-4 bg-neutral-200" x-show="tab === 'first_tab'">
+                                <p class="text-neutral-700 text-sm tracking-wide">We operate as a wholesaler, supplying a
                                     wide range
                                     of products to retailers and businesses. Our focus is on providing quality goods at
                                     competitive prices, supporting our clients' success.</p>
@@ -107,8 +107,8 @@
                                 class="flex text-sm  font-semibold w-full items-center justify-between px-4 py-4 bg-white">
                                 Do you design your own products too? <span><x-icons.dropdown-arrow
                                         class="w-4" /></span></button>
-                            <div class="p-4 space-y-4 bg-neutral-200 font-neutral-400" x-show="tab === 'second_tab'">
-                                <p class="text-neutral-500 text-sm font-medium">Alongside providing an extensive array
+                            <div class="px-4 py-6 space-y-4 bg-neutral-200" x-show="tab === 'second_tab'">
+                                <p class="text-neutral-700 text-sm tracking-wide">Alongside providing an extensive array
                                     of international products, we are dedicated to both quality and innovation. Our
                                     proprietary line of products is specifically crafted to withstand the challenges
                                     posed by our unique climate and usage conditions. Emphasizing durability and
@@ -123,8 +123,8 @@
                                 class="flex text-sm  font-semibold w-full items-center justify-between px-4 py-4 bg-white">
                                 Is your product compatible with most other company
                                 products?<span><x-icons.dropdown-arrow class="w-4" /></span></button>
-                            <div class="p-4 space-y-4 bg-neutral-200 font-neutral-400" x-show="tab === 'third_tab'">
-                                <p class="text-neutral-500 text-sm font-medium">Our product seamlessly integrates with a
+                            <div class="px-4 py-6 space-y-4 bg-neutral-200" x-show="tab === 'third_tab'">
+                                <p class="text-neutral-700 text-sm tracking-wide">Our product seamlessly integrates with a
                                     wide array
                                     of other company products, making it a versatile and convenient choice for
                                     consumers. This compatibility ensures a hassle-free experience and allows for

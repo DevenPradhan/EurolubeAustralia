@@ -162,26 +162,6 @@
         src: url('fonts/Archivo-SemiBold.ttf');
     }
 
-  /* width */
-::-webkit-scrollbar {
-  width: 6px;
-  
-}
-
-/* Track */
-::-webkit-scrollbar-track {
-  background: #fff; 
-}
- 
-/* Handle */
-::-webkit-scrollbar-thumb {
-  background: #f51e1ed3; 
-}
-
-/* Handle on hover */
-::-webkit-scrollbar-thumb:hover {
-  background: #555; 
-}
 </style>
 
 <script>
