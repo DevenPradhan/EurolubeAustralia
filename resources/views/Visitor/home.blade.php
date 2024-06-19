@@ -2,13 +2,13 @@
     <div class="w-full">
         <div class="container max-w-7xl mx-auto my-10">
 
-            <section class="w-full relative md:h-[900px] bg-fixed bg-center"
+            <section class="w-full relative sm:h-[900px] bg-fixed bg-center "
                 style="background-image: url('\images/banner2-2.jpg'); background-size: 1280px">
                 <div
-                    class="font-roboto space-y-10 px-4 md:px-16 py-20 md:py-0 flex flex-col justify-center h-full max-w-2xl">
+                    class="font-roboto space-y-10 px-16 py-28 sm:py-0 flex flex-col justify-center h-full max-w-2xl">
                     <h1 class=" uppercase font-black text-white  font-archivo">Quality You can trust</h1>
 
-                    <p class="text-[#ffffffc7]  text-sm r max-w-md">
+                    <p class="text-[#ffffffc7] text-sm max-w-md">
                         We are recognized worldwide for our products, systems and solutions for pumping, dispensing and
                         measuring oil, grease, coolants and other comparable fluids. Our products and solutions
                         contribute to a safer better environment with increased efficiency and profitability. Use our
@@ -25,24 +25,24 @@
 
             <section class="relative w-full h-full">
                 <img src="{{ asset('images/banner2-17.jpg') }}" alt="topo"
-                    class="absolute inset-0 opacity-30 -z-40 w-full h-full object-cover ">
-                <div class="w-full py-44 px-4 md:px-16 max-w-2xl space-y-10">
+                    class="absolute inset-0 opacity-20 sm:opacity-30 -z-40 w-full h-full object-cover ">
+                <div class="w-full py-28 sm:py-44 px-16 max-w-2xl space-y-10">
                     <h1 class="heading_dark_lg font-archivo ">Featured Products</h1>
                     {{-- slider products --}}
 
-                   <div class="items-center flex space-x-10">
+                   <div class="items-start sm:items-center flex space-y-20 sm:space-y-0 sm:space-x-10 flex-col sm:flex-row">
                     @forelse ($products as $product)
-                    <div class="w-72 shadow-sm shadow-gray-300 shrink-0 bg-white">
+                    <div class="flex flex-col-reverse space-y-0 sm:flex-col w-full sm:w-72 shrink-0 bg-white">
                         <div class="h-48 relative">
                             <img src="{{ asset('images/card bg img.jpg') }}" alt=""
                                 class="absolute -z-10 inset-0 opacity-70">
                             <img src="{{ asset('storage/products/images/' . $product->images()->first()->url) }}"
                                 alt="" class="w-full h-full object-scale-down">
                         </div>
-                        <div class="py-6 pl-6 pr-10 space-y-4 bg-[#E7EAEC]">
+                        <div class="py-3 sm:py-6 sm:pl-6 pr-10 space-y-4 bg-[#E7EAEC]">
                             <h6 class="heading_dark_small ml-4 leading-6 h-12">{{ $product->name }}</h6>
                             <div class="flex space-x-4">
-                                <div class="border-l-2 h-full border-separate border-spacing-10 border-black">
+                                <div class="sm:border-l-2 h-full border-separate border-spacing-10 border-black">
                                     <div
                                         class="ml-4 h-24 w-full overflow-hidden leading-4 text-xs tracking-wider font-medium">
                                         {!! App\Models\ProductFeature::where('product_id', $product->id)->where('additional', 1)->value('feature') !!}
@@ -58,10 +58,10 @@
                 @endforelse
                    </div>
 
-                    <div class="space-x-4 flex justify-center w-full">
+                    <div class="sm:space-x-4 space-y-1.5 sm:space-y-0 flex justify-center w-full flex-col sm:flex-row">
                         {{-- button_link css at app.css --}}
                         <a href="{{ route('view_products') }}" class="bg-red-800 button_link">Browse all our products</a>
-                        <a href="https://www.eurolube.com/en/pump-selection-guide/"
+                        <a href="https://www.eurolube.com/en/fluid-material-guide/"
                             class="bg-[#929494] button_link">Download Our Guide</a>
                     </div>
                 </div>
@@ -89,7 +89,7 @@
             <section class="w-full relative md:h-[900px] overflow-hidden bg-fixed bg-center"
                 style="background-image: url('\images/sdfafdsfsdafsdafsd.jpg'); background-size: 1280px;">
                 <div
-                    class="font-roboto space-y-10 px-4 md:px-16 py-20 md:py-0 h-full backdrop-brightness-50 flex flex-col justify-center">
+                    class="font-roboto space-y-10 px-16 py-20 md:py-0 h-full backdrop-brightness-50 flex flex-col justify-center">
                     <h1 class=" uppercase font-black text-white  font-archivo max-w-2xl">Frequently Used
                         Services...
                     </h1>
@@ -111,7 +111,7 @@
                                 all our products, catalogues and tech sheets online or download a copy today.</p>
                         </a>
                         <a class="space-y-3 p-5 bg-neutral-200 bg-opacity-10 hover:bg-opacity-80 hover:bg-red-800 transition-all"
-                            href="https://www.eurolube.com/en/pump-selection-guide/" target="__blank">
+                            href="https://www.eurolube.com/en/fluid-material-guide/" target="__blank">
                             <h6 class="uppercase text-white text-sm">Pump Selection Guide</h6>
                             <p class="text-sm font-normal tracking-wider">We make it easier for our customers to choose
                                 the right product when chemicals must be

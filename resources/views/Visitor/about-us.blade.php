@@ -94,7 +94,7 @@
                                 {{-- x-bind:class= --}}
                                 class="flex text-sm  font-semibold w-full items-center justify-between px-4 py-4 bg-white">Are
                                 you a wholesaler? <span><x-icons.dropdown-arrow class="w-4" /></span></button>
-                            <div class="px-4 py-6 space-y-4 bg-neutral-200" x-show="tab === 'first_tab'">
+                            <div class="px-4 py-6 space-y-4 bg-neutral-200" x-show="tab === 'first_tab'" x-transition.duration.300ms>
                                 <p class="text-neutral-700 text-sm tracking-wide">We operate as a wholesaler, supplying a
                                     wide range
                                     of products to retailers and businesses. Our focus is on providing quality goods at
@@ -107,7 +107,7 @@
                                 class="flex text-sm  font-semibold w-full items-center justify-between px-4 py-4 bg-white">
                                 Do you design your own products too? <span><x-icons.dropdown-arrow
                                         class="w-4" /></span></button>
-                            <div class="px-4 py-6 space-y-4 bg-neutral-200" x-show="tab === 'second_tab'">
+                            <div class="px-4 py-6 space-y-4 bg-neutral-200" x-show="tab === 'second_tab'" x-transition.duration.300ms>
                                 <p class="text-neutral-700 text-sm tracking-wide">Alongside providing an extensive array
                                     of international products, we are dedicated to both quality and innovation. Our
                                     proprietary line of products is specifically crafted to withstand the challenges
@@ -117,13 +117,13 @@
                                 </p>
                             </div>
                         </div>
-                        <div class="max-w-2xl space-y-2">
+                        <div class="max-w-2xl space-y-2" >
                             <button x-on:click.prevent="tab = (tab === 'third_tab') ? '' : 'third_tab'"
                                 {{-- x-bind:class= --}}
                                 class="flex text-sm  font-semibold w-full items-center justify-between px-4 py-4 bg-white">
                                 Is your product compatible with most other company
                                 products?<span><x-icons.dropdown-arrow class="w-4" /></span></button>
-                            <div class="px-4 py-6 space-y-4 bg-neutral-200" x-show="tab === 'third_tab'">
+                            <div class="px-4 py-6 space-y-4 bg-neutral-200" x-show="tab === 'third_tab'" x-transition.duration.300ms>
                                 <p class="text-neutral-700 text-sm tracking-wide">Our product seamlessly integrates with a
                                     wide array
                                     of other company products, making it a versatile and convenient choice for

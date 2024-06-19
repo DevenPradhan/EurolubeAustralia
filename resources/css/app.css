@@ -58,7 +58,7 @@
 }
 
 h1 {
-    @apply text-6xl;
+    @apply text-4xl sm:text-6xl;
 }
 
 h2 {
@@ -93,7 +93,7 @@ h6 {
 }
 
 .button_link {
-    @apply px-7 py-3 uppercase text-white whitespace-nowrap font-medium;
+    @apply px-4 sm:px-7 py-3 uppercase text-white w-full text-sm sm:text-base whitespace-nowrap font-medium;
 }
 
 /*Products */

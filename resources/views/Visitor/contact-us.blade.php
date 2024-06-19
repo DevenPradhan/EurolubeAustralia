@@ -53,8 +53,8 @@
                     </div>
                     <div class="space-x-4 flex w-full">
                         {{-- button_link css at app.css --}}
-                        <a href="#" class="bg-red-800 button_link">Contact Us Today</a>
-                        <a href="#" class="bg-[#929494] button_link">Get direction</a>
+                        <a href="#" class="bg-red-800 button_link max-w-max">Contact Us Today</a>
+                        <a href="#" class="bg-[#929494] button_link max-w-max">Get direction</a>
                     </div>
                 </div>
             </section>
