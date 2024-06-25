@@ -24,21 +24,24 @@
 
         <div class="space-y-2">
             <x-primary-button wire:click.prevent="addProductModal">Add Product</x-primary-button>
-            <div class="grid gap-2 grid-cols-2 grid-flow-row relative max-h-screen">
+            <div class="grid gap-2 grid-cols-2 lg:grid-cols-3 grid-flow-row relative max-h-screen">
                 @foreach ($products as $product)
                 <div class="group flex space-x-2 max-w-md">
                     <a href="{{ route('products.show', $product->id) }}" class="w-full">
                         <div
-                            class="flex py-1.5 px-1 rounded relative items-end justify-between w-full transition-all h-full border {{ $product->status == 1 ? 'border-emerald-200' : 'border-gray-200' }}">
-                            <h6 class=" w-full">{{ $product->name }}</h6>
+                            class="flex py-1.5 px-1 rounded relative items-center justify-between w-full transition-all h-full border {{ $product->status == 1 ? 'border-slate-200' : 'border-gray-200' }}">
+                            <div class="px-2 pb-3">
+                                <h6 class=" w-full">{{ $product->name }}</h6>
+                                <p>Part No: {{$product->details->part_no}}</p>
+                            </div>
                             @if ($product->images()->exists())
                                 <img src="{{ asset('storage/products/images/' . $product->images()->first()->url) }}"
-                                    alt="" class="w-max h-20 object-contain ">
+                                    alt="" class="w-max h-40 object-contain ">
                             @endif
                             <hr class="opacity-70 ">
                         </div>
                     </a>
-                    <x-danger-button class="max-w-max h-max hidden group-hover:block transition-all">Delete</x-danger-button>
+                    <x-danger-button class="max-w-max h-max opacity-0 float-right group-hover:opacity-100 transition-all">Delete</x-danger-button>
                 </div>
                     
 
@@ -70,11 +73,18 @@
                         <x-text-input type="text" name="productName" required wire:model.debounce.500ms="productName"
                             class="w-full" />
                         <x-input-error :messages="$errors->get('productName')" class="mt-2" />
-
                     </div>
-
-
                 </div>
+
+                <div class="flex  items-center">
+                    <x-input-label for="partNo" value="Part No" class="w-28" />
+                    <div class="">
+                        <x-text-input type="text" name="partNo" required wire:model.debounce.500ms="partNo"
+                            class="w-full" />
+                        <x-input-error :messages="$errors->get('partNo')" class="mt-2" />
+                    </div>
+                </div>
+
                 <div class="flex items-center">
                     <x-input-label for="productDescription" value="Description" class="w-28" />
                     <x-textbox name="productDescription" wire:model.defer="productDescription"

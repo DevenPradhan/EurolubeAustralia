@@ -18,6 +18,7 @@ class Details extends Component
     public $productModal = false;
     public $newProduct;
     public $productName;
+    public $partNo;
     public $productDescription;
     public $productQuantity = 1;
 
@@ -38,7 +39,8 @@ class Details extends Component
     public function addProductFunction()
     {
         $this->validate([
-            'productName' => ['required', new ProductExistsRule($this->category->id)]
+            'productName' => 'required',
+            'partNo' => ['required', new ProductExistsRule($this->partNo)]
         ]);
 
         $this->newProduct = Product::create([
@@ -49,7 +51,9 @@ class Details extends Component
             'category_id' => $this->category->id
         ]);
 
-        $this->newProduct->details()->create();
+        $this->newProduct->details()->create([
+            'part_no' => $this->partNo
+        ]);
         $this->emit('product-saved');
 
     }
